@@ -158,13 +158,19 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('admin/laporan/santri'); ?>">santri</a>
+                <a href="<?= base_url('admin/laporan/pendaftaran'); ?>">Pendaftaran</a>
               </li>
               <li>
-                <a href="<?= base_url('admin/laporan/surat'); ?>">Surat</a>
+                <a href="<?= base_url('admin/laporan/pembayaran'); ?>">Pembayaran</a>
               </li>
               <li>
-                <a href="<?= base_url('admin/laporan/absensi'); ?>">Absensi</a>
+                <a href="<?= base_url('admin/laporan/santri'); ?>">Santri</a>
+              </li>
+              <li>
+                <a href="<?= base_url('admin/laporan/ustads'); ?>">Ustads</a>
+              </li>
+              <li>
+                <a href="<?= base_url('admin/laporan/rapot'); ?>">Rapot</a>
               </li>
             </ul>
           </li>
