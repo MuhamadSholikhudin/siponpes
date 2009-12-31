@@ -42,7 +42,7 @@
                             </div>
 
                             <?php
-                            $status = ['Bayar', 'Tidak Bayar'];
+                            $status = ['Lunas', 'Belum Lunas'];
                             ?>
                             <label for="status">Status</label>
                             <div class="form-group">

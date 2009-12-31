@@ -21,7 +21,7 @@
                                     <div class="col-sm-10">
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                         <a href="<?= base_url('admin/pendaftaran/ubah/'. $daftar->id_daftar) ?>" data-sub-html="Demo Description">
-                                            <img class="img-responsive thumbnail" src="<?= base_url('uploads/pendaftaran/foto/'. $daftar->foto) ?>">
+                                            <img class="img-responsive thumbnail" src="<?= base_url('uploads/pendaftaran/'. $daftar->foto) ?>">
                                         </a>
                                     </div>
                                     </div>
@@ -215,9 +215,9 @@
 
 
             <div class="container">
-                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/kartu_keluarga/'. $daftar->file_kk) ?> "  width="600" height="400"></object >
+                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_kk) ?> "  width="600" height="400"></object >
             </div>
             <div class="container">
-                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/keterangan_ijin/'. $daftar->file_ket_ijin) ?>"  width="600" height="400"></object >
+                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_ket_ijin) ?>"  width="600" height="400"></object >
             </div>
     </section>

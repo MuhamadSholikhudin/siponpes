@@ -95,8 +95,8 @@
                                                     <label for="status">Status</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="status" id="status">
-                                                            <option value="Bayar">Bayar</option>
-                                                            <option value="Tidak Bayar">Tidak Bayar</option>
+                                                            <option value="Lunas">Lunas</option>
+                                                            <option value="Belum Lunas">Belum Lunas</option>
                                                         </select>
                                                     </div>
 

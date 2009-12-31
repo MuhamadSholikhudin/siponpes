@@ -167,6 +167,55 @@ class Pendaftaran extends CI_Controller
         redirect('admin/pendaftaran/');
     }
 
+    public function edit_file_aksi()
+    {
+        $id_daftar = $this->input->post('id_daftar');
+        $cek_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+
+        $foto = $_FILES['foto']['name'];
+        $file_kk = $_FILES['file_kk']['name'];
+        $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
+
+        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->foto);
+        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_kk);
+        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
+
+
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './uploads/pendaftaran/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto')) {
+                $new_foto = $this->upload->data('file_name');
+            }
+            if ($this->upload->do_upload('file_kk')) {
+                $new_file_kk = $this->upload->data('file_name');
+            }
+            if ($this->upload->do_upload('file_ket_ijin')) {
+                $new_file_ket_ijin = $this->upload->data('file_name');
+            }
+
+            // $this->upload->do_upload('foto');
+            // $this->upload->do_upload('file_kk');
+            // $this->upload->do_upload('file_ket_ijin');            
+
+
+
+        $data = [
+            'foto' =>  $new_foto,
+            'file_kk' => $new_file_kk,
+            'file_ket_ijin' => $new_file_ket_ijin,
+        ];
+        $where = [
+            'id_daftar' => $id_daftar
+        ];
+
+        $this->Model_daftar->update_data($where, $data, 'daftar');
+        redirect('admin/pendaftaran/ubah/'.$id_daftar);
+    }
+
     public function hapus($id_daftar)
     {
         $where = ['id_pendaftaran' => $id_pendaftaran];

@@ -128,7 +128,7 @@ print $result;
     {
 
         $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran WHERE id_pembayaran = '$id_pembayaran' ")->row();
-        $data['status'] = [0, 1];
+        $data['status'] = ['Lunas', 'Belum Lunas'];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
 
@@ -150,7 +150,7 @@ print $result;
 
         $data = array(
             // 'nama' => $nama,
-            'id_pendaftar' => $id_pendaftar,
+   
             'jumlah' => $jumlah,
             'status' => $status,
             'tanggal' => $tanggal

@@ -178,32 +178,23 @@ class Page extends CI_Controller
             } else {
                 
                 $foto = $_FILES['foto']['name'];
-                if ($foto) {
-                    $config1['upload_path'] = './uploads/pendaftaran/foto';
-                    $config1['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
-                    $this->load->library('upload', $config1);
-                    $this->upload->do_upload('foto');
+                $file_kk = $_FILES['file_kk']['name'];
+                $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
 
-                    $file_kk = $_FILES['file_kk']['name'];
-                    if ($file_kk) {
-                        $config2['upload_path'] = './uploads/pendaftaran/kartu_keluarga';
-                        $config2['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
-                        $this->load->library('upload', $config2);
-                        $this->upload->do_upload('file_kk');
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+                $config['max_size']      = '2048';
+                $config['upload_path'] = './uploads/pendaftaran/';
+                $this->load->library('upload', $config);
 
-                        $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
-                        if ($file_ket_ijin) {
-                            $config3['upload_path'] = './uploads/pendaftaran/keterangan_ijin';
-                            $config3['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
-                            $this->load->library('upload', $config3);
-                            $this->upload->do_upload('file_ket_ijin');
-                        }
-                    }
-                    
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
                 }
-
-
-
+                if ($this->upload->do_upload('file_kk')) {
+                    $new_file_kk = $this->upload->data('file_name');
+                }
+                if ($this->upload->do_upload('file_ket_ijin')) {
+                    $new_file_ket_ijin = $this->upload->data('file_name');
+                }
 
 
                 $data = [
@@ -226,9 +217,9 @@ class Page extends CI_Controller
                     'alamat_wali' => $this->input->post('alamat_wali'),
                     'nomor_wa' => $nomor_wa,
                     'email' => $email,
-                    'foto' => $foto,
-                    'file_kk' => $file_kk,
-                    'file_ket_ijin' => $file_ket_ijin,
+                    'foto' =>  $new_foto,
+                    'file_kk' => $new_file_kk,
+                    'file_ket_ijin' => $new_file_ket_ijin,
                     'tanggal_daftar' => date('Y-m-d'),
                     'status' => 1
                 ];
