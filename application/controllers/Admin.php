@@ -20,7 +20,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        // $data['surat'] = $this->db->query("SELECT * FROM surat_penugasan WHERE status_surat != 0 ORDER BY no_surat DESC")->result();
+        // $data['surat'] = $this->db->query("SELECT * FROM pengurus WHERE status_surat != 0 ORDER BY id_pengurus DESC")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -30,7 +30,7 @@ class Admin extends CI_Controller
 
     public function pembayaran()
     {
-        // $data['surat'] = $this->db->query("SELECT * FROM surat_penugasan WHERE status_surat != 0 ORDER BY no_surat DESC")->result();
+        // $data['surat'] = $this->db->query("SELECT * FROM pengurus WHERE status_surat != 0 ORDER BY id_pengurus DESC")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -50,7 +50,7 @@ class Admin extends CI_Controller
     
     public function jadwal()
     {
-        // $data['surat'] = $this->db->query("SELECT * FROM surat_penugasan WHERE status_surat != 0 ORDER BY no_surat DESC")->result();
+        // $data['surat'] = $this->db->query("SELECT * FROM pengurus WHERE status_surat != 0 ORDER BY id_pengurus DESC")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -60,7 +60,7 @@ class Admin extends CI_Controller
 
     public function absensi()
     {
-        // $data['surat'] = $this->db->query("SELECT * FROM surat_penugasan WHERE status_surat != 0 ORDER BY no_surat DESC")->result();
+        // $data['surat'] = $this->db->query("SELECT * FROM pengurus WHERE status_surat != 0 ORDER BY id_pengurus DESC")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -78,26 +78,172 @@ class Admin extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
-    public function santri()
+    public function aksi_tambah_pengurus()
     {
-        // $data['surat'] = $this->db->query("SELECT * FROM surat_penugasan WHERE status_surat != 0 ORDER BY no_surat DESC")->result();
+        
+        $nama = $this->input->post('nama');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $hakakses = $this->input->post('hakakses');
+        $status = $this->input->post('status');
+
+        $data = array(
+            'nama' => $nama,
+            'username' => $username,
+            'password' => $password,
+            'status' => $status,
+            'hakakses' => $hakakses
+        );
+
+        $this->Model_pengurus->tambah_pengurus($data, 'pengurus');
+        redirect('admin/pengurus/');
+    }
+
+    public function ubah_pengurus($id_pengurus)
+    {
+
+$data['pengurus'] = $this->db->query("SELECT * FROM pengurus WHERE id_pengurus = '$id_pengurus' ")->row();
+$data['status'] = [0, 1];
+$data['hakakses'] = [1, 2];
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
-        $this->load->view('Admin/santri');
+        $this->load->view('admin/edit_pengurus', $data);
         $this->load->view('templates_admin/footer');
     }
-    
 
-    public function lihat($no_surat)
+    public function edit_pengurus_aksi()
     {
-        $where = array('no_surat' => $no_surat);
-        $data['surat'] = $this->Model_surat_penugasan->edit_surat_penugasan($where, 'surat_penugasan')->result();
+        $nama = $this->input->post('nama');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $hakakses = $this->input->post('hakakses');
+        $status = $this->input->post('status');
+        $id_pengurus = $this->input->post('id_pengurus');
+
+        $data = [
+            'nama' => $nama,
+            'username' => $username,
+            'password' => $password,
+            'hakakses' => $hakakses,
+            'status' => $status
+        ];
+        $where = [
+            'id_pengurus' => $id_pengurus
+        ];
+
+        $this->Model_pengurus->update_data($where, $data, 'pengurus');
+        redirect('admin/pengurus/');
+    }
+
+    public function hapus_pengurus($id_pengurus)
+    {
+        $where = [ 'id_pengurus' => $id_pengurus];
+
+// $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
+        // if($cari > 0){
+            $this->Model_pengurus->hapus_data($where, 'pengurus');
+            redirect('admin/pengurus/');
+        // }elseif($cari < 1){
+        //     redirect('sekre/surat/');
+        // }
+    }
+
+    public function santri()
+    {
+        $data['santri'] = $this->db->query("SELECT * FROM santri ")->result();
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('Admin/santri', $data);
+        $this->load->view('templates_admin/footer');
+    }
+
+    public function aksi_tambah_santri()
+    {
+        
+        // $nama = $this->input->post('nama');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $periodetahun = $this->input->post('periodetahun');
+        // $status = $this->input->post('status');
+
+        $data = array(
+            // 'nama' => $nama,
+            'username' => $username,
+            'password' => $password,
+            'status' => 1,
+            'hakakses' => 3,
+            'periodetahun' => $periodetahun,
+            'id_daftar' => 0
+        );
+
+        $this->Model_santri->tambah_santri($data, 'santri');
+        redirect('admin/santri/');
+    }
+
+    public function ubah_santri($id_santri)
+    {
+
+$data['santri'] = $this->db->query("SELECT * FROM santri WHERE id_santri = '$id_santri' ")->row();
+$data['status'] = [0, 1];
+$data['hakakses'] = [3];
+$data['periodetahun'] = [2020, 2021, 2022, 2023,];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/edit_santri', $data);
+        $this->load->view('templates_admin/footer');
+    }
+
+    public function edit_santri_aksi()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $hakakses = $this->input->post('hakakses');
+        $status = $this->input->post('status');
+        $id_santri = $this->input->post('id_santri');
+        $periodetahun = $this->input->post('periodetahun');
+
+        $data = [
+            // 'nama' => $nama,
+            'username' => $username,
+            'password' => $password,
+            'hakakses' => $hakakses,
+            'status' => $status,
+            'periodetahun' => $periodetahun
+        ];
+        $where = [
+            'id_santri' => $id_santri
+        ];
+
+        $this->Model_santri->update_data($where, $data, 'santri');
+        redirect('admin/santri/');
+    }
+
+    public function hapus_santri($id_santri)
+    {
+        $where = [ 'id_santri' => $id_santri];
+
+// $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
+        // if($cari > 0){
+            $this->Model_santri->hapus_data($where, 'santri');
+            redirect('admin/santri/');
+        // }elseif($cari < 1){
+        //     redirect('sekre/surat/');
+        // }
+    }
+
+
+    public function lihat($id_pengurus)
+    {
+        $where = array('id_pengurus' => $id_pengurus);
+        $data['surat'] = $this->Model_pengurus->edit_pengurus($where, 'pengurus')->result();
 
         $data['kadin'] = $this->db->query(" SELECT * FROM user WHERE level = 3")->result();
 
-        $data['datatugas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE no_surat = $no_surat ")->result();
-        $data['dagas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE no_surat = $no_surat ");
+        $data['datatugas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE id_pengurus = $id_pengurus ")->result();
+        $data['dagas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE id_pengurus = $id_pengurus ");
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -105,15 +251,15 @@ class Admin extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
-    public function lihat_acc($no_surat)
+    public function lihat_acc($id_pengurus)
     {
-        $where = array('no_surat' => $no_surat);
-        $data['surat'] = $this->Model_surat_penugasan->edit_surat_penugasan($where, 'surat_penugasan')->result();
+        $where = array('id_pengurus' => $id_pengurus);
+        $data['surat'] = $this->Model_pengurus->edit_pengurus($where, 'pengurus')->result();
 
         $data['kadin'] = $this->db->query(" SELECT * FROM user WHERE level = 3")->result();
 
-        $data['datatugas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE no_surat = $no_surat ")->result();
-        $data['dagas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE no_surat = $no_surat ");
+        $data['datatugas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE id_pengurus = $id_pengurus ")->result();
+        $data['dagas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE id_pengurus = $id_pengurus ");
 
 
         $data['user'] = $this->db->query(" SELECT * FROM user ")->result();
@@ -124,16 +270,16 @@ class Admin extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
-    public function lihat_batalkan($no_surat)
+    public function lihat_batalkan($id_pengurus)
 
     {
-        $where = array('no_surat' => $no_surat);
-        $data['surat'] = $this->Model_surat_penugasan->edit_surat_penugasan($where, 'surat_penugasan')->result();
+        $where = array('id_pengurus' => $id_pengurus);
+        $data['surat'] = $this->Model_pengurus->edit_pengurus($where, 'pengurus')->result();
 
         $data['kadin'] = $this->db->query(" SELECT * FROM user WHERE level = 3")->result();
 
-        $data['datatugas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE no_surat = $no_surat ")->result();
-        $data['dagas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE no_surat = $no_surat ");
+        $data['datatugas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE id_pengurus = $id_pengurus ")->result();
+        $data['dagas'] = $this->db->query(" SELECT * FROM  data_pegawai  WHERE id_pengurus = $id_pengurus ");
 
 
         $data['user'] = $this->db->query(" SELECT * FROM user ")->result();
@@ -147,7 +293,7 @@ class Admin extends CI_Controller
     public function acc()
     {
         //Update data attribut   
-        $no_surat = $this->input->post('no_surat');
+        $id_pengurus = $this->input->post('id_pengurus');
         $id = $this->input->post('id');
         $result = array();
         foreach ($id as $key => $val) {
@@ -162,10 +308,10 @@ class Admin extends CI_Controller
             'status_surat' => 2
         ];
         $where = [
-            'no_surat' => $no_surat
+            'id_pengurus' => $id_pengurus
         ];
 
-        $this->Model_surat_penugasan->update_data($where, $data, 'surat_penugasan');
+        $this->Model_pengurus->update_data($where, $data, 'pengurus');
         redirect('kadin/surat/');
     }
 
@@ -173,7 +319,7 @@ class Admin extends CI_Controller
     public function acc_surat()
     {
         //Update data attribut   
-        $no_surat = $this->input->post('no_surat');
+        $id_pengurus = $this->input->post('id_pengurus');
         $id = $this->input->post('id');
         $result = array();
         foreach ($id as $key => $val) {
@@ -188,10 +334,10 @@ class Admin extends CI_Controller
             'status_surat' => 2
         ];
         $where = [
-            'no_surat' => $no_surat
+            'id_pengurus' => $id_pengurus
         ];
 
-        $this->Model_surat_penugasan->update_data($where, $data, 'surat_penugasan');
+        $this->Model_pengurus->update_data($where, $data, 'pengurus');
         redirect('kadin/surat/');
     }
 
@@ -200,7 +346,7 @@ class Admin extends CI_Controller
 
         //Update data attribut
         $id = $this->input->post('id');
-        $no_surat = $this->input->post('no_surat');
+        $id_pengurus = $this->input->post('id_pengurus');
         $id = $this->input->post('id');
 
         $result = array();
@@ -216,22 +362,22 @@ class Admin extends CI_Controller
             'status_surat' => 1
         ];
         $where = [
-            'no_surat' => $no_surat
+            'id_pengurus' => $id_pengurus
         ];
-        $this->Model_surat_penugasan->update_data($where, $data, 'surat_penugasan');
+        $this->Model_pengurus->update_data($where, $data, 'pengurus');
         redirect('kadin/surat/');
     }
 
-    public function kembalikan_surat($no_surat)
+    public function kembalikan_surat($id_pengurus)
     {
         //Update data attribut
         $data = [
             'status_surat' => 0
         ];
         $where = [
-            'no_surat' => $no_surat
+            'id_pengurus' => $id_pengurus
         ];
-        $this->Model_surat_penugasan->update_data($where, $data, 'surat_penugasan');
+        $this->Model_pengurus->update_data($where, $data, 'pengurus');
         redirect('kadin/surat/');
 
     }

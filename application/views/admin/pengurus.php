@@ -49,7 +49,7 @@
                                                     </div>
                                                     <label for="hakakses">Status</label>
                                                     <div class="form-group">
-                                                        <select class="selectpicker form-line" name="hakakses" id="hakakses">
+                                                        <select class="selectpicker form-line" name="status" id="status">
                                                             <option value="0">Pengurus</option>
                                                             <option value="1">Aktif</option>
                                                            
