@@ -1,0 +1,31 @@
+alias graph="git log --all --decorate --oneline --graph"
+
+git commit -m "Sampai Acc tambah txt git"
+
+git status
+
+git add .
+
+git fetch
+
+
+git init
+git pull origin master
+git add .
+git commit -m 'your commit message'
+git push origin master --force
+
+git pull
+
+
+P1 DINAS Kesehatan
+P2 DINAS Pendidikan Pemuda dan Olahraga
+P3 DINAS Kominfo
+P4 DINAS Perdagangan
+P5 DINAS Kebudayaan dan Pariwisata
+P6 DINAS Pertanian dan Pangan
+P7 DINAS Tenaga Kerja
+P8 DINAS Sosial 
+P9 DINAS Pekerjaan Umum dan Penataan Ruang
+P10 BNPB
+
