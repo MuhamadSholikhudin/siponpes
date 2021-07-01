@@ -28,12 +28,12 @@
       <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
       <a href="javascript:void(0);" class="bars"></a>
 
-      <?php if ($this->session->userdata('level') == 1) { ?>
-        <a class="navbar-brand" href="<?= base_url('sekre/dashboard/index'); ?>">SISTEM PENUGASAN DINAS TENAGA KERJA KABUPATEN KUDUS</a>
-      <?php } elseif ($this->session->userdata('level') == 2) { ?>
-        <a class="navbar-brand" href="<?= base_url('pegawai/dashboard/index'); ?>">SISTEM PENUGASAN DINAS TENAGA KERJA KABUPATEN KUDUS</a>
-      <?php } elseif ($this->session->userdata('level') == 3) { ?>
-        <a class="navbar-brand" href="<?= base_url('kadin/dashboard/index'); ?>">SISTEM PENUGASAN DINAS TENAGA KERJA KABUPATEN KUDUS</a>
+      <?php if ($this->session->userdata('hakakses') == 1) { ?>
+        <a class="navbar-brand" href="<?= base_url('admin/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS </a>
+      <?php } elseif ($this->session->userdata('hakakses') == 2) { ?>
+        <a class="navbar-brand" href="<?= base_url('pengurus/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS</a>
+      <?php } elseif ($this->session->userdata('hakakses') == 3) { ?>
+        <a class="navbar-brand" href="<?= base_url('santri/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS</a>
       <?php }
       ?>
     </div>
@@ -71,12 +71,12 @@
       <div class="info-container">
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php
-          if ($this->session->userdata('level') == 1) {
-            echo "Sekretariat Disnaker";
-          } elseif ($this->session->userdata('level') == 2) {
-            echo "Pegawai Disnaker";
-          } elseif ($this->session->userdata('level') == 3) {
-            echo "Kepala Disnaker";
+          if ($this->session->userdata('hakakses') == 1) {
+            echo "Admin Pondok";
+          } elseif ($this->session->userdata('hakakses') == 2) {
+            echo "Pengurus Pondok";
+          } elseif ($this->session->userdata('hakakses') == 3) {
+            echo "Santri Pondok";
           }
           ?>
         </div>
@@ -89,10 +89,10 @@
     <div class="menu">
       <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
-        <?php if ($this->session->userdata('level') == 1) { ?>
+        <?php if ($this->session->userdata('hakakses') == 1) { ?>
 
           <li class="active">
-            <a href="<?= base_url('sekre/dashboard'); ?>">
+            <a href="<?= base_url('admin/dashboard'); ?>">
               <i class="material-icons">home</i>
               <span>Home</span>
             </a>
@@ -105,20 +105,26 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('sekre/pegawai'); ?>">Pegawai</a>
+                <a href="<?= base_url('admin/pendaftaran'); ?>">Pendaftaran</a>
+              </li>
+              <!-- <li>
+                <a href="<?= base_url('admin/surat'); ?>">Surat</a>
+              </li> -->
+              <li>
+                <a href="<?= base_url('admin/pembayaran'); ?>">Pembayaran</a>
               </li>
               <li>
-                <a href="<?= base_url('sekre/surat'); ?>">Surat</a>
-              </li>
-              <li>
-                <a href="<?= base_url('sekre/jadwal'); ?>">Jadwal </br> Penugasan</a>
+                <a href="<?= base_url('admin/jadwal'); ?>">Jadwal Santri</a>
               </li>
 
               <li>
-                <a href="<?= base_url('sekre/absensi'); ?>">Absensi</a>
+                <a href="<?= base_url('admin/absensi'); ?>">Absensi</a>
               </li>
               <li>
-                <a href="<?= base_url('sekre/pengguna'); ?>">Pengguna</a>
+                <a href="<?= base_url('admin/pengurus'); ?>">Pengurus</a>
+              </li>
+              <li>
+                <a href="<?= base_url('admin/santri'); ?>">Santri</a>
               </li>
             </ul>
           </li>
@@ -129,21 +135,21 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('sekre/laporan/pegawai'); ?>">Pegawai</a>
+                <a href="<?= base_url('admin/laporan/santri'); ?>">santri</a>
               </li>
               <li>
-                <a href="<?= base_url('sekre/laporan/surat'); ?>">Surat</a>
+                <a href="<?= base_url('admin/laporan/surat'); ?>">Surat</a>
               </li>
               <li>
-                <a href="<?= base_url('sekre/laporan/absensi'); ?>">Absensi</a>
+                <a href="<?= base_url('admin/laporan/absensi'); ?>">Absensi</a>
               </li>
             </ul>
           </li>
 
-        <?php } elseif ($this->session->userdata('level') == 2) { ?>
+        <?php } elseif ($this->session->userdata('hakakses') == 2) { ?>
 
           <li class="active">
-            <a href="<?= base_url('pegawai/dashboard'); ?>">
+            <a href="<?= base_url('santri/dashboard'); ?>">
               <i class="material-icons">home</i>
               <span>Home</span>
             </a>
@@ -156,13 +162,13 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('pegawai/absensi'); ?>">Absensi</a>
+                <a href="<?= base_url('santri/absensi'); ?>">Absensi</a>
               </li>
             </ul>
-          </li><?php } elseif ($this->session->userdata('level') == 3) { ?>
+          </li><?php } elseif ($this->session->userdata('hakakses') == 3) { ?>
 
           <li class="active">
-            <a href="<?= base_url('kadin/dashboard'); ?>">
+            <a href="<?= base_url('pengurus/dashboard'); ?>">
               <i class="material-icons">home</i>
               <span>Home</span>
             </a>
@@ -175,7 +181,7 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('kadin/surat'); ?>">Surat</a>
+                <a href="<?= base_url('pengurus/surat'); ?>">Surat</a>
               </li>
             </ul>
           </li>
@@ -186,13 +192,13 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('kadin/laporan/pegawai'); ?>">Pegawai</a>
+                <a href="<?= base_url('pengurus/laporan/santri'); ?>">santri</a>
               </li>
               <li>
-                <a href="<?= base_url('kadin/laporan/surat'); ?>">Surat</a>
+                <a href="<?= base_url('pengurus/laporan/surat'); ?>">Surat</a>
               </li>
               <li>
-                <a href="<?= base_url('kadin/laporan/absensi'); ?>">Absensi</a>
+                <a href="<?= base_url('pengurus/laporan/absensi'); ?>">Absensi</a>
               </li>
             </ul>
           </li>
