@@ -28,53 +28,92 @@ class Page extends CI_Controller
         }
     }
 
+    public function login(){
+        $this->form_validation->set_rules('username', 'username', 'required', ['required' => 'Username wajib di Isi !']);
+        $this->form_validation->set_rules('password', 'password', 'required', ['required' => 'Password wajib di Isi !']);
 
-    public function login()
-    {
-
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-
-        $user = $this->db->get_where('user', ['username' => $username])->row_array();
-
-        // jika usernya ada
-        if ($user) {
-            // jika usernya aktif
-            if ($user['is_active'] == 1) {
-                // cek password
-                if (password_verify($password, $user['password'])) {
-                    $data = [
-                        'email' => $user['email'],
-                        'hakakses' => $user['hakakses']
-                    ];
-                    $this->session->set_userdata($data);
-                    if ($user['hakakses'] == 1) {
-                        redirect('admin');
-                    } else {
-                        redirect('user');
-                    }
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
-                    $data['title'] = 'Sistem Ponpes Baitul Qudus';
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/login');
-                    $this->load->view('page/theme/footer');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
-                $data['title'] = 'Sistem Ponpes Baitul Qudus';
-                $this->load->view('page/theme/header', $data);
-                $this->load->view('page/login');
-                $this->load->view('page/theme/footer');
-            }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
+        if ($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
             $data['title'] = 'Sistem Ponpes Baitul Qudus';
             $this->load->view('page/theme/header', $data);
             $this->load->view('page/login');
-            $this->load->view('page/theme/footer');
+            $this->load->view('page/theme/footer');    
+        }else {
+            $auth = $this->Model_auth->cek_login();
+            if($auth == FALSE){
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Username Atau Password Anda Salah
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+
+                    redirect('page/login');
+            }else {
+                $this->session->set_userdata('username', $auth->username);
+                $this->session->set_userdata('hakakses', $auth->hakakses);
+                $this->session->set_userdata('status', $auth->status);
+
+                switch($auth->hakakses){
+                    case 1 : redirect('pengurus/index');
+                        break;
+                    case 2: redirect('pegawai/dashboard');
+                        break;
+                    case 3: redirect('kadin/dashboard');
+                        break;
+                    default: break;
+                }
+            }
         }
     }
+    
+
+    // public function login()
+    // {
+
+    //     $username = $this->input->post('username');
+    //     $password = $this->input->post('password');
+
+    //     $user = $this->db->get_where('pengurus', ['username' => $username])->row_array();
+
+    //     // jika usernya ada
+    //     if ($user) {
+    //         // jika usernya aktif
+    //         if ($user['status'] == 1) {
+    //             // cek password
+    //             if (password_verify($password, $user['password'])) {
+    //                 $data = [
+    //                     'username' => $user['username'],
+    //                     'hakakses' => $user['hakakses']
+    //                 ];
+    //                 $this->session->set_userdata($data);
+    //                 if ($user['hakakses'] == 1) {
+    //                     redirect('pengurus');
+    //                 } else {
+    //                     redirect('page');
+    //                 }
+    //             } else {
+    //                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+    //                 $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    //                 $this->load->view('page/theme/header', $data);
+    //                 $this->load->view('page/login');
+    //                 $this->load->view('page/theme/footer');
+    //             }
+    //         } else {
+    //             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
+    //             $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    //             $this->load->view('page/theme/header', $data);
+    //             $this->load->view('page/login');
+    //             $this->load->view('page/theme/footer');
+    //         }
+    //     } else {
+    //         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
+    //         $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    //         $this->load->view('page/theme/header', $data);
+    //         $this->load->view('page/login');
+    //         $this->load->view('page/theme/footer');
+    //     }
+    // }
 
     public function registration()
     {

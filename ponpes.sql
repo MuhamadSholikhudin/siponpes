@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2021 pada 06.45
+-- Waktu pembuatan: 01 Jul 2021 pada 10.25
 -- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.2.16
+-- Versi PHP: 7.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,10 +71,32 @@ INSERT INTO `daftar` (`id_daftar`, `nama_lengkap`, `tanggal_lahir`, `tanggal_daf
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Struktur dari tabel `pengurus`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `pengurus` (
+  `id_pengurus` int(11) NOT NULL,
+  `nama` varchar(225) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `hakakses` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pengurus`
+--
+
+INSERT INTO `pengurus` (`id_pengurus`, `nama`, `username`, `password`, `hakakses`, `status`) VALUES
+(1, '0', 'sakroni', 'sakroni', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `santri`
+--
+
+CREATE TABLE `santri` (
   `id_user` int(11) NOT NULL,
   `id_daftar` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -83,6 +105,13 @@ CREATE TABLE `user` (
   `status` int(11) NOT NULL,
   `periodetahun` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `santri`
+--
+
+INSERT INTO `santri` (`id_user`, `id_daftar`, `username`, `password`, `hakakses`, `status`, `periodetahun`) VALUES
+(1, 1, 'dessyadelia', 'dessyadelia', 3, 1, 2021);
 
 --
 -- Indexes for dumped tables
@@ -95,9 +124,15 @@ ALTER TABLE `daftar`
   ADD PRIMARY KEY (`id_daftar`);
 
 --
--- Indeks untuk tabel `user`
+-- Indeks untuk tabel `pengurus`
 --
-ALTER TABLE `user`
+ALTER TABLE `pengurus`
+  ADD PRIMARY KEY (`id_pengurus`);
+
+--
+-- Indeks untuk tabel `santri`
+--
+ALTER TABLE `santri`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -111,10 +146,16 @@ ALTER TABLE `daftar`
   MODIFY `id_daftar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT untuk tabel `pengurus`
 --
-ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pengurus`
+  MODIFY `id_pengurus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `santri`
+--
+ALTER TABLE `santri`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
