@@ -24,7 +24,7 @@ class Santri extends CI_Controller
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
-        $this->load->view('santri/dashboard');
+        $this->load->view('santri/index');
         $this->load->view('templates_admin/footer');
     }
 
@@ -61,7 +61,7 @@ $data['periodetahun'] = [2020, 2021, 2022, 2023,];
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
-        $this->load->view('santri/edit_santri', $data);
+        $this->load->view('santri/edit', $data);
         $this->load->view('templates_admin/footer');
     }
 
