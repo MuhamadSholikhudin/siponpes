@@ -75,11 +75,11 @@
                     </div>
                   </li>
                   <li class="ml-1">
-                    <?= anchor('auth/logout', 'logout') ?>
+                    <?= anchor('page/logout', 'logout') ?>
                   </li>
                 <?php } else { ?>
                   <li>
-                    <?= anchor('auth/login', 'Login') ?>
+                    <?= anchor('page/login', 'Login') ?>
                   </li>
                 <?php } ?>
               </ul>

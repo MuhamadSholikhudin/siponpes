@@ -28,97 +28,102 @@ class Page extends CI_Controller
         }
     }
 
-    public function login(){
+    public function login()
+    {
         $this->form_validation->set_rules('username', 'username', 'required', ['required' => 'Username wajib di Isi !']);
         $this->form_validation->set_rules('password', 'password', 'required', ['required' => 'Password wajib di Isi !']);
 
-        if ($this->form_validation->run() == FALSE){
+        if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
             $data['title'] = 'Sistem Ponpes Baitul Qudus';
             $this->load->view('page/theme/header', $data);
             $this->load->view('page/login');
-            $this->load->view('page/theme/footer');    
-        }else {
+            $this->load->view('page/theme/footer');
+        } else {
             $auth = $this->Model_auth->cek_login();
-            if($auth == FALSE){
+            if ($auth == FALSE) {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Username Atau Password Anda Salah
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>');
+    Username Atau Password Anda Salah
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>');
 
-                    redirect('page/login');
-            }else {
+                redirect('page/login');
+            } else {
                 $this->session->set_userdata('username', $auth->username);
                 $this->session->set_userdata('hakakses', $auth->hakakses);
                 $this->session->set_userdata('status', $auth->status);
 
-                switch($auth->hakakses){
-                    case 1 : redirect('pengurus/index');
+                switch ($auth->hakakses) {
+                    case 1:
+                        redirect('admin/dashboard/index');
                         break;
-                    case 2: redirect('pegawai/dashboard');
+                    case 2:
+                        redirect('admin/pegawai/dashboard');
                         break;
-                    case 3: redirect('kadin/dashboard');
+                    case 3:
+                        redirect('admin/kadin/dashboard');
                         break;
-                    default: break;
+                    default:
+                        break;
                 }
             }
         }
     }
-    
+
 
     // public function login()
     // {
 
-    //     $username = $this->input->post('username');
-    //     $password = $this->input->post('password');
+    // $username = $this->input->post('username');
+    // $password = $this->input->post('password');
 
-    //     $user = $this->db->get_where('pengurus', ['username' => $username])->row_array();
+    // $user = $this->db->get_where('pengurus', ['username' => $username])->row_array();
 
-    //     // jika usernya ada
-    //     if ($user) {
-    //         // jika usernya aktif
-    //         if ($user['status'] == 1) {
-    //             // cek password
-    //             if (password_verify($password, $user['password'])) {
-    //                 $data = [
-    //                     'username' => $user['username'],
-    //                     'hakakses' => $user['hakakses']
-    //                 ];
-    //                 $this->session->set_userdata($data);
-    //                 if ($user['hakakses'] == 1) {
-    //                     redirect('pengurus');
-    //                 } else {
-    //                     redirect('page');
-    //                 }
-    //             } else {
-    //                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
-    //                 $data['title'] = 'Sistem Ponpes Baitul Qudus';
-    //                 $this->load->view('page/theme/header', $data);
-    //                 $this->load->view('page/login');
-    //                 $this->load->view('page/theme/footer');
-    //             }
-    //         } else {
-    //             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
-    //             $data['title'] = 'Sistem Ponpes Baitul Qudus';
-    //             $this->load->view('page/theme/header', $data);
-    //             $this->load->view('page/login');
-    //             $this->load->view('page/theme/footer');
-    //         }
-    //     } else {
-    //         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
-    //         $data['title'] = 'Sistem Ponpes Baitul Qudus';
-    //         $this->load->view('page/theme/header', $data);
-    //         $this->load->view('page/login');
-    //         $this->load->view('page/theme/footer');
-    //     }
+    // // jika usernya ada
+    // if ($user) {
+    // // jika usernya aktif
+    // if ($user['status'] == 1) {
+    // // cek password
+    // if (password_verify($password, $user['password'])) {
+    // $data = [
+    // 'username' => $user['username'],
+    // 'hakakses' => $user['hakakses']
+    // ];
+    // $this->session->set_userdata($data);
+    // if ($user['hakakses'] == 1) {
+    // redirect('pengurus');
+    // } else {
+    // redirect('page');
+    // }
+    // } else {
+    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+    // $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    // $this->load->view('page/theme/header', $data);
+    // $this->load->view('page/login');
+    // $this->load->view('page/theme/footer');
+    // }
+    // } else {
+    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
+    // $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    // $this->load->view('page/theme/header', $data);
+    // $this->load->view('page/login');
+    // $this->load->view('page/theme/footer');
+    // }
+    // } else {
+    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
+    // $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    // $this->load->view('page/theme/header', $data);
+    // $this->load->view('page/login');
+    // $this->load->view('page/theme/footer');
+    // }
     // }
 
     public function registration()
     {
         // if ($this->session->userdata('email')) {
-        //     redirect('user');
+        // redirect('user');
         // }
 
         $this->form_validation->set_rules('nomor_wa', 'Name', 'required|trim');
@@ -134,22 +139,22 @@ class Page extends CI_Controller
             $this->load->view('page/registration');
             $this->load->view('page/theme/footer');
         } else {
-            
+
             $cek = $this->db->query("SELECT * FROM daftar WHERE nomor_wa = '$nomor_wa' AND status > 0 ")->num_rows();
             $cek2 = $this->db->query("SELECT * FROM daftar WHERE email = '$email' AND status > 0 ")->num_rows();
-            if($cek > 1){
+            if ($cek > 1) {
                 $data['title'] = '2Pendaftaran';
 
                 $this->load->view('page/theme/header', $data);
                 $this->load->view('page/registration');
                 $this->load->view('page/theme/footer');
-            }elseif($cek2 > 0){
+            } elseif ($cek2 > 0) {
                 $data['title'] = '3Pendaftaran';
 
                 $this->load->view('page/theme/header', $data);
                 $this->load->view('page/registration');
                 $this->load->view('page/theme/footer');
-            }else{
+            } else {
                 $foto = $_FILES['foto']['name'];
                 $file_kk = $_FILES['file_kk']['name'];
                 $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
@@ -157,11 +162,11 @@ class Page extends CI_Controller
                 // $config['upload_path'] = './uploads/pendaftaran/';
                 // $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
                 // $this->load->library('upload', $config);
-               
-               
+
+
                 // $file1 = $this->upload->data();
 
-                if($foto){
+                if ($foto) {
                     $config1['upload_path'] = './uploads/pendaftaran/foto';
                     $config1['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
                     $this->load->library('upload', $config1);
@@ -210,18 +215,18 @@ class Page extends CI_Controller
                 ];
                 $this->db->insert('daftar', $data);
 
-                
+
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please activate your account</div>');
                 redirect('page');
             }
-            
+
 
             // siapkan token
             // $token = base64_encode(random_bytes(32));
             // $user_token = [
-            //     'email' => $email,
-            //     'token' => $token,
-            //     'date_created' => time()
+            // 'email' => $email,
+            // 'token' => $token,
+            // 'date_created' => time()
             // ];
 
             // $this->db->insert('daftar', $data);
@@ -237,84 +242,83 @@ class Page extends CI_Controller
 
     // private function _sendEmail($token, $type)
     // {
-    //     $config = [
-    //         'protocol'  => 'smtp',
-    //         'smtp_host' => 'ssl://smtp.googlemail.com',
-    //         'smtp_user' => 'm97824321@gmail.com',
-    //         'smtp_pass' => '1234567890',
-    //         'smtp_port' => 465,
-    //         'mailtype'  => 'html',
-    //         'charset'   => 'utf-8',
-    //         'newline'   => "\r\n"
-    //     ];
+    // $config = [
+    // 'protocol' => 'smtp',
+    // 'smtp_host' => 'ssl://smtp.googlemail.com',
+    // 'smtp_user' => 'm97824321@gmail.com',
+    // 'smtp_pass' => '1234567890',
+    // 'smtp_port' => 465,
+    // 'mailtype' => 'html',
+    // 'charset' => 'utf-8',
+    // 'newline' => "\r\n"
+    // ];
 
-    //     $this->email->initialize($config);
+    // $this->email->initialize($config);
 
-    //     $this->email->from('m97824321@gmail.com', 'Aku 7');
-    //     $this->email->to($this->input->post('email'));
+    // $this->email->from('m97824321@gmail.com', 'Aku 7');
+    // $this->email->to($this->input->post('email'));
 
-    //     if ($type == 'verify') {
-    //         $this->email->subject('Account Verification');
-    //         $this->email->message('Click this link to verify you account : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
-    //     } else if ($type == 'forgot') {
-    //         $this->email->subject('Reset Password');
-    //         $this->email->message('Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
-    //     }
+    // if ($type == 'verify') {
+    // $this->email->subject('Account Verification');
+    // $this->email->message('Click this link to verify you account : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+    // } else if ($type == 'forgot') {
+    // $this->email->subject('Reset Password');
+    // $this->email->message('Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+    // }
 
-    //     if ($this->email->send()) {
-    //         return true;
-    //     } else {
-    //         echo $this->email->print_debugger();
-    //         die;
-    //     }
+    // if ($this->email->send()) {
+    // return true;
+    // } else {
+    // echo $this->email->print_debugger();
+    // die;
+    // }
     // }
 
 
     // public function verify()
     // {
-    //     $email = $this->input->get('email');
-    //     $token = $this->input->get('token');
+    // $email = $this->input->get('email');
+    // $token = $this->input->get('token');
 
-    //     $user = $this->db->get_where('user', ['email' => $email])->row_array();
+    // $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-    //     if ($user) {
-    //         $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+    // if ($user) {
+    // $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
 
-    //         if ($user_token) {
-    //             if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-    //                 $this->db->set('is_active', 1);
-    //                 $this->db->where('email', $email);
-    //                 $this->db->update('user');
+    // if ($user_token) {
+    // if (time() - $user_token['date_created'] < (60 * 60 * 24)) { // $this->db->set('is_active', 1);
+    // $this->db->where('email', $email);
+    // $this->db->update('user');
 
-    //                 $this->db->delete('user_token', ['email' => $email]);
+    // $this->db->delete('user_token', ['email' => $email]);
 
-    //                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' has been activated! Please login.</div>');
-    //                 redirect('auth');
-    //             } else {
-    //                 $this->db->delete('user', ['email' => $email]);
-    //                 $this->db->delete('user_token', ['email' => $email]);
+    // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' has been activated! Please login.</div>');
+    // redirect('auth');
+    // } else {
+    // $this->db->delete('user', ['email' => $email]);
+    // $this->db->delete('user_token', ['email' => $email]);
 
-    //                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Token expired.</div>');
-    //                 redirect('auth');
-    //             }
-    //         } else {
-    //             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Wrong token.</div>');
-    //             redirect('auth');
-    //         }
-    //     } else {
-    //         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Wrong email.</div>');
-    //         redirect('auth');
-    //     }
+    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Token expired.</div>');
+    // redirect('auth');
+    // }
+    // } else {
+    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Wrong token.</div>');
+    // redirect('auth');
+    // }
+    // } else {
+    // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Wrong email.</div>');
+    // redirect('auth');
+    // }
     // }
 
 
 
     public function logout()
     {
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
+        $this->session->sess_destroy();
+      
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
-        redirect('auth');
+        redirect('page/login');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Santri extends CI_Controller
+class Pelajaran extends CI_Controller
 {
 
     public function __construct()
@@ -20,11 +20,11 @@ class Santri extends CI_Controller
 
     public function index()
     {
-        $data['santri'] = $this->db->query("SELECT * FROM santri ")->result();
+        $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
-        $this->load->view('santri/index', $data);
+        $this->load->view('pelajaran/index', $data);
         $this->load->view('templates_admin/footer');
     }
 
@@ -32,72 +32,61 @@ class Santri extends CI_Controller
     {
 
         // $nama = $this->input->post('nama');
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $periodetahun = $this->input->post('periodetahun');
+        $kode_pelajaran = $this->input->post('kode_pelajaran');
+        $nama_pelajaran = $this->input->post('nama_pelajaran');
         // $status = $this->input->post('status');
 
         $data = array(
             // 'nama' => $nama,
-            'username' => $username,
-            'password' => $password,
-            'status' => 1,
-            'hakakses' => 3,
-            'periodetahun' => $periodetahun,
-            'id_daftar' => 0
+            'kode_pelajaran' => $kode_pelajaran,
+            'nama_pelajaran' => $nama_pelajaran
         );
 
-        $this->Model_santri->tambah_santri($data, 'santri');
-        redirect('admin/santri/');
+        $this->Model_pelajaran->tambah_pelajaran($data, 'pelajaran');
+        redirect('admin/pelajaran/');
     }
 
-    public function ubah($id_santri)
+    public function ubah($id_pelajaran)
     {
 
-        $data['santri'] = $this->db->query("SELECT * FROM santri WHERE id_santri = '$id_santri' ")->row();
+        $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran WHERE id_pelajaran = '$id_pelajaran' ")->row();
         $data['status'] = [0, 1];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
-        $this->load->view('santri/edit', $data);
+        $this->load->view('pelajaran/edit', $data);
         $this->load->view('templates_admin/footer');
     }
 
     public function edit_aksi()
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $hakakses = $this->input->post('hakakses');
-        $status = $this->input->post('status');
-        $id_santri = $this->input->post('id_santri');
-        $periodetahun = $this->input->post('periodetahun');
+        $id_pelajaran = $this->input->post('id_pelajaran');
+        $kode_pelajaran = $this->input->post('kode_pelajaran');
+        $nama_pelajaran = $this->input->post('nama_pelajaran');
 
         $data = [
             // 'nama' => $nama,
-            'username' => $username,
-            'password' => $password,
-            'hakakses' => $hakakses,
-            'status' => $status,
-            'periodetahun' => $periodetahun
+            'kode_pelajaran' => $kode_pelajaran,
+            'nama_pelajaran' => $nama_pelajaran,
         ];
         $where = [
-            'id_santri' => $id_santri
+            'id_pelajaran' => $id_pelajaran
         ];
 
-        $this->Model_santri->update_data($where, $data, 'santri');
-        redirect('admin/santri/');
+        $this->Model_pelajaran->update_data($where, $data, 'pelajaran');
+        redirect('admin/pelajaran/');
     }
 
-    public function hapus_santri($id_santri)
+    public function hapus($id_pelajaran)
     {
-        $where = ['id_santri' => $id_santri];
+        $where = ['id_pelajaran' => $id_pelajaran];
 
         // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
         // if($cari > 0){
-        $this->Model_santri->hapus_data($where, 'santri');
-        redirect('admin/santri/');
+        $this->Model_pelajaran->hapus_data($where, 'pelajaran');
+        redirect('admin/pelajaran/');
         // }elseif($cari < 1){
         //     redirect('sekre/surat/');
         // }

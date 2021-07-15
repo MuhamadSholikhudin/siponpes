@@ -4,7 +4,7 @@
 
         <div class="block-header">
 
-            <h2>Pelajaran</h2>
+            <h2>Pembelajaran</h2>
 
         </div>
 
@@ -18,7 +18,7 @@
 
                     <div class="header">
 
-                        <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> TAMBAH pelajaran</button>
+                        <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> Tambah Pembelajaran</button>
 
                         <div tabindex="-1" class="modal fade" id="defaultModal" role="dialog" style="display: none;">
 
@@ -34,7 +34,7 @@
 
                                                 <h2>
 
-                                                    TAMBAH pelajaran
+                                                    TAMBAH PEMBELAJARAN
 
                                                 </h2>
 
@@ -42,36 +42,42 @@
 
                                             <div class="body">
 
-                                                <form action="<?= base_url('admin/pelajaran/aksi_tambah') ?>" method="POST" enctype="multipart/form-data">
+                                                <form action="<?= base_url('admin/pembelajaran/aksi_tambah') ?>" method="POST" enctype="multipart/form-data">
 
 
 
-                                                    <label for="kode_pelajaran">Kode Pelajaran </label>
-
-                                                    <div class="form-group">
-
-                                                        <div class="form-line">
-
-                                                            <input type="text" name="kode_pelajaran" id="kode_pelajaran" class="form-control no-resize" required>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                    <label for="nama_pelajaran">Nama Pelajaran</label>
+                                                    <label for="id_pelajaran">Id Pelajaran </label>
 
                                                     <div class="form-group">
 
                                                         <div class="form-line">
 
-                                                            <input class="form-control" id="nama_pelajaran" type="text" name="nama_pelajaran" placeholder="Enter your password">
-
+                                                            <input type="text" name="id_pelajaran" id="id_pelajaran" class="form-control no-resize" required>
 
                                                         </div>
 
                                                     </div>
 
+                                                    <label for="id_santri">Id Santri</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input class="form-control" id="id_santri" type="text" name="id_santri" placeholder="Enter your password">
+                                                        </div>
+                                                    </div>
 
+
+                                                    <label for="materi_belajar">Materi Belajar</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input class="form-control" id="materi_belajar" type="text" name="materi_belajar" placeholder="Enter your password">
+                                                        </div>
+                                                    </div>
+                                                    <label for="tanggal">Tanggal</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input class="form-control" id="tanggal" type="date" name="tanggal" placeholder="Enter your password">
+                                                        </div>
+                                                    </div>
 
 
                                                     <br>
@@ -104,7 +110,7 @@
 
                             <div class="text-center">
 
-                                <h3>DATA pelajaran</h3>
+                                <h3>DATA PEMBELAJARAN</h3>
 
                             </div>
 
@@ -118,11 +124,11 @@
 
                                             <th>No</th>
 
-                                            <th>kode_pelajaran</th>
-                                            <th>nama_pelajaran</th>
-
+                                            <th>id_pelajaran</th>
+                                            <th>id_santri</th>
+                                            <th>materi_belajar</th>
+                                            <th>tanggal</th>
                                             <th>Ubah</th>
-
                                             <th>Hapus</th>
 
                                         </tr>
@@ -133,18 +139,19 @@
 
                                         <?php $no = 1; ?>
 
-                                        <?php foreach ($pelajaran as $peng) : ?>
+                                        <?php foreach ($pembelajaran as $peng) : ?>
 
                                             <tr>
 
                                                 <td><?= $no++ ?></td>
 
-                                                <!-- <td><a href="<?= base_url('admin/lihat_pengurus/') . $peng->id_pelajaran ?>"><?= $peng->nama ?></a></td> -->
+                                                <!-- <td><a href="<?= base_url('admin/lihat_pengurus/') . $peng->id_pembelajaran ?>"><?= $peng->nama ?></a></td> -->
 
-                                                <td><?= $peng->kode_pelajaran ?></td>
-
-                                                <td><?= $peng->nama_pelajaran ?></td>
-                                                <td><a href="<?= base_url('admin/pelajaran/ubah/' . $peng->id_pelajaran) ?>" class="btn btn-warning waves-effect" type="button">
+                                                <td><?= $peng->id_pelajaran ?></td>
+                                                <td><?= $peng->id_santri ?></td>
+                                                <td><?= $peng->materi_belajar ?></td>
+                                                <td><?= $peng->tanggal ?></td>
+                                                <td><a href="<?= base_url('admin/pembelajaran/ubah/' . $peng->id_pembelajaran) ?>" class="btn btn-warning waves-effect" type="button">
 
                                                         <i class="material-icons">edit</i>
 
@@ -154,7 +161,7 @@
 
                                                 </td>
 
-                                                <td><a href="<?= base_url('admin/pelajaran/hapus/' . $peng->id_pelajaran) ?>" class="btn btn-danger waves-effect" type="button">
+                                                <td><a href="<?= base_url('admin/pembelajaran/hapus/' . $peng->id_pembelajaran) ?>" class="btn btn-danger waves-effect" type="button">
 
                                                         <i class="material-icons">delete_forever</i>
 
