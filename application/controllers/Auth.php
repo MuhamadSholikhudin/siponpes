@@ -23,6 +23,7 @@ class Auth extends CI_Controller
 
                 redirect('auth/login');
             } else {
+                $this->session->set_userdata('id_pengguna', $auth->id_pengguna);
                 $this->session->set_userdata('username', $auth->username);
                 $this->session->set_userdata('nama', $auth->nama);
                 $this->session->set_userdata('hakakses', $auth->hakakses);

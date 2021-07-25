@@ -42,16 +42,36 @@ class Page extends CI_Controller
         } else {
             $auth = $this->Model_auth->cek_login();
             if ($auth == FALSE) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Username Atau Password Anda Salah
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>');
+                $auth_santri = $this->Model_auth->cek_santri();
+                if ($auth_santri == FALSE) {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-primary d-flex align-items-center" role="alert">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                </svg>
+                                                <div>
+                                                    Username atau password yang anda masukkan salah !
+                                                </div>
+                                                </div>');
+                    redirect('page/login');
+                } else {
+                    $this->session->set_userdata('id_santri', $auth_santri->id_santri);
+                    $this->session->set_userdata('username', $auth_santri->username);
+                    $this->session->set_userdata('hakakses', $auth_santri->hakakses);
+                    $this->session->set_userdata('status', $auth_santri->status);
+                    $this->session->set_userdata('status', $auth_santri->kelas);
+                    switch ($auth_santri->hakakses) {
+                        case 3:
+                            redirect('santri/dashboard');
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
-                redirect('page/login');
             } else {
+                $this->session->set_userdata('id_pengguna', $auth->id_pengguna);
                 $this->session->set_userdata('username', $auth->username);
+                $this->session->set_userdata('nama', $auth->nama);
                 $this->session->set_userdata('hakakses', $auth->hakakses);
                 $this->session->set_userdata('status', $auth->status);
 
@@ -60,7 +80,7 @@ class Page extends CI_Controller
                         redirect('admin/dashboard/index');
                         break;
                     case 2:
-                        redirect('admin/pegawai/dashboard');
+                        redirect('ustads/dashboard/index');
                         break;
                     case 3:
                         redirect('admin/kadin/dashboard');
@@ -133,7 +153,7 @@ class Page extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
-            $data['title'] = '1Pendaftaran';
+            $data['title'] = 'Pendaftaran';
 
             $this->load->view('page/theme/header', $data);
             $this->load->view('page/registration');
@@ -149,7 +169,7 @@ class Page extends CI_Controller
                 $this->load->view('page/registration');
                 $this->load->view('page/theme/footer');
             } elseif ($cek2 > 0) {
-                $data['title'] = '3Pendaftaran';
+                $data['title'] = 'Pendaftaran';
 
                 $this->load->view('page/theme/header', $data);
                 $this->load->view('page/registration');
@@ -211,7 +231,7 @@ class Page extends CI_Controller
                     'file_kk' => $file_kk,
                     'file_ket_ijin' => $file_ket_ijin,
                     'tanggal_daftar' => date('Y-m-d'),
-                    'status' => 2
+                    'status' => 1
                 ];
                 $this->db->insert('daftar', $data);
 
@@ -310,6 +330,26 @@ class Page extends CI_Controller
     // redirect('auth');
     // }
     // }
+
+    public function beranda()
+    {
+        // echo 'Beranda';
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/beranda');
+        $this->load->view('page/theme/footer');
+    }
+    
+    public function tentang()
+    {
+        echo 'Tentang';
+    }
+    
+    public function kontak()
+    {
+        echo 'Kontak';
+    }
 
 
 

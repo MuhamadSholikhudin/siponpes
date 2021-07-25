@@ -12,6 +12,10 @@ class Model_santri extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+    public function tambah_santris($datas, $table)
+    {
+        $this->db->insert($table, $datas);
+    }
 
     public function edit_santri($where, $table)
     {

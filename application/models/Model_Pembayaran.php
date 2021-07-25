@@ -63,9 +63,9 @@ $result = $this->db->where('id_brg', $id_brg)->get('tb_pembayaran');
         return $this->db->get()->result();
     }
 
-    function get_sub_sipelajaran($pembayaranname)
+    function get_sub_id($id_daftar)
     {
-        $query = $this->db->query(" SELECT nama, jabatan, penempatan FROM  pelajaran  WHERE pelajaranname = $pembayaranname LIMIT 1");
+        $query = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar LIMIT 1");
         // $query = $this->db->get_where('tb_transaksi', array('notransaksi' => $notransaksi));
         return $query;
     }

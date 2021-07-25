@@ -21,7 +21,8 @@ class Pelajaran extends CI_Controller
     public function index()
     {
         $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran ")->result();
-
+        $data['pengguna'] = $this->db->query("SELECT * FROM pengguna WHERE hakakses = 2 AND status = 1 ")->result();
+        $data['jenis'] = ['Materi', 'Konsep dan Praktikum'];
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
         $this->load->view('pelajaran/index', $data);
@@ -31,15 +32,17 @@ class Pelajaran extends CI_Controller
     public function aksi_tambah()
     {
 
-        // $nama = $this->input->post('nama');
+        $id_pengguna = $this->input->post('id_pengguna');
         $kode_pelajaran = $this->input->post('kode_pelajaran');
         $nama_pelajaran = $this->input->post('nama_pelajaran');
-        // $status = $this->input->post('status');
+        $jenis = $this->input->post('jenis');
 
         $data = array(
             // 'nama' => $nama,
             'kode_pelajaran' => $kode_pelajaran,
-            'nama_pelajaran' => $nama_pelajaran
+            'nama_pelajaran' => $nama_pelajaran,
+            'jenis' => $jenis,
+            'id_pengguna' => $id_pengguna
         );
 
         $this->Model_pelajaran->tambah_pelajaran($data, 'pelajaran');
@@ -50,9 +53,11 @@ class Pelajaran extends CI_Controller
     {
 
         $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran WHERE id_pelajaran = '$id_pelajaran' ")->row();
+        $data['pengguna'] = $this->db->query("SELECT * FROM pengguna WHERE hakakses = 2 AND status = 1 ")->result();        
         $data['status'] = [0, 1];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
+        $data['jenis'] = ['Materi', 'Konsep dan Praktikum'];
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -63,13 +68,17 @@ class Pelajaran extends CI_Controller
     public function edit_aksi()
     {
         $id_pelajaran = $this->input->post('id_pelajaran');
+        $id_pengguna = $this->input->post('id_pengguna');
         $kode_pelajaran = $this->input->post('kode_pelajaran');
         $nama_pelajaran = $this->input->post('nama_pelajaran');
+        $jenis = $this->input->post('jenis');
 
         $data = [
             // 'nama' => $nama,
             'kode_pelajaran' => $kode_pelajaran,
             'nama_pelajaran' => $nama_pelajaran,
+            'jenis' => $jenis,
+            'id_pengguna' => $id_pengguna
         ];
         $where = [
             'id_pelajaran' => $id_pelajaran

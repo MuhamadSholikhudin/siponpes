@@ -2,7 +2,7 @@
 <footer>
     <div class="container">
         <!-- This theme comes under Creative Commons Attribution 4.0 Unported. So don't remove below link back -->
-        <p class="copy-right">Copyright &copy; 2014 <a href="#">Your Site</a> | Designed By : <a href="http://www.indioweb.in/portfolio">IndioWeb</a>, All rights reserved. </p>
+        <p class="copy-right">Copyright &copy; <?= date('Y') ?>  </p>
     </div>
 </footer>
 </div>

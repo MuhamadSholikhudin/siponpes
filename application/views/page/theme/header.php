@@ -21,6 +21,19 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="#">
+
+    <style>
+        .main-register {
+            /* background-image: url("<?= base_url('assets/theme/img/blog/1.jpg') ?>"); */
+            background-color: #deedf2;
+        }
+
+        /* .beranda {
+            background-image: url("<?= base_url('assets/theme/img/blog/1.jpg') ?>");
+            background-repeat: no-repeat, repeat;
+
+        } */
+    </style>
 </head>
 
 <body>
@@ -45,9 +58,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html">Benefits</a></li>
-                            <li><a href="index.html">Blogs</a></li>
-                            <li class="dropdown">
+                            <li><a href="<?= base_url('page/beranda/') ?>">Beranda</a></li>
+                            <li><a href="<?= base_url('page/tentang/') ?>">Tentang</a></li>
+                            <li><a href="<?= base_url('page/kontak/') ?>">Kontak</a></li>
+                            <!-- <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">How It Works <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#">Action</a></li>
@@ -58,15 +72,15 @@
                                     <li class="divider"></li>
                                     <li><a href="#">One more separated link</a></li>
                                 </ul>
-                            </li>
-                            <li ><a href="<?= base_url("page/login") ?>">Login</a></li>
-                            <li ><a href="<?= base_url("page/registration") ?>">Pendaftaran</a></li>
+                            </li> -->
+                            <li><a href="<?= base_url("page/login") ?>">Login</a></li>
+                            <li><a href="<?= base_url("page/registration") ?>">Pendaftaran</a></li>
                         </ul>
-                        <form class="navbar-form navbar-right" role="search">
+                        <!-- <form class="navbar-form navbar-right" role="search">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search">
                             </div>
-                        </form>
+                        </form> -->
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>

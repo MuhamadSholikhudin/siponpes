@@ -1,0 +1,114 @@
+<?php
+
+class Jadwal extends CI_Controller
+{
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        if ($this->session->userdata('hakakses') != 1) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Anda Belum Login
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+            redirect('page/login');
+        }
+    }
+
+    public function index()
+    {
+        $data['jadwal'] = $this->db->query("SELECT * FROM jadwal ")->result();
+        $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN pengguna ON pelajaran.id_pengguna = pengguna.id_pengguna ")->result();
+        $data['kelas'] = $this->db->query("SELECT * FROM kelas ")->result();
+        $data['hari'] = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+        $data['waktu'] = ['Subuh', 'Pagi', 'Siang', 'Malam'];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('jadwal/index', $data);
+        $this->load->view('templates_admin/footer');
+    }
+
+    public function aksi_tambah()
+    {
+
+        $id_pelajaran = $this->input->post('id_pelajaran');
+        $id_kelas = $this->input->post('id_kelas');
+        $hari = $this->input->post('hari');
+        $waktu = $this->input->post('waktu');
+        $status = $this->input->post('status');
+
+        $data = array(
+            'id_pelajaran' => $id_pelajaran,
+            'id_kelas' => $id_kelas,
+            'hari' => $hari,
+            'waktu' => $waktu,
+            'status' => $status
+        );
+
+        $this->Model_jadwal->tambah_jadwal($data, 'jadwal');
+        redirect('admin/jadwal/');
+    }
+
+    public function ubah($id_jadwal)
+    {
+
+        $data['jadwal'] = $this->db->query("SELECT * FROM jadwal WHERE id_jadwal = '$id_jadwal' ")->row();
+        $data['status'] = [0, 1];
+        $data['hakakses'] = [3];
+        $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran  ")->result();
+        $data['kelas'] = $this->db->query("SELECT * FROM kelas  ")->result();
+        $data['periodetahun'] = [2020, 2021, 2022, 2023,];
+        $data['hari'] = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+        $data['waktu'] = ['Subuh', 'Pagi', 'Siang', 'Malam'];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('jadwal/edit', $data);
+        $this->load->view('templates_admin/footer');
+    }
+
+    public function edit_aksi()
+    {
+        $id_jadwal = $this->input->post('id_jadwal');
+        $kode_jadwal = $this->input->post('kode_jadwal');
+        $id_pelajaran = $this->input->post('id_pelajaran');
+        $id_kelas = $this->input->post('id_kelas');
+        $hari = $this->input->post('hari');
+        $waktu = $this->input->post('waktu');
+        $status = $this->input->post('status');
+
+        $data = [
+            // 'nama' => $nama,
+            'kode_jadwal' => $kode_jadwal,
+            'id_pelajaran' => $id_pelajaran,
+            'id_kelas' => $id_kelas,
+            'hari' => $hari,
+            'waktu' => $waktu,
+            'status' => $status
+        ];
+
+        $where = [
+            'id_jadwal' => $id_jadwal
+        ];
+
+        $this->Model_jadwal->update_data($where, $data, 'jadwal');
+        redirect('admin/jadwal/');
+    }
+
+    public function hapus($id_jadwal)
+    {
+        $where = ['id_jadwal' => $id_jadwal];
+
+        // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
+        // if($cari > 0){
+        $this->Model_jadwal->hapus_data($where, 'jadwal');
+        redirect('admin/jadwal/');
+        // }elseif($cari < 1){
+        //     redirect('sekre/surat/');
+        // }
+    }
+}

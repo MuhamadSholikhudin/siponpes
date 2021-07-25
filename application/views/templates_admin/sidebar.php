@@ -31,7 +31,7 @@
       <?php if ($this->session->userdata('hakakses') == 1) { ?>
         <a class="navbar-brand" href="<?= base_url('admin/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS </a>
       <?php } elseif ($this->session->userdata('hakakses') == 2) { ?>
-        <a class="navbar-brand" href="<?= base_url('pengurus/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS</a>
+        <a class="navbar-brand" href="<?= base_url('ustads/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS</a>
       <?php } elseif ($this->session->userdata('hakakses') == 3) { ?>
         <a class="navbar-brand" href="<?= base_url('santri/'); ?>">SISTEM INFORMASI PONPES BAITUL QUDUS</a>
       <?php }
@@ -74,13 +74,15 @@
           if ($this->session->userdata('hakakses') == 1) {
             echo "Admin Pondok";
           } elseif ($this->session->userdata('hakakses') == 2) {
-            echo "Pengurus Pondok";
+            echo "Ustads Pondok";
           } elseif ($this->session->userdata('hakakses') == 3) {
             echo "Santri Pondok";
           }
           ?>
         </div>
-        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $this->session->userdata('nama'); ?></div>
+        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?= $this->session->userdata('nama'); ?>
+        </div>
 
       </div>
     </div>
@@ -107,21 +109,27 @@
               <li>
                 <a href="<?= base_url('admin/pendaftaran'); ?>">Pendaftaran</a>
               </li>
-              <!-- <li>
-                <a href="<?= base_url('admin/surat'); ?>">Surat</a>
-              </li> -->
+
               <li>
                 <a href="<?= base_url('admin/pembayaran'); ?>">Pembayaran</a>
               </li>
               <li>
+                <a href="<?= base_url('admin/pelajaran'); ?>">Pelajaran</a>
+              </li>
+              <li>
+                <a href="<?= base_url('admin/kelas'); ?>"> kelas</a>
+              </li>
+              <li>
                 <a href="<?= base_url('admin/jadwal'); ?>">Jadwal Santri</a>
               </li>
-
+              <li>
+                <a href="<?= base_url('admin/pembelajaran'); ?>">Pembelajaran</a>
+              </li>
               <li>
                 <a href="<?= base_url('admin/absensi'); ?>">Absensi</a>
               </li>
               <li>
-                <a href="<?= base_url('admin/pengurus'); ?>">Pengurus</a>
+                <a href="<?= base_url('admin/ustads'); ?>">Ustads</a>
               </li>
               <li>
                 <a href="<?= base_url('admin/santri'); ?>">Santri</a>
@@ -162,7 +170,25 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('santri/absensi'); ?>">Absensi</a>
+                <a href="<?= base_url('ustads/mengajar'); ?>">Mengajar</a>
+              </li>
+              <li>
+                <a href="<?= base_url('ustads/jadwal'); ?>">Jadwal</a>
+              </li>
+              <li>
+                <a href="<?= base_url('ustads/pembelajaran/index/' . $this->session->userdata('id_pengguna')); ?>">Pembelajaran</a>
+              </li>
+              <li>
+                <a href="<?= base_url('ustads/perkembangan/index/' . $this->session->userdata('id_pengguna')); ?>">Perkembangan Santri</a>
+              </li>
+              <li>
+                <a href="<?= base_url('ustads/penilaian/index/' . $this->session->userdata('id_pengguna')); ?>">Penilaian</a>
+              </li>
+              <li>
+                <a href="<?= base_url('ustads/absensi/index/' . $this->session->userdata('id_pengguna')); ?>">Absensi</a>
+              </li>
+              <li>
+                <a href="<?= base_url('ustads/sikap/index/'); ?>">Sikap dan Prilaku[</a>
               </li>
             </ul>
           </li><?php } elseif ($this->session->userdata('hakakses') == 3) { ?>
@@ -181,7 +207,10 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('pengurus/surat'); ?>">Surat</a>
+                <a href="<?= base_url('santri/perkembangan'); ?>">Perkembangan</a>
+              </li>
+              <li>
+                <a href="<?= base_url('santri/rapot'); ?>">Rapot</a>
               </li>
             </ul>
           </li>

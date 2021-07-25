@@ -21,6 +21,7 @@ class Pembayaran extends CI_Controller
     public function index()
     {
         $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran ")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE status > 1")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -32,20 +33,54 @@ class Pembayaran extends CI_Controller
     {
 
         // $nama = $this->input->post('nama');
-        $id_pendaftar = $this->input->post('id_pendaftar');
+        $id_daftar = $this->input->post('id_daftar');
         $jumlah = $this->input->post('jumlah');
         $status = $this->input->post('status');
         $tanggal = $this->input->post('tanggal');
         // $status = $this->input->post('status');
 
+        $datat = [
+            'status' => 3,
+        ];
+        $wheret = [
+            'id_daftar' => $id_daftar,
+        ];
+        $this->Model_daftar->update_datat($wheret, $datat, 'daftar');
+
+
         $data = array(
             // 'nama' => $nama,
-            'id_pendaftar' => $id_pendaftar,
+            'id_daftar' => $id_daftar,
             'jumlah' => $jumlah,
             'status' => $status,
             'tanggal' => $tanggal
         );
 
+        if($id_daftar){
+
+            $teks = $this->input->post('nama_pendaftar');
+            $pecah = explode(" ", $teks);
+            $kalimat1 = $pecah[0] . $id_daftar;
+            $kalimat2 = $pecah[0] . $id_daftar. date('Y');
+
+            // $nama = $this->input->post('nama');
+            $username = $kalimat1;
+            $password = $kalimat2;
+            // $status = $this->input->post('status');
+
+            $datas = array(
+                // 'nama' => $nama,
+                'username' => $username,
+                'password' => $password,
+                'status' => 1,
+                'hakakses' => 3,
+                'periodetahun' => date('Y'),
+                'id_daftar' => $id_daftar
+            );
+
+            $this->Model_santri->tambah_santris($datas, 'santri');
+        }
+        
         $this->Model_pembayaran->tambah_pembayaran($data, 'pembayaran');
         redirect('admin/pembayaran/');
     }
@@ -100,5 +135,12 @@ class Pembayaran extends CI_Controller
         // }elseif($cari < 1){
         //     redirect('sekre/surat/');
         // }
+    }
+
+    function get_sub_id_daftar()
+    {
+        $id_daftar = $this->input->post('id_daftar', TRUE);
+        $data = $this->Model_pembayaran->get_sub_id($id_daftar)->result();
+        echo json_encode($data);
     }
 }

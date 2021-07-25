@@ -1,4 +1,3 @@
-
 <section class="content">
 
     <div class="container-fluid">
@@ -9,9 +8,9 @@
 
         </div>
 
-<!-- Basic Examples -->
+        <!-- Basic Examples -->
 
-<div class="row clearfix">
+        <div class="row clearfix">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -56,7 +55,16 @@
                                                         </div>
 
                                                     </div> -->
-
+                                                    <label for="id_daftar">Data Daftar</label>
+                                                    <div class="form-group">
+                                                        <select class="selectpicker form-line" name="id_daftar" id="id_daftar">
+                                                            <?php foreach ($daftar as $kel) : ?>
+                                                                <option value="<?= $kel->id_daftar; ?>">
+                                                                    <?= $kel->nama_lengkap; ?>
+                                                                </option>
+                                                            <?php endforeach ?>
+                                                        </select>
+                                                    </div>
                                                     <label for="username">Username </label>
 
                                                     <div class="form-group">
@@ -117,20 +125,24 @@
 
                                                     </div> -->
 
-                                                    <label for="periode">Periode</label>
-
+                                                    <label for="kelas">Kelas</label>
                                                     <div class="form-group">
+                                                        <select class="selectpicker form-line" name="kelas" id="kelas">
+                                                            <?php foreach ($kelas as $kel) : ?>
 
+                                                                <option value="<?= $kel; ?>">
+                                                                    <?= $kel; ?>
+                                                                </option>
+
+                                                            <?php endforeach ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <label for="periode">Periode</label>
+                                                    <div class="form-group">
                                                         <select class="selectpicker form-line" name="periodetahun" id="periode">
-
-                           
-
                                                             <option value="2021">2021</option>
-
                                                             <option value="2022">2022</option>
-
-                                                           
-
                                                         </select>
 
                                                     </div>
@@ -178,17 +190,14 @@
                                         <tr>
 
                                             <th>No</th>
-
+                                            <th>Nama</th>
                                             <th>Username</th>
-
                                             <th>hakakses</th>
-
                                             <th>Status</th>
-
+                                            <th>Kelas</th>
                                             <th>Periode</th>
-
+                                            <th>Detail</th>
                                             <th>Ubah</th>
-
                                             <th>Hapus</th>
 
                                         </tr>
@@ -198,31 +207,49 @@
                                     <tbody>
 
                                         <?php $no = 1; ?>
-
                                         <?php foreach ($santri as $peng) : ?>
-
                                             <tr>
-
                                                 <td><?= $no++ ?></td>
-
                                                 <!-- <td><a href="<?= base_url('admin/lihat_pengurus/') . $peng->id_santri ?>"><?= $peng->nama ?></a></td> -->
-
+                                                <td>
+                                                    <?php
+                                                    $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $peng->id_daftar")->row();
+                                                    ?>
+                                                    <?= $nama_lengkap->nama_lengkap ?>
+                                                </td>
                                                 <td><?= $peng->username ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($peng->hakakses == 3) {
+                                                        echo 'Santri';
+                                                    }
+                                                    ?>
+                                                </td>
 
-                                                <td><?= $peng->hakakses ?></td>
+                                                <td><?php
+                                                    if ($peng->status  == 1) {
+                                                        echo 'Aktif';
+                                                    } else {
+                                                        echo 'Tidak Aktif';
+                                                    }
+                                                    ?>
 
-                                                <td><?= $peng->status ?></td>
+                                                </td>
 
+                                                <td><?= $peng->kelas ?></td>
                                                 <td><?= $peng->periodetahun ?></td>
 
+                                                <td><a href="<?= base_url('admin/santri/detail/' . $peng->id_santri. '/'. $peng->id_daftar) ?>" class="btn btn-indigo bg-pink waves-effect" type="button">
+                                                        <i class="material-icons">remove_red_eye</i>
+                                                        <span>Detail</span>
+                                                    </a>
+                                                </td>
                                                 <td><a href="<?= base_url('admin/santri/ubah/' . $peng->id_santri) ?>" class="btn btn-warning waves-effect" type="button">
 
                                                         <i class="material-icons">edit</i>
-
                                                         <span>Edit</span>
 
                                                     </a>
-
                                                 </td>
 
                                                 <td><a href="<?= base_url('admin/santri/hapus/' . $peng->id_santri) ?>" class="btn btn-danger waves-effect" type="button">

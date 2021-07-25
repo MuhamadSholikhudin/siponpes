@@ -21,6 +21,8 @@ class Santri extends CI_Controller
     public function index()
     {
         $data['santri'] = $this->db->query("SELECT * FROM santri ")->result();
+        $data['daftar'] = $this->db->query("SELECT * FROM daftar ")->result();
+        $data['kelas'] = [1, 2, 3, 4];
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -35,13 +37,13 @@ class Santri extends CI_Controller
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $periodetahun = $this->input->post('periodetahun');
-        // $status = $this->input->post('status');
+        $kelas = $this->input->post('kelas');
 
         $data = array(
-            // 'nama' => $nama,
             'username' => $username,
             'password' => $password,
             'status' => 1,
+            'kelas' => $kelas,
             'hakakses' => 3,
             'periodetahun' => $periodetahun,
             'id_daftar' => 0
@@ -50,12 +52,27 @@ class Santri extends CI_Controller
         $this->Model_santri->tambah_santri($data, 'santri');
         redirect('admin/santri/');
     }
+    public function detail($id_santri, $id_daftar)
+    {
 
+        $data['santri'] = $this->db->query("SELECT * FROM santri WHERE id_santri = '$id_santri' ")->row();
+        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['status'] = [0, 1];
+        $data['kelas'] = [1, 2, 3, 4];
+        $data['hakakses'] = [3];
+        $data['periodetahun'] = [2020, 2021, 2022, 2023,];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('santri/detail', $data);
+        $this->load->view('templates_admin/footer');
+    }
     public function ubah($id_santri)
     {
 
         $data['santri'] = $this->db->query("SELECT * FROM santri WHERE id_santri = '$id_santri' ")->row();
         $data['status'] = [0, 1];
+        $data['kelas'] = [1, 2, 3, 4];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
 
@@ -67,11 +84,12 @@ class Santri extends CI_Controller
 
     public function edit_aksi()
     {
+        $id_santri = $this->input->post('id_santri');
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $hakakses = $this->input->post('hakakses');
         $status = $this->input->post('status');
-        $id_santri = $this->input->post('id_santri');
+        $kelas = $this->input->post('kelas');
         $periodetahun = $this->input->post('periodetahun');
 
         $data = [
@@ -80,6 +98,7 @@ class Santri extends CI_Controller
             'password' => $password,
             'hakakses' => $hakakses,
             'status' => $status,
+            'kelas' => $kelas,
             'periodetahun' => $periodetahun
         ];
         $where = [

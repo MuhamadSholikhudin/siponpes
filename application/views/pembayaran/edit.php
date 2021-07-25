@@ -18,7 +18,12 @@
                             <div class="form-group">
                                 <div class="form-line">
                                     <input class="form-control" id="id" type="hidden" name="id_pembayaran" value="<?= $pembayaran->id_pembayaran ?>">
-                                    <input class="form-control" id="id_pendaftar" type="text" name="id_pendaftar" value="<?= $pembayaran->id_pendaftar ?>" placeholder="Id pendaftar">
+
+                                    <?php
+                                    $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $pembayaran->id_daftar")->row();
+                                    ?>
+
+                                    <input class="form-control" id="id_daftar" type="text" name="nama" value="<?= $nama_lengkap->nama_lengkap ?>" placeholder="Id pendaftar" disabled>
                                 </div>
                             </div>
 
@@ -35,11 +40,25 @@
                                     <input class="form-control" id="tanggal" type="date" name="tanggal" value="<?= $pembayaran->tanggal ?>" placeholder="Enter your password">
                                 </div>
                             </div>
+
+                            <?php
+                            $status = ['Bayar', 'Tidak Bayar'];
+                            ?>
                             <label for="status">Status</label>
                             <div class="form-group">
-                                <div class="form-line">
-                                    <input class="form-control" id="status" type="text" name="status" value="<?= $pembayaran->status ?>" placeholder="Jumlah yang di bayarkan">
-                                </div>
+                                <select class="selectpicker form-line" name="status" id="status">
+                                    <?php foreach ($status as $sta) : ?>
+                                        <?php if ($sta == $pembayaran->status) : ?>
+                                            <option value="<?= $sta; ?>" selected>
+                                                <?= $sta; ?>
+                                            </option>
+                                        <?php else : ?>
+                                            <option value="<?= $sta; ?>">
+                                                <?= $sta; ?>
+                                            </option>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
 
                             <br>

@@ -97,7 +97,7 @@
                                             <th>No</th>
 
                                             <th>Id Kelas</th>
-                                            <th>Jumlah</th>
+                                            <th>Nama Kelas</th>
                                            
                                             <th>Ubah</th>
                                             <th>Hapus</th>

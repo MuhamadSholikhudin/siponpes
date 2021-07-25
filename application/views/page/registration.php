@@ -1,17 +1,14 @@
 <!-- main content -->
 <div class="main-register">
-	<div class="container ">
+	<div class="container bg-light ">
 		<!-- register area -->
 		<div class="">
-
-
-
 
 			<!-- heading -->
 			<h3 class="text-center">Pendaftaran Santri Baru</h3>
 			<!-- paragraph -->
-			<p class="text-center">isilaha data-data dibawah ini dengan benar.</p>
-			<form role="form" action="<?= base_url("page/registration") ?>" id="register-form" enctype="multipart/form-data" method="POST">
+			<p class="text-center">Isilaha data-data dibawah ini dengan benar.</p>
+			<form role="form " action="<?= base_url("page/registration") ?>" id="register-form" enctype="multipart/form-data" method="POST">
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_lengkap">Nama Lengkap</label>
@@ -175,6 +172,8 @@
 				<button type="submit" class="btn btn-warning">Kirim</button>&nbsp;
 				<button type="reset" class="btn btn-default">Reset</button>
 			</form>
+			<br>
+			<br>
 		</div>
 	</div>
 </div>

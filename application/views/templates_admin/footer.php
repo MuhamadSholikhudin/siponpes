@@ -45,15 +45,15 @@
 <script>
     $(document).ready(function() {
 
-        $('#nipku').change(function() {
-            var id = $(this).val();
+        $('#id_daftar').change(function() {
+            var id_daftar = $(this).val();
             // alert(id);
 
             $.ajax({
-                url: "<?php echo base_url('sekre/surat/get_sub_user'); ?>",
+                url: "<?php echo base_url('admin/pembayaran/get_sub_id_daftar'); ?>",
                 method: "POST",
                 data: {
-                    id: id
+                    id_daftar: id_daftar
                 },
                 async: true,
                 dataType: 'json',
@@ -61,28 +61,40 @@
                     var i;
                     var sis = '';
                     for (i = 0; i < data.length; i++) {
-                        sis += data[i].nama;
+                        sis += data[i].nama_lengkap;
                     }
-                    $('#namapeg').val(sis);
+                    $('#nama_pendaftar').val(sis);
 
-                    var sus = '';
-                    for (i = 0; i < data.length; i++) {
-                        sus += data[i].jabatan;
-                    }
-                    $('#jb').val(sus);
+                    // var sus = '';
+                    // for (i = 0; i < data.length; i++) {
+                    //     sus += data[i].jabatan;
+                    // }
+                    // $('#jb').val(sus);
 
-                    var sos = '';
-                    for (i = 0; i < data.length; i++) {
-                        sos += data[i].penempatan;
-                    }
-                    $('#pk').val(sos);
-                    
+                    // var sos = '';
+                    // for (i = 0; i < data.length; i++) {
+                    //     sos += data[i].penempatan;
+                    // }
+                    // $('#pk').val(sos);
+
 
                 }
             });
             return false;
         });
 
+        $('#penilian').change(function() {
+            var nilai = $(this).val();
+
+            if (nilai == 'penilaian') {
+                $(".tr_th").append('<th class="th_atas">nilai</th>');
+                $(".tr_td").append('<td class="td_atas"><input type="number" name="nilai[]" value="" id="nilai"></td>');
+            } else {
+                $(".th_atas").remove();
+                $(".td_atas").remove();
+            }
+
+        });
 
 
         $("button").click(function() {
@@ -95,6 +107,16 @@
         });
 
 
+    });
+</script>
+<script>
+    $("#pembelajaran").keydown(function() {
+        var jumlah = $(this).val();
+        $(".perkembangan").val(jumlah);
+    });
+    $("#pembelajaran").keyup(function() {
+        var jumlah = $(this).val();
+        $(".perkembangan").val(jumlah);
     });
 </script>
 <script>
