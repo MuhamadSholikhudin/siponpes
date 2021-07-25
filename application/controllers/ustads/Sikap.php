@@ -81,16 +81,17 @@ class Sikap extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
     
-    public function ubah($id_nilai)
+    public function ubah($id_sikap_dan_prilaku, $id_kelas)
     {
         // $id_pel = $id_pelajaran;
-        $data['sikap'] = $this->db->query("SELECT * FROM nilai WHERE id_nilai = $id_nilai ")->row();
+        $data['sikap'] = $this->db->query("SELECT * FROM sikap_dan_prilaku WHERE id_sikap_dan_prilaku = $id_sikap_dan_prilaku ")->row();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
         $this->load->view('ustads/sikap/edit', $data);
         $this->load->view('templates_admin/footer');
     }
+
     public function aksi_tambah()
     {
         $id_pelajaran = $this->input->post('id_pelajaran');
@@ -123,28 +124,50 @@ class Sikap extends CI_Controller
             'id_santri' => $id_santri
         );
 
-        $this->Model_sikap->tambah_sikap($data, 'sikap');
-        redirect('ustads/sikap/');
+        $this->Model_sikap_dan_prilaku->tambah_sikap_dan_prilaku($data, 'sikap_dan_prilaku');
+        redirect('ustads/sikap/lihat/'.$id_kelas.'/'.$id_pelajaran);
     }
 
 
     public function edit_aksi()
     {
-        $id_nilai = $this->input->post('id_nilai');
-        $nilai = $this->input->post('nilai');
-        $id_pengguna = $this->input->post('id_pengguna');
+        $id_sikap_dan_prilaku = $this->input->post('id_sikap_dan_prilaku');
         $id_pelajaran = $this->input->post('id_pelajaran');
-               
-        // $data['sikap'] = $this->db->query("SELECT * FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai")->row();
-        $data = [
-            'nilai' => $nilai,
-        ];
+        $id_kelas = $this->input->post('id_kelas');
+        $id_santri = $this->input->post('id_santri');
+
+        $ketaatan = $this->input->post('ketaatan');
+        $ketakdiman = $this->input->post('ketakdiman');
+        $kedisiplinan = $this->input->post('kedisiplinan');
+        $kerapian = $this->input->post('kerapian');
+        $kesemangatan = $this->input->post('kesemangatan');
+        $partisipasi = $this->input->post('partisipasi');
+        $etika = $this->input->post('etika');
+        $kerjasama = $this->input->post('kerjasama');
+        $kelengkapan_catatan = $this->input->post('kelengkapan_catatan');
+
+        $data = array(
+            'ketaatan' => $ketaatan,
+            'ketakdiman' => $ketakdiman,
+            'kedisiplinan' => $kedisiplinan,
+            'kerapian' => $kerapian,
+            'kesemangatan' => $kesemangatan,
+            'partisipasi' => $partisipasi,
+            'etika' => $etika,
+            'kerjasama' => $kerjasama,
+            'kelengkapan_catatan' => $kelengkapan_catatan,
+
+            'id_pelajaran' => $id_pelajaran,
+            'id_kelas' => $id_kelas,
+            'id_santri' => $id_santri
+        );
         $where = [
-            'id_nilai' => $id_nilai
+            'id_sikap_dan_prilaku' => $id_sikap_dan_prilaku
         ];
 
-        $this->Model_nilai->update_data($where, $data, 'nilai');
-        redirect('ustads/sikap/lihat/'.$id_pengguna.'/'.$id_pelajaran);
+        $this->Model_sikap_dan_prilaku->update_data($where, $data, 'id_sikap_dan_prilaku');
+        
+        redirect('ustads/sikap/lihat/'.$id_kelas.'/'.$id_pelajaran);
     }
 
     public function hapus($id_sikap)
