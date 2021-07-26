@@ -508,7 +508,7 @@
                 </div>
 
 
-                <div class="header">
+                <!-- <div class="header">
                     <h2 class="text-left">4. Kepurusan Wali Kelas</h2>
                 </div>
                 <div class="body table-responsive">
@@ -531,7 +531,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         <?php
         } else {
@@ -1030,7 +1030,7 @@
                 </div>
 
 
-                <div class="header">
+                <!-- <div class="header">
                     <h2 class="text-left">4. Kepurusan Wali Kelas</h2>
                 </div>
                 <div class="body table-responsive">
@@ -1053,7 +1053,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         <?php
         } else {
@@ -1551,7 +1551,7 @@
                 </div>
 
 
-                <div class="header">
+                <!-- <div class="header">
                     <h2 class="text-left">4. Kepurusan Wali Kelas</h2>
                 </div>
                 <div class="body table-responsive">
@@ -1574,7 +1574,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         <?php
         } else {
@@ -2075,7 +2075,7 @@
                 </div>
 
 
-                <div class="header">
+                <!-- <div class="header">
                     <h2 class="text-left">4. Kepurusan Wali Kelas</h2>
                 </div>
                 <div class="body table-responsive">
@@ -2098,7 +2098,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         <?php
         } else {
@@ -2599,7 +2599,7 @@
                 </div>
 
 
-                <div class="header">
+                <!-- <div class="header">
                     <h2 class="text-left">4. Kepurusan Wali Kelas</h2>
                 </div>
                 <div class="body table-responsive">
@@ -2622,7 +2622,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         <?php
         } else {

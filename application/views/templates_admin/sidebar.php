@@ -81,7 +81,19 @@
           ?>
         </div>
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?= $this->session->userdata('nama'); ?>
+          <?php
+          if ($this->session->userdata('hakakses') < 3) {
+            echo $this->session->userdata('nama');
+          } else{
+            $id_santri = $this->session->userdata('id_santri');
+
+            $cari_santri = $this->db->query("SELECT * FROM santri WHERE id_santri = $id_santri")->row();
+            $cari_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = $cari_santri->id_daftar")->row();
+         echo $cari_daftar->nama_lengkap;
+          }
+          ?>
+
+   
         </div>
 
       </div>
@@ -207,14 +219,15 @@
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="<?= base_url('santri/perkembangan'); ?>">Perkembangan</a>
+                <a href="<?= base_url('santri/perkembangan/index/' . $this->session->userdata('id_santri')); ?>">Perkembangan</a>
               </li>
               <li>
                 <a href="<?= base_url('santri/rapot'); ?>">Rapot</a>
               </li>
             </ul>
           </li>
-          <li>
+
+          <!-- <li>
             <a href="javascript:void(0);" class="menu-toggle">
               <i class="material-icons">assignment</i>
               <span>Laporan Data</span>
@@ -230,7 +243,8 @@
                 <a href="<?= base_url('pengurus/laporan/absensi'); ?>">Absensi</a>
               </li>
             </ul>
-          </li>
+          </li> -->
+
         <?php } ?>
 
       </ul>

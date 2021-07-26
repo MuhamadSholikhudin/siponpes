@@ -25,9 +25,9 @@
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="number" id="ketaatan" name="ketaatan" class="form-control" required>
-                                            <input type="number" id="ketaatan" name="id_pelajaran" value="<?= $id_pelajaran[0] ?>" class="form-control" required>
-                                            <input type="number" id="ketaatan" name="kelas" value="<?= $id_kelas[0] ?>" class="form-control" required>
-                                            <input type="number" id="ketaatan" name="id_santri" value="<?= $id_santri[0] ?>" class="form-control" required>
+                                            <input type="hidden" id="id_pelajaran" name="id_pelajaran" value="<?= $id_pelajaran[0] ?>" class="form-control" required>
+                                            <input type="hidden" id="kelas" name="kelas" value="<?= $id_kelas[0] ?>" class="form-control" required>
+                                            <input type="hidden" id="id_santri" name="id_santri" value="<?= $id_santri[0] ?>" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
 
                             <div class="row clearfix">
                                 <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                    <button type="button" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
+                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
                                 </div>
                             </div>
                         </form>

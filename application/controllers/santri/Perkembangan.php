@@ -29,10 +29,10 @@ class Perkembangan extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
-    public function lihat($id_pengguna, $id_pelajaran)
+    public function lihat($id_santri, $id_pelajaran)
     {
         $id_pel = $id_pelajaran;
-        $data['perkembangan'] = $this->db->query("SELECT * FROM perkembangan LEFT JOIN jadwal ON perkembangan.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE jadwal.id_pelajaran = '$id_pel' AND pelajaran.id_pengguna = $id_pengguna ")->result();
+        $data['perkembangan'] = $this->db->query("SELECT * FROM perkembangan_pembelajaran LEFT JOIN jadwal ON perkembangan_pembelajaran.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE jadwal.id_pelajaran = '$id_pel' AND perkembangan_pembelajaran.id_santri = $id_santri ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');

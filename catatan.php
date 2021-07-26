@@ -35,11 +35,11 @@ if ($kelengkapan_catatan >= 90 and $kelengkapan_catatan <= 100) {
 
 
 
-$ketaatan = $t_sikap->ketaatan;
-$ketakdiman = $t_sikap->ketakdiman;
-$kedisiplinan = $t_sikap->kedisiplinan;
-$kerapian = $t_sikap->kerapian;
-$kesemangatan = $t_sikap->kesemangatan;
-$partisipasi = $t_sikap->partisipasi;
-$etika = $t_sikap->etika);
-$kerjasama = $t_sikap->kerjasama;
+$ketaatan = $ada_sikap->ketaatan;
+$ketakdiman = $ada_sikap->ketakdiman;
+$kedisiplinan = $ada_sikap->kedisiplinan;
+$kerapian = $ada_sikap->kerapian;
+$kesemangatan = $ada_sikap->kesemangatan;
+$partisipasi = $ada_sikap->partisipasi;
+$etika = $ada_sikap->etika);
+$kerjasama = $ada_sikap->kerjasama;

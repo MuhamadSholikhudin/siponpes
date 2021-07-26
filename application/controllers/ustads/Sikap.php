@@ -83,7 +83,7 @@ class Sikap extends CI_Controller
     
     public function ubah($id_sikap_dan_prilaku, $id_kelas)
     {
-        // $id_pel = $id_pelajaran;
+        $data['id_kelas'] = [$id_kelas];
         $data['sikap'] = $this->db->query("SELECT * FROM sikap_dan_prilaku WHERE id_sikap_dan_prilaku = $id_sikap_dan_prilaku ")->row();
 
         $this->load->view('templates_admin/header');
@@ -95,7 +95,7 @@ class Sikap extends CI_Controller
     public function aksi_tambah()
     {
         $id_pelajaran = $this->input->post('id_pelajaran');
-        $id_kelas = $this->input->post('id_kelas');
+        $kelas = $this->input->post('kelas');
         $id_santri = $this->input->post('id_santri');
 
         $ketaatan = $this->input->post('ketaatan');
@@ -120,20 +120,20 @@ class Sikap extends CI_Controller
             'kelengkapan_catatan' => $kelengkapan_catatan,
 
             'id_pelajaran' => $id_pelajaran,
-            'id_kelas' => $id_kelas,
+            'kelas' => $kelas,
             'id_santri' => $id_santri
         );
 
         $this->Model_sikap_dan_prilaku->tambah_sikap_dan_prilaku($data, 'sikap_dan_prilaku');
-        redirect('ustads/sikap/lihat/'.$id_kelas.'/'.$id_pelajaran);
+        redirect('ustads/sikap/lihat/'. $kelas.'/'.$id_pelajaran);
     }
 
 
-    public function edit_aksi()
+    public function aksi_edit()
     {
         $id_sikap_dan_prilaku = $this->input->post('id_sikap_dan_prilaku');
         $id_pelajaran = $this->input->post('id_pelajaran');
-        $id_kelas = $this->input->post('id_kelas');
+        $kelas = $this->input->post('kelas');
         $id_santri = $this->input->post('id_santri');
 
         $ketaatan = $this->input->post('ketaatan');
@@ -158,16 +158,16 @@ class Sikap extends CI_Controller
             'kelengkapan_catatan' => $kelengkapan_catatan,
 
             'id_pelajaran' => $id_pelajaran,
-            'id_kelas' => $id_kelas,
+            'kelas' => $kelas,
             'id_santri' => $id_santri
         );
         $where = [
             'id_sikap_dan_prilaku' => $id_sikap_dan_prilaku
         ];
 
-        $this->Model_sikap_dan_prilaku->update_data($where, $data, 'id_sikap_dan_prilaku');
+        $this->Model_sikap_dan_prilaku->update_data($where, $data, 'sikap_dan_prilaku');
         
-        redirect('ustads/sikap/lihat/'.$id_kelas.'/'.$id_pelajaran);
+        redirect('ustads/sikap/lihat/'. $kelas.'/'.$id_pelajaran);
     }
 
     public function hapus($id_sikap)
