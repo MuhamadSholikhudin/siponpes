@@ -10,8 +10,15 @@
                             EDIT SANTRI PONDOK
                         </h2>
 
+                       
+                               
+                               
+                               
+                            </div>
+
                     </div>
                     <div class="body">
+
                         <form action="<?= base_url('admin/santri/edit_aksi') ?>" method="POST" enctype="multipart/form-data">
                             <?php
                             $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $santri->id_daftar")->row();

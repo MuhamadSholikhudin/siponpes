@@ -54,7 +54,7 @@ class Pendaftaran extends CI_Controller
     {
 
         $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
-        $data['status'] = [0, 1];
+        $data['status'] = [0, 1, 2, 3];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
 
@@ -90,8 +90,8 @@ class Pendaftaran extends CI_Controller
             'alamat_wali' => $this->input->post('alamat_wali'),
             'nomor_wa' => $nomor_wa,
             'email' => $email,
-            'tanggal_daftar' => $this->input->post('tanggal_daftar'),
-            'status' => 2
+            'tanggal_daftar' => $this->input->post('tanggal_daftar')
+    
         ];
         $where = [
             'id_daftar' => $id_daftar
@@ -101,17 +101,36 @@ class Pendaftaran extends CI_Controller
         redirect('admin/pendaftaran/');
     }
 
-    public function hapus($id_pendaftaran)
+    public function hapus($id_daftar)
     {
         $where = ['id_pendaftaran' => $id_pendaftaran];
 
-        // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
-        // if($cari > 0){
-        $this->Model_pendaftaran->hapus_data($where, 'pendaftaran');
-        redirect('admin/pendaftaran/');
-        // }elseif($cari < 1){
-        //     redirect('sekre/surat/');
-        // }
+        $cari_pembayaran = $this->db->query(" SELECT id_daftar FROM pembayaran WHERE id_daftar = $id_daftar")->num_rows();
+        if($cari_pembayaran < 1){
+            $cari_santri = $this->db->query(" SELECT id_daftar FROM santri WHERE id_daftar = $id_daftar")->num_rows();
+if( $cari_santri < 1){
+    $this->Model_daftar->hapus_data($where, 'daftar');
+    $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    Data Daftar Berhasil di hapus
+                   
+                    </div>');
+    redirect('admin/pendaftaran/');
+}else{
+    $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Pendaftaran Masih di pakai pada Data santri
+                            </div>');
+    redirect('admin/pendaftaran/');
+}
+        }else{
+            $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    Data masih dipakai pembayaran
+                    </div>');
+            redirect('admin/pendaftaran/');
+
+        }
     }
 
     public function terima($id_daftar)

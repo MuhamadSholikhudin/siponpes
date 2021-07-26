@@ -163,7 +163,7 @@ class Page extends CI_Controller
             $cek = $this->db->query("SELECT * FROM daftar WHERE nomor_wa = '$nomor_wa' AND status > 0 ")->num_rows();
             $cek2 = $this->db->query("SELECT * FROM daftar WHERE email = '$email' AND status > 0 ")->num_rows();
             if ($cek > 1) {
-                $data['title'] = '2Pendaftaran';
+                $data['title'] = 'Pendaftaran';
 
                 $this->load->view('page/theme/header', $data);
                 $this->load->view('page/registration');
@@ -236,7 +236,10 @@ class Page extends CI_Controller
                 $this->db->insert('daftar', $data);
 
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please activate your account</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                Data Pendaftaran Yang Anda ajukan berhasil di kirim
+            </div>');
                 redirect('page');
             }
 

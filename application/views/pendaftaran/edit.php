@@ -10,10 +10,24 @@
                             EDIT PENDAFTARAN
                         </h2>
 
+                        
+
                     </div>
                     <div class="body">
+                    <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+                                
+                                
                         <form role="form" action="<?= base_url("admin/pendaftaran/edit_aksi") ?>" id="register-form" enctype="multipart/form-data" method="POST">
-
+                        <div class="form-group row">
+                                <label class="col-sm-2 col-form-label" for="tanggal_daftar">Foto</label>
+                                <div class="col-sm-10">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <a href="<?= base_url('admin/pendaftaran/ubah/'. $daftar->id_daftar) ?>" data-sub-html="Demo Description">
+                    <img class="img-responsive thumbnail" src="<?= base_url('uploads/pendaftaran/foto/'. $daftar->foto) ?>">
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="tanggal_daftar">Tanggal Daftar</label>
                                 <div class="col-sm-10">

@@ -129,11 +129,9 @@
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="kelas" id="kelas">
                                                             <?php foreach ($kelas as $kel) : ?>
-
                                                                 <option value="<?= $kel; ?>">
                                                                     <?= $kel; ?>
                                                                 </option>
-
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
@@ -144,13 +142,9 @@
                                                             <option value="2021">2021</option>
                                                             <option value="2022">2022</option>
                                                         </select>
-
                                                     </div>
-
                                                     <br>
-
                                                     <button class="btn btn-primary m-t-15 waves-effect" type="submit">SIMPAN</button>
-
                                                 </form>
 
                                             </div>

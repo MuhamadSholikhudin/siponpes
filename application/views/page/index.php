@@ -1,6 +1,7 @@
         <!-- main content -->
         <div class="main-content bottom-0">
             <div class="container">
+            <?= $this->session->flashdata('pesan'); ?>
                 <!-- banner -->
                 <div class="banner pad">
                     <!-- heading -->

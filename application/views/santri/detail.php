@@ -10,6 +10,8 @@
 
                     </div>
                     <div class="body">
+
+                    
                             <?php
                             $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $santri->id_daftar")->row();
                             ?>
