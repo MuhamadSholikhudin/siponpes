@@ -172,7 +172,7 @@
                             <div class="text-center">
 
                                 <h3>DATA SANTRI</h3>
-
+                                <?= $this->session->flashdata('pesan'); ?>
                             </div>
 
                             <div class="table-responsive">
@@ -233,7 +233,7 @@
                                                 <td><?= $peng->kelas ?></td>
                                                 <td><?= $peng->periodetahun ?></td>
 
-                                                <td><a href="<?= base_url('admin/santri/detail/' . $peng->id_santri. '/'. $peng->id_daftar) ?>" class="btn btn-indigo bg-pink waves-effect" type="button">
+                                                <td><a href="<?= base_url('admin/santri/detail/' . $peng->id_santri. '/'. $peng->id_daftar) ?>" class="btn btn-info bg-pink waves-effect" type="button">
                                                         <i class="material-icons">remove_red_eye</i>
                                                         <span>Detail</span>
                                                     </a>

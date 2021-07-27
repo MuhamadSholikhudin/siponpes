@@ -18,7 +18,7 @@
 
                     <div class="header">
 
-                        <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> Tambah Pembelajaran</button>
+                        <!-- <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> Tambah Pembelajaran</button> -->
 
                         <div tabindex="-1" class="modal fade" id="defaultModal" role="dialog" style="display: none;">
 
@@ -124,12 +124,11 @@
 
                                             <th>No</th>
 
-                                            <th>id_pelajaran</th>
-                                            <th>id_santri</th>
+                                            <th>id_pembelajaran</th>
+                                            <th>Pelajaran</th>
                                             <th>materi_belajar</th>
                                             <th>tanggal</th>
-                                            <th>Ubah</th>
-                                            <th>Hapus</th>
+                                            
 
                                         </tr>
 
@@ -147,29 +146,15 @@
 
                                                 <!-- <td><a href="<?= base_url('admin/lihat_pengurus/') . $peng->id_pembelajaran ?>"><?= $peng->nama ?></a></td> -->
 
-                                                <td><?= $peng->id_pelajaran ?></td>
-                                                <td><?= $peng->id_santri ?></td>
+                                                <td><?= $peng->id_pembelajaran ?></td>
+                                                <?php
+$cari_pelajaran = $this->db->query("SELECT * FROM jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE jadwal.id_jadwal = $peng->id_jadwal")->row();
+
+                                                ?>
+                                                <td><?= $cari_pelajaran->nama_pelajaran ?></td>
                                                 <td><?= $peng->materi_belajar ?></td>
-                                                <td><?= $peng->tanggal ?></td>
-                                                <td><a href="<?= base_url('admin/pembelajaran/ubah/' . $peng->id_pembelajaran) ?>" class="btn btn-warning waves-effect" type="button">
-
-                                                        <i class="material-icons">edit</i>
-
-                                                        <span>Edit</span>
-
-                                                    </a>
-
-                                                </td>
-
-                                                <td><a href="<?= base_url('admin/pembelajaran/hapus/' . $peng->id_pembelajaran) ?>" class="btn btn-danger waves-effect" type="button">
-
-                                                        <i class="material-icons">delete_forever</i>
-
-                                                        <span>Hapus</span>
-
-                                                    </a>
-
-                                                </td>
+                                                <td><?= longdateum_indo($peng->tanggal) ?></td>
+                                               
 
                                             </tr>
 

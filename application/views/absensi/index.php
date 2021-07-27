@@ -18,7 +18,7 @@
 
                     <div class="header">
 
-                        <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> Tambah Absensi</button>
+                        <!-- <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> Tambah Absensi</button> -->
 
                         <div tabindex="-1" class="modal fade" id="defaultModal" role="dialog" style="display: none;">
 
@@ -115,11 +115,14 @@
 
                                             <th>No</th>
 
-                                            <th>Id absensi</th>
+                                            <!-- <th>Id absensi</th> -->
+                                            <th>Pelajaran</th>
+                                            <th>Waktu</th>
+                                            <th>Hari</th>
+                                            <th>Nama Santri</th>
                                             <th>Jumlah</th>
 
-                                            <th>Ubah</th>
-                                            <th>Hapus</th>
+                                          
 
                                         </tr>
 
@@ -133,27 +136,21 @@
 
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $peng->id_absensi ?></td>
+                                                <?php
+$cari_jadwal= $this->db->query("SELECT * FROM jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE jadwal.id_jadwal = $peng->id_jadwal")->row();
+                                                ?>
+                                                <td><?= $cari_jadwal->nama_pelajaran ?></td>
+                                                <td><?= $cari_jadwal->hari ?></td>
+                                                <td><?= $cari_jadwal->waktu ?></td>
+                                                <?php
+$cari_nama= $this->db->query("SELECT * FROM santri JOIN daftar ON daftar.id_daftar = santri.id_daftar WHERE santri.id_santri = $peng->id_santri")->row();
+
+                                                ?>
+                                                <td><?= $cari_nama->nama_lengkap ?></td>
                                                 <td><?= $peng->status ?></td>
-                                                <td><a href="<?= base_url('admin/absensi/ubah/' . $peng->id_absensi) ?>" class="btn btn-warning waves-effect" type="button">
+                                                
 
-                                                        <i class="material-icons">edit</i>
-
-                                                        <span>Edit</span>
-
-                                                    </a>
-
-                                                </td>
-
-                                                <td><a href="<?= base_url('admin/absensi/hapus/' . $peng->id_absensi) ?>" class="btn btn-danger waves-effect" type="button">
-
-                                                        <i class="material-icons">delete_forever</i>
-
-                                                        <span>Hapus</span>
-
-                                                    </a>
-
-                                                </td>
+                                               
 
                                             </tr>
 

@@ -10,8 +10,20 @@
 
                     </div>
                     <div class="body">
+                    <div class="form-group row">
+                                <label class="col-sm-2 col-form-label" for="tanggal_daftar">Foto</label>
+                                <div class="col-sm-10">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                <?php
+                                                    $cari_daftar = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $santri->id_daftar")->row();
 
-                    
+                                ?>
+                                    <a href="<?= base_url('admin/santri/detail/'. $santri->id_santri.'/'.$santri->id_daftar) ?>" data-sub-html="Demo Description">
+                    <img class="img-responsive thumbnail" src="<?= base_url('uploads/pendaftaran/foto/'. $cari_daftar->foto) ?>">
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
                             <?php
                             $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $santri->id_daftar")->row();
                             ?>
@@ -25,19 +37,19 @@
                             <div class="form-group">
                                 <div class="form-line">
                                     <input class="form-control" id="id" type="hidden" name="id_santri" value="<?= $santri->id_santri ?>">
-                                    <input class="form-control" id="username" type="text" name="username" value="<?= $santri->username ?>">
+                                    <input class="form-control" id="username" type="text" name="username" value="<?= $santri->username ?>" disabled>
                                 </div>
                             </div>
                             <label for="password">Username</label>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input class="form-control" id="password" type="text" name="password" value="<?= $santri->password ?>">
+                                    <input class="form-control" id="password" type="text" name="password" value="<?= $santri->password ?>" disabled>
                                 </div>
                             </div>
 
                             <label for="hakakses">Hakakses </label>
                             <div class="form-group">
-                                <select class="selectpicker form-line" name="hakakses" id="hakakses">
+                                <select class="selectpicker form-line" name="hakakses" id="hakakses" disabled>
                                     <?php foreach ($hakakses as $hak) : ?>
                                         <?php if ($hak == $santri->hakakses) : ?>
                                             <option value="<?= $hak; ?>" selected>
@@ -53,7 +65,7 @@
                             </div>
                             <label for="status">Status</label>
                             <div class="form-group">
-                                <select class="selectpicker form-line" name="status" id="status">
+                                <select class="selectpicker form-line" name="status" id="status" disabled>
                                     <?php foreach ($status as $sta) : ?>
                                         <?php if ($sta == $santri->status) : ?>
                                             <option value="<?= $sta; ?>" selected>
@@ -69,7 +81,7 @@
                             </div>
                             <label for="kelas">Kelas</label>
                             <div class="form-group">
-                                <select class="selectpicker form-line" name="kelas" id="kelas">
+                                <select class="selectpicker form-line" name="kelas" id="kelas" disabled>
                                     <?php foreach ($kelas as $kel) : ?>
                                         <?php if ($kel == $santri->kelas) : ?>
                                             <option value="<?= $kel; ?>" selected>
@@ -85,7 +97,7 @@
                             </div>
                             <label for="periodetahun">Periode Tahun</label>
                             <div class="form-group">
-                                <select class="selectpicker form-line" name="periodetahun" id="periodetahun">
+                                <select class="selectpicker form-line" name="periodetahun" id="periodetahun" disabled>
                                     <?php foreach ($periodetahun as $sta) : ?>
                                         <?php if ($sta == $santri->periodetahun) : ?>
                                             <option value="<?= $sta; ?>" selected>
@@ -119,32 +131,32 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="tanggal_daftar">Tanggal Daftar</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="tanggal_daftar" name="tanggal_daftar" value="<?= $daftar->tanggal_daftar ?>" required placeholder="Tempat Lahir">
+                                    <input type="date" class="form-control" id="tanggal_daftar" name="tanggal_daftar" value="<?= $daftar->tanggal_daftar ?>" required placeholder="Tempat Lahir" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="nama_lengkap">Nama Lengkap</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="hidden" class="form-control" id="id_daftar" name="id_daftar" value="<?= $daftar->id_daftar ?>" required placeholder="Nama Lengkap">
-                                    <input class="form-control" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $daftar->nama_lengkap ?>" required placeholder="Nama Lengkap">
+                                    <input class="form-control" type="hidden" class="form-control" id="id_daftar" name="id_daftar" value="<?= $daftar->id_daftar ?>" required placeholder="Nama Lengkap" disabled>
+                                    <input class="form-control" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $daftar->nama_lengkap ?>" required placeholder="Nama Lengkap" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="tempat_lahir">Tempat Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $daftar->tempat_lahir ?>" required placeholder="Tempat Lahir">
+                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $daftar->tempat_lahir ?>" required placeholder="Tempat Lahir" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="tanggal_lahir">Tanggal Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?= $daftar->tanggal_lahir ?>" required placeholder="DD-MM-YYY">
+                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?= $daftar->tanggal_lahir ?>" required placeholder="DD-MM-YYY" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="umur">Umur</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="umur" name="umur" value="<?= $daftar->umur ?>" required placeholder="Umur">
+                                    <input type="number" class="form-control" id="umur" name="umur" value="<?= $daftar->umur ?>" required placeholder="Umur" disabled>
                                 </div>
                             </div>
 
@@ -176,43 +188,43 @@
                                 <div class="col-sm-11 row">
                                     <label class="col-sm-2 col-form-label" for="asal_sekolah">SD/M/SMP/MTS/SMA/MA</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="asal_sekolah" name="asal_sekolah" value="<?= $daftar->asal_sekolah ?>" required>
+                                        <input class="form-control" id="asal_sekolah" name="asal_sekolah" value="<?= $daftar->asal_sekolah ?>" required disabled>
                                     </div>
                                     <br>
                                     <br>
                                     <label class="col-sm-2 col-form-label" for="kecamatan">Kecamatan</label>
                                     <div class="col-sm-10 mb-3">
-                                        <input class="form-control" id="kecamatan" name="kecamatan" value="<?= $daftar->kecamatan ?>" required>
+                                        <input class="form-control" id="kecamatan" name="kecamatan" value="<?= $daftar->kecamatan ?>" required disabled>
                                     </div>
                                     <br>
                                     <br>
                                     <label class="col-sm-2 col-form-label" for="kabupaten">Kabupaten</label>
                                     <div class="col-sm-10 mb-3">
-                                        <input class="form-control" id="kabupaten" name="kabupaten" value="<?= $daftar->kabupaten ?>" required>
+                                        <input class="form-control" id="kabupaten" name="kabupaten" value="<?= $daftar->kabupaten ?>" required disabled>
                                     </div>
                                     <br>
                                     <br>
                                     <label class="col-sm-2 col-form-label" for="provinsi">Provinsi</label>
                                     <div class="col-sm-10 mb-3">
-                                        <input class="form-control" id="provinsi" name="provinsi" value="<?= $daftar->provinsi ?>" required>
+                                        <input class="form-control" id="provinsi" name="provinsi" value="<?= $daftar->provinsi ?>" required disabled>
                                     </div>
                                     <br>
                                     <br>
                                     <label class="col-sm-2 col-form-label" for="nomor_sttb">Nomor STTB</label>
                                     <div class="col-sm-10 mb-3">
-                                        <input class="form-control" id="nomor_sttb" name="nomor_sttb" value="<?= $daftar->nomor_sttb ?>" required>
+                                        <input class="form-control" id="nomor_sttb" name="nomor_sttb" value="<?= $daftar->nomor_sttb ?>" required disabled>
                                     </div>
                                     <br>
                                     <br>
                                     <label class="col-sm-2 col-form-label" for="nomor_skhu">Nomor SKHU</label>
                                     <div class="col-sm-10 mb-3">
-                                        <input class="form-control" id="nomor_skhu" name="nomor_skhu" value="<?= $daftar->nomor_skhu ?>" required>
+                                        <input class="form-control" id="nomor_skhu" name="nomor_skhu" value="<?= $daftar->nomor_skhu ?>" required disabled>
                                     </div>
                                     <br>
                                     <br>
                                     <label class="col-sm-2 col-form-label" for="jumlah_skhu">Jumlah SKHU</label>
                                     <div class="col-sm-10 mb-3">
-                                        <input class="form-control" id="jumlah_skhu" name="jumlah_skhu" value="<?= $daftar->jumlah_skhu ?>" required>
+                                        <input class="form-control" id="jumlah_skhu" name="jumlah_skhu" value="<?= $daftar->jumlah_skhu ?>" required disabled>
                                     </div>
                                 </div>
 
@@ -222,7 +234,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="agama">Agama</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="agama" name="agama" value="<?= $daftar->agama ?>" required>
+                                    <input class="form-control" id="agama" name="agama" value="<?= $daftar->agama ?>" required disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -235,7 +247,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="nama_orang_tua">Nama Orang Tua</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" value="<?= $daftar->nama_orang_tua ?>" required placeholder="Nomer Wa Yang bisa di hubungi">
+                                    <input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" value="<?= $daftar->nama_orang_tua ?>" required placeholder="Nomer Wa Yang bisa di hubungi" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -247,7 +259,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="nama_wali">Nama Wali</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= $daftar->nama_wali ?>" required placeholder="Nomer Wa Yang bisa di hubungi">
+                                    <input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= $daftar->nama_wali ?>" required placeholder="Nomer Wa Yang bisa di hubungi" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -267,7 +279,7 @@
                                 <label class="col-sm-2 col-form-label" for="no_wa">Nomor Wa</label>
                                 <div class="col-sm-10">
 
-                                    <input type="text" class="form-control" id="nomor_wa" name="nomor_wa" value="<?= $daftar->nomor_wa ?>" required placeholder="contoh : 8234353544">
+                                    <input type="text" class="form-control" id="nomor_wa" name="nomor_wa" value="<?= $daftar->nomor_wa ?>" required placeholder="contoh : 8234353544" disabled>
                                     <?= form_error('nomor_wa', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                             </div>

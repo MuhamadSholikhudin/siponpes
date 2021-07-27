@@ -124,7 +124,7 @@
                             <div class="text-center">
 
                                 <h3>DATA JADWAL</h3>
-
+                                <?= $this->session->flashdata('pesan'); ?>
                             </div>
 
                             <div class="table-responsive">

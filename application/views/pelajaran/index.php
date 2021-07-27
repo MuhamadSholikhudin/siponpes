@@ -74,7 +74,7 @@
 
                             <div class="text-center">
                                 <h3>DATA pelajaran</h3>
-
+                                <?= $this->session->flashdata('pesan'); ?>
                             </div>
 
                             <div class="table-responsive">

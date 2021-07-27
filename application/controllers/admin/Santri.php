@@ -109,16 +109,55 @@ class Santri extends CI_Controller
         redirect('admin/santri/');
     }
 
-    public function hapus_santri($id_santri)
+    public function hapus($id_santri)
     {
         $where = ['id_santri' => $id_santri];
 
-        // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
-        // if($cari > 0){
-        $this->Model_santri->hapus_data($where, 'santri');
-        redirect('admin/santri/');
-        // }elseif($cari < 1){
-        //     redirect('sekre/surat/');
-        // }
+        $cari_nilai = $this->db->query(" SELECT id_santri FROM nilai WHERE id_santri = $id_santri")->num_rows();
+        if($cari_nilai < 1){
+            $cari_perkembangan = $this->db->query(" SELECT id_santri FROM perkembangan_pembelajaran WHERE id_santri = $id_santri")->num_rows();
+            if( $cari_perkembangan < 1){
+            $cari_absensi = $this->db->query(" SELECT id_santri FROM absensi WHERE id_santri = $id_santri")->num_rows();
+                
+                if($cari_absensi < 1){
+            $cari_sikap_dan_prilaku = $this->db->query(" SELECT id_santri FROM sikap_dan_prilaku WHERE id_santri = $id_santri")->num_rows();
+                    
+                    if( $cari_sikap_dan_prilaku < 1){
+                        $this->Model_jadwal->hapus_data($where, 'santri');
+                        $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        Data santri Berhasil di hapus
+                                        </div>');
+                                        redirect('admin/santri/');
+                    }else{
+                        $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        Data santri Tidak dapat dihapus .... karena di pakai pembelajaran !!!
+                                        </div>');
+                        redirect('admin/santri/');
+                    }
+                   
+                }else{
+                    $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    Data santri Tidak dapat dihapus .... karena di pakai Absensi !!!
+                                    </div>');
+                    redirect('admin/santri/');
+                }
+
+            }else{
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data santri Tidak dapat dihapus .... karena di pakai Perkembangan pembelajaran !!!
+                                </div>');
+                redirect('admin/santri/');
+            }
+        }else{
+            $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            Data santri Tidak dapat dihapus .... karena di pakai Nilai !!!
+                            </div>');
+            redirect('admin/santri/');
+        }
     }
 }

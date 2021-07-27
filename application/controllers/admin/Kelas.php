@@ -80,12 +80,27 @@ class kelas extends CI_Controller
     {
         $where = ['id_kelas' => $id_kelas];
 
-        // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
-        // if($cari > 0){
-        $this->Model_kelas->hapus_data($where, 'kelas');
-        redirect('admin/kelas/');
-        // }elseif($cari < 1){
-        //     redirect('sekre/surat/');
-        // }
+        $cari = $this->db->query(" SELECT id_kelas FROM jadwal WHERE id_kelas = $id_kelas ")->num_rows();
+        if($cari > 0){
+     
+       
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Pelajaran Tidak dapat di hapus, karena dipakai oleh jadwal
+                                </div>');
+                
+            redirect('admin/kelas/');
+        }elseif($cari < 1){
+            $this->Model_kelas->hapus_data($where, 'kelas');
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Kelas Berhasil di hapus
+                                </div>');
+                redirect('admin/kelas/');
+            
+        }
+
+
+        
     }
 }

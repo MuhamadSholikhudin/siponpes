@@ -210,5 +210,17 @@
 
                     </div>
                 </div>
+
+
+
+            </div>
+
+
+
+            <div class="container">
+                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/kartu_keluarga/'. $daftar->file_kk) ?> "  width="600" height="400"></object >
+            </div>
+            <div class="container">
+                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/keterangan_ijin/'. $daftar->file_ket_ijin) ?>"  width="600" height="400"></object >
             </div>
     </section>

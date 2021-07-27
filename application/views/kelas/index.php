@@ -83,7 +83,7 @@
                             <div class="text-center">
 
                                 <h3>DATA kelas</h3>
-
+                                <?= $this->session->flashdata('pesan'); ?>
                             </div>
 
                             <div class="table-responsive">

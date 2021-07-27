@@ -92,12 +92,30 @@ class Pelajaran extends CI_Controller
     {
         $where = ['id_pelajaran' => $id_pelajaran];
 
-        // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
-        // if($cari > 0){
-        $this->Model_pelajaran->hapus_data($where, 'pelajaran');
-        redirect('admin/pelajaran/');
-        // }elseif($cari < 1){
-        //     redirect('sekre/surat/');
-        // }
+        $cari_sikap_dan_prilaku = $this->db->query(" SELECT id_pelajaran FROM sikap_dan_prilaku WHERE id_pelajaran = $id_pelajaran")->num_rows();
+        if($cari_sikap_dan_prilaku < 1){
+            $cari_jadwal = $this->db->query(" SELECT id_pelajaran FROM jadwal WHERE id_pelajaran = $id_pelajaran")->num_rows();
+            if( $cari_santri < 1){
+                $this->Model_pelajaran->hapus_data($where, 'pelajaran');
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Pelajaran Berhasil di hapus
+                                </div>');
+                redirect('admin/pelajaran/');
+            }else{
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Pelajaran Tidak dapat dihapus .... karena di pakai jadwal !!!
+                                </div>');
+                redirect('admin/pelajaran/');
+            }
+        }else{
+            $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            Data Pelajaran Tidak dapat dihapus .... karena di pakai penilaian sikap dan prilaku !!!
+                            </div>');
+            redirect('admin/pelajaran/');
+        }
     }
+
 }

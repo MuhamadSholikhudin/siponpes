@@ -16,6 +16,7 @@ class pembelajaran extends CI_Controller
                     </div>');
             redirect('page/login');
         }
+        $this->load->helper('tgl_indo');
     }
 
     public function index()

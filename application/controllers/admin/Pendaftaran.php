@@ -27,26 +27,78 @@ class Pendaftaran extends CI_Controller
         $this->load->view('pendaftaran/index', $data);
         $this->load->view('templates_admin/footer');
     }
+    
+    public function tambah()
+    {
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar ")->result();
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('pendaftaran/tambah', $data);
+        $this->load->view('templates_admin/footer');
+    }
 
     public function aksi_tambah()
     {
+        $foto = $_FILES['foto']['name'];
+        $file_kk = $_FILES['file_kk']['name'];
+        $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
 
-        // $nama = $this->input->post('nama');
-        $id_pendaftar = $this->input->post('id_pendaftar');
-        $jumlah = $this->input->post('jumlah');
-        $status = $this->input->post('status');
-        $tanggal = $this->input->post('tanggal');
-        // $status = $this->input->post('status');
+        // $config['upload_path'] = './uploads/pendaftaran/';
+        // $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+        // $this->load->library('upload', $config);
 
-        $data = array(
-            // 'nama' => $nama,
-            'id_pendaftar' => $id_pendaftar,
-            'jumlah' => $jumlah,
-            'status' => $status,
-            'tanggal' => $tanggal
-        );
 
-        $this->Model_pendaftaran->tambah_pendaftaran($data, 'pendaftaran');
+        // $file1 = $this->upload->data();
+
+        if ($foto) {
+            $config1['upload_path'] = './uploads/pendaftaran/foto';
+            $config1['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+            $this->load->library('upload', $config1);
+            $this->upload->do_upload('foto');
+        }
+
+
+        if ($file_kk) {
+            $config2['upload_path'] = './uploads/pendaftaran/kartu_keluarga';
+            $config2['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+            $this->load->library('upload', $config2);
+            $this->upload->do_upload('file_kk');
+        }
+        if ($file_ket_ijin) {
+            $config3['upload_path'] = './uploads/pendaftaran/keterangan_ijin';
+            $config3['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+            $this->load->library('upload', $config3);
+            $this->upload->do_upload('file_ket_ijin');
+        }
+
+        $data = [
+            'nama_lengkap' => $this->input->post('nama_lengkap'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'umur' => $this->input->post('umur'),
+            'asal_sekolah' => $this->input->post('asal_sekolah'),
+            'kecamatan' => $this->input->post('kecamatan'),
+            'kabupaten' => $this->input->post('kabupaten'),
+            'provinsi' => $this->input->post('provinsi'),
+            'nomor_sttb' => $this->input->post('nomor_sttb'),
+            'nomor_skhu' => $this->input->post('nomor_skhu'),
+            'jumlah_skhu' => $this->input->post('jumlah_skhu'),
+            'agama' => $this->input->post('agama'),
+            'alamat_tinggal' => $this->input->post('alamat_tinggal'),
+            'nama_orang_tua' => $this->input->post('nama_orang_tua'),
+            'alamat_orang_tua' => $this->input->post('alamat_orang_tua'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'alamat_wali' => $this->input->post('alamat_wali'),
+            'nomor_wa' => $nomor_wa,
+            'email' => $email,
+            'foto' => $foto,
+            'file_kk' => $file_kk,
+            'file_ket_ijin' => $file_ket_ijin,
+            'tanggal_daftar' => date('Y-m-d'),
+            'status' => 1
+        ];
+        $this->db->insert('daftar', $data);
         redirect('admin/pendaftaran/');
     }
 

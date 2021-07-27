@@ -105,10 +105,58 @@ class Jadwal extends CI_Controller
 
         // $cari = $this->db->query(" SELECT status_surat FROM surat_penugasan WHERE no_surat = '$no_surat' AND status_surat = 0 ")->num_rows();
         // if($cari > 0){
-        $this->Model_jadwal->hapus_data($where, 'jadwal');
-        redirect('admin/jadwal/');
+        // $this->Model_jadwal->hapus_data($where, 'jadwal');
+        // redirect('admin/jadwal/');
         // }elseif($cari < 1){
         //     redirect('sekre/surat/');
         // }
+
+
+        $cari_nilai = $this->db->query(" SELECT id_jadwal FROM nilai WHERE id_jadwal = $id_jadwal")->num_rows();
+        if($cari_nilai < 1){
+            $cari_perkembangan = $this->db->query(" SELECT id_jadwal FROM perkembangan_pembelajaran WHERE id_jadwal = $id_jadwal")->num_rows();
+            if( $cari_perkembangan < 1){
+            $cari_absensi = $this->db->query(" SELECT id_jadwal FROM absensi WHERE id_jadwal = $id_jadwal")->num_rows();
+                
+                if($cari_absensi < 1){
+            $cari_pembelajaran = $this->db->query(" SELECT id_jadwal FROM pembelajaran WHERE id_jadwal = $id_jadwal")->num_rows();
+                    
+                    if( $cari_pembelajaran < 1){
+                        $this->Model_jadwal->hapus_data($where, 'jadwal');
+                        $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        Data jadwal Berhasil di hapus
+                                        </div>');
+                                        redirect('admin/jadwal/');
+                    }else{
+                        $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        Data jadwal Tidak dapat dihapus .... karena di pakai pembelajaran !!!
+                                        </div>');
+                        redirect('admin/jadwal/');
+                    }
+                   
+                }else{
+                    $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    Data jadwal Tidak dapat dihapus .... karena di pakai Absensi !!!
+                                    </div>');
+                    redirect('admin/jadwal/');
+                }
+
+            }else{
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Pelajaran Tidak dapat dihapus .... karena di pakai Perkembangan pembelajaran !!!
+                                </div>');
+                redirect('admin/jadwal/');
+            }
+        }else{
+            $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            Data jadwal Tidak dapat dihapus .... karena di pakai Nilai !!!
+                            </div>');
+            redirect('admin/jadwal/');
+        }
     }
 }
