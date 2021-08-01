@@ -141,6 +141,9 @@
                 <a href="<?= base_url('admin/absensi'); ?>">Absensi</a>
               </li>
               <li>
+                <a href="<?= base_url('admin/pengguna'); ?>">Pengguna</a>
+              </li>
+              <li>
                 <a href="<?= base_url('admin/ustads'); ?>">Ustads</a>
               </li>
               <li>

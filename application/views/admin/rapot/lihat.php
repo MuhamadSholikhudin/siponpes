@@ -511,25 +511,26 @@
                     <h2 class="text-left">4. Keputusan Kelas</h2>
                 </div>
                 <div class="body table-responsive">
+                    Berdasarkan hasil penilaian di atas, kepada santri yang bersangkutan dinyatakan  Naik kelas V 
+                    <select>
+                    <option value="<?= $santri->kelas + 1 ?>">Naik Kelas <?= $santri->kelas + 1 ?></option>
+                    <option value="<?= $santri->kelas ?>">Mengulang kelas <?= $santri->kelas ?></option>
+                    </select>
+                    
+                     <?= $santri->kelas ?> / Kelas Saringan
+                    <br>
+                    <div class="text-right">
+                    Ditetapkan di kudus : <?= date('Y-m-d') ?>
+                    <br>
+                    Ketua Pondok Pesantren
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    Nama Ketua Pondok
+                    </div>
+                   
 
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Materi</th>
-                                <th>Angka</th>
-                                <th>Keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         <?php
