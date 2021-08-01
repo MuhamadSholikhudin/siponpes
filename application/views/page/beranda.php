@@ -6,30 +6,19 @@
                     <!-- heading -->
                     <h2>Pondok Pesantren <br><span>Baitul  &amp; Qudus.</span></h2>
                     <!-- paragraph -->
-                    <p>Get your things secure and take your mind in peace!!!</p>
+                    <p>Pondok dengan sistem pendidikan yang unggul!!!</p>
                 </div>
             </div>
 
-            <!-- hero -->
-            <div class="hero pad">
-                <div class="container">
-                    <div class="hero-content">
-                        <!-- heading -->
-                        <h2>Get ready for peacefully zone</h2>
-                        <!-- paragraph -->
-                        <p>Secure Everything with prelog.</p>
-                        <!-- button -->
-                        <a href="#" class="btn btn-warning">Explore Things</a>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- benefits -->
             <div class="benefits pad">
                 <div class="container">
                     <div class="default-heading">
+                    <br>
                         <!-- heading -->
-                        <h2>Our Benefits</h2>
+                        <h2>Manfaat</h2>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
@@ -38,29 +27,19 @@
                                 <!-- icon -->
                                 <i class="fa fa-desktop"></i>
                                 <!-- heading -->
-                                <h3>Desktop Edge</h3>
+                                <h3>Nyantri</h3>
                                 <!-- paragraph -->
                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <!-- benefits item -->
-                            <div class="benefits-item">
-                                <!-- icon -->
-                                <i class="fa fa-paper-plane"></i>
-                                <!-- heading -->
-                                <h3>Carrier Desk</h3>
-                                <!-- paragraph -->
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            </div>
-                        </div>
+
                         <div class="col-md-3 col-sm-6">
                             <!-- benefits item -->
                             <div class="benefits-item">
                                 <!-- icon -->
                                 <i class="fa fa-briefcase"></i>
                                 <!-- heading -->
-                                <h3>Stock Exchange</h3>
+                                <h3>Ngaji</h3>
                                 <!-- paragraph -->
                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                             </div>
@@ -71,23 +50,22 @@
                                 <!-- icon -->
                                 <i class="fa fa-envelope"></i>
                                 <!-- heading -->
-                                <h3>Packaging Mart</h3>
+                                <h3>Ngerti</h3>
                                 <!-- paragraph -->
                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- call to action -->
-            <div class="cta">
-                <div class="container">
-                    <div class="cta-content">
-                        <!-- heading -->
-                        <h3>Don't Feel Insecure with <span>PRELOG</span></h3>
-                        <!-- paragraph -->
-                        <p>Tales from those who follow the prelog way wherever it leads</p>
+                        <div class="col-md-3 col-sm-6">
+                            <!-- benefits item -->
+                            <div class="benefits-item">
+                                <!-- icon -->
+                                <i class="fa fa-paper-plane"></i>
+                                <!-- heading -->
+                                <h3>Ngabdi</h3>
+                                <!-- paragraph -->
+                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,98 +108,18 @@
                 </div>
             </div>
 
-            <!-- blog -->
-            <div class="blog pad">
+            <!-- call to action -->
+            <div class="cta">
                 <div class="container">
-                    <div class="default-heading">
+                    <div class="cta-content">
                         <!-- heading -->
-                        <h2>Our Blogs</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- blog entry -->
-                            <div class="entry">
-                                <!-- blog post image -->
-                                <div class="entry-pic">
-                                    <img class="img-responsive" src="<?= base_url("assets/theme/") ?>img/blog/1.jpg" alt="Blog Image" />
-                                </div>
-                                <!-- blog content details -->
-                                <div class="entry-post">
-                                    <!-- blog information -->
-                                    <span class="meta">Lorem Ipsum Passage</span>
-                                    <!-- blog title -->
-                                    <h3>Neque porro quisquam est qui dolorem</h3>
-                                    <!-- paragraph -->
-                                    <p>Duis aute irure dolor in repreh enderit in volu ptate velit esse cillum dolore eu fugiat nulla pariatur. Excep teur sint occaecat cupidatat non proident tate velit esse cillum dolore.</p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- blog entry -->
-                            <div class="entry">
-                                <!-- blog post image -->
-                                <div class="entry-pic">
-                                    <img class="img-responsive" src="<?= base_url("assets/theme/") ?>img/blog/2.jpg" alt="Blog Image" />
-                                </div>
-                                <!-- blog content details -->
-                                <div class="entry-post">
-                                    <!-- blog information -->
-                                    <span class="meta">Lorem Ipsum Passage</span>
-                                    <!-- blog title -->
-                                    <h3>Neque porro quisquam est qui dolorem</h3>
-                                    <!-- paragraph -->
-                                    <p>Duis aute irure dolor in repreh enderit in volu ptate velit esse cillum dolore eu fugiat nulla pariatur. Excep teur sint occaecat cupidatat non proident tate velit esse cillum dolore.</p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- blog entry -->
-                            <div class="entry">
-                                <!-- blog post image -->
-                                <div class="entry-pic">
-                                    <img class="img-responsive" src="<?= base_url("assets/theme/") ?>img/blog/3.jpg" alt="Blog Image" />
-                                </div>
-                                <!-- blog content details -->
-                                <div class="entry-post">
-                                    <!-- blog information -->
-                                    <span class="meta">Lorem Ipsum Passage</span>
-                                    <!-- blog title -->
-                                    <h3>Neque porro quisquam est qui dolorem</h3>
-                                    <!-- paragraph -->
-                                    <p>Duis aute irure dolor in repreh enderit in volu ptate velit esse cillum dolore eu fugiat nulla pariatur. Excep teur sint occaecat cupidatat non proident tate velit esse cillum dolore.</p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- blog entry -->
-                            <div class="entry">
-                                <!-- blog post image -->
-                                <div class="entry-pic">
-                                    <img class="img-responsive" src="<?= base_url("assets/theme/") ?>img/blog/4.jpg" alt="Blog Image" />
-                                </div>
-                                <!-- blog content details -->
-                                <div class="entry-post">
-                                    <!-- blog information -->
-                                    <span class="meta">Lorem Ipsum Passage</span>
-                                    <!-- blog title -->
-                                    <h3>Neque porro quisquam est qui dolorem</h3>
-                                    <!-- paragraph -->
-                                    <p>Duis aute irure dolor in repreh enderit in volu ptate velit esse cillum dolore eu fugiat nulla pariatur. Excep teur sint occaecat cupidatat non proident tate velit esse cillum dolore.</p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-btn">
-                        <!-- button -->
-                        <a href="#" class="btn btn-warning">Read More Blogs</a>
+                        <h3>Don't Feel Insecure with <span>PRELOG</span></h3>
+                        <!-- paragraph -->
+                        <p>Tales from those who follow the prelog way wherever it leads</p>
                     </div>
                 </div>
             </div>
+
+ 
 
         </div>

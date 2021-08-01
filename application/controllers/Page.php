@@ -346,12 +346,20 @@ class Page extends CI_Controller
     
     public function tentang()
     {
-        echo 'Tentang';
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/tentang');
+        $this->load->view('page/theme/footer');
     }
     
     public function kontak()
     {
-        echo 'Kontak';
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/kontak');
+        $this->load->view('page/theme/footer');
     }
 
 
