@@ -511,13 +511,53 @@
                     <h2 class="text-left">4. Keputusan Kelas</h2>
                 </div>
                 <div class="body table-responsive">
-                    Berdasarkan hasil penilaian di atas, kepada santri yang bersangkutan dinyatakan  Naik kelas V 
-                    <select>
-                    <option value="<?= $santri->kelas + 1 ?>">Naik Kelas <?= $santri->kelas + 1 ?></option>
-                    <option value="<?= $santri->kelas ?>">Mengulang kelas <?= $santri->kelas ?></option>
-                    </select>
-                    
-                     <?= $santri->kelas ?> / Kelas Saringan
+                    Berdasarkan hasil penilaian di atas, kepada santri yang bersangkutan dinyatakan  
+                    <form action="<?= base_url('admin/rapot/naik_kelas') ?>" method="POST">
+                        <select id="putusan" name="putus">
+                            <option value="<?= $santri->kelas + 1 ?>">Naik Kelas <?= $santri->kelas + 1 ?></option>
+                            <option value="<?= $santri->kelas ?>">Mengulang kelas <?= $santri->kelas ?></option>
+                        </select>
+                        <input type="text" id="kelas_ini" value="<?= $santri->kelas ?>" name="kelas" >
+                        <input type="text"  value="<?= $santri->id_santri ?>"  name="id_santri" >
+                        <button type="submit">putus</button>
+                    </form>
+                     <?php $naik_kelas = $santri->kelas + 1;
+                     $kelas_naik = $this->db->query("SELECT * FROM kelas WHERE id_kelas = $naik_kelas")->row();
+                     ?>  <div id="kelas_naik_ambil">
+<?= $kelas_naik->kelas ?>
+                     </div>
+                        <script>
+                         $('#putusan').change(function() {
+                            var putusan = $(this).val();
+                            // var kelas_ini = document.getElementById('kelas_ini').val();
+                            var kelas_ini =  document.getElementById("kelas_ini").value;
+                            if(kelas_ini < putusan ){
+                                alert("Santri naik ke kelas " + putusan);
+                            }else{
+                                alert("Santri Mengulang kelas " + kelas_ini);
+
+                            }
+                            $.ajax({
+                                url: "<?php echo base_url('admin/rapot/get_sub_id_kelas'); ?>",
+                                method: "POST",
+                                data: {
+                                    putusan: putusan
+                                },
+                                async: true,
+                                dataType: 'json',
+                                success: function(data) {
+                                    var i;
+                                    var sis = '';
+                                    for (i = 0; i < data.length; i++) {
+                                        sis += data[i].kelas;
+                                    }        
+                                    $('#kelas_naik_ambil').html(sis);
+                                }
+                            });
+                            return false;
+                        });
+
+                        </script>
                     <br>
                     <div class="text-right">
                     Ditetapkan di kudus : <?= date('Y-m-d') ?>

@@ -4,6 +4,9 @@
             <h2>Mengajar</h2>
         </div>
 
+        <div class="card">
+<div class=" body">
+        
 
         <?php
 
@@ -14,8 +17,6 @@
         $tanggal = date('Y-m-d');
         $tanggal_ini = date('Y-m-d');
         ?>
-
-
 
 
         <?php
@@ -246,5 +247,7 @@
                 <button class="btn btn-primary " type="submit">Simpan</button>
             </form>
         <?php } ?>
+            </div>
+        </div>
     </div>
 </section>

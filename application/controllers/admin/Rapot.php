@@ -173,4 +173,12 @@ class Rapot extends CI_Controller
         //     redirect('sekre/surat/');
         // }
     }
+
+
+    function get_sub_id_kelas()
+    {
+        $id_kelas = $this->input->post('putusan', TRUE);
+        $data = $this->Model_kelas->get_sub_id($id_kelas)->result();
+        echo json_encode($data);
+    }
 }

@@ -116,6 +116,20 @@ class Pendaftaran extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
+    public function edit_file($id_daftar)
+    {
+
+        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['status'] = [0, 1, 2, 3];
+        $data['hakakses'] = [3];
+        $data['periodetahun'] = [2020, 2021, 2022, 2023,];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('pendaftaran/edit_file', $data);
+        $this->load->view('templates_admin/footer');
+    }
+
     public function edit_aksi()
     {
         $id_daftar = $this->input->post('id_daftar');

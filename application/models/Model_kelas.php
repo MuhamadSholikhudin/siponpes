@@ -69,4 +69,11 @@ $result = $this->db->where('id_brg', $id_brg)->get('tb_kelas');
         // $query = $this->db->get_where('tb_transaksi', array('notransaksi' => $notransaksi));
         return $query;
     }
+
+    function get_sub_id($id_kelas)
+    {
+        $query = $this->db->query(" SELECT * FROM kelas WHERE id_kelas = $id_kelas LIMIT 1");
+        // $query = $this->db->get_where('tb_transaksi', array('notransaksi' => $notransaksi));
+        return $query;
+    }
 }
