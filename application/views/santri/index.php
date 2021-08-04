@@ -19,13 +19,9 @@
                     <div class="header">
 
                         <button class="btn btn-default waves-effect m-r-20" type="button" data-target="#defaultModal" data-toggle="modal"> TAMBAH SANTRI</button>
-
                         <div tabindex="-1" class="modal fade" id="defaultModal" role="dialog" style="display: none;">
-
                             <div class="modal-dialog modal-lg" role="document">
-
                                 <div class="modal-content">
-
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                         <div class="card">

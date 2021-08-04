@@ -9,12 +9,7 @@
                         <h2>
                             EDIT SANTRI PONDOK
                         </h2>
-
-                       
-                               
-                               
-                               
-                            </div>
+                   
 
                     </div>
                     <div class="body">

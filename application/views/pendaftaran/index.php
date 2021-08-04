@@ -30,10 +30,10 @@
                                         <tr>
                                             <th>No</th>
                                             <th>id_daftar</th>
-                                            <th>id_santri</th>
-                                            <th>materi_belajar</th>
-                                            <th>Status</th>
+                                            <th>Nama Pendaftar</th>
+                                            <th>Nomor Wa</th>
                                             <th>tanggal</th>
+                                            <th>Status</th>
                                             <th>Ubah</th>
                                             <th>Hapus</th>
                                         </tr>
