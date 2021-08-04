@@ -25,9 +25,20 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" for="tanggal_lahir">Tanggal Lahir</label>
+					<label class="col-sm-2 col-form-label" for="tanggal_lahir">Tanggal Lahir
+<?php
+$tahun_max = date('Y') - 15;
+$tahun_min = date('Y') - 26;
+echo $bulan = date('m');
+echo $hari = date('d');
+echo  $tahun_minimal = $tahun_min.'-'.$bulan.'-'.$hari;
+$tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
+
+?>
+
+					</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" max="<?= date('Y-m-d') ?>" required placeholder="DD-MM-YYY">
+						<input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" min="<?= $tahun_minimal ?>" max="<?= $tahun_maximal ?>" required placeholder="DD-MM-YYY">
 					</div>
 				</div>
 				<script>
@@ -52,8 +63,31 @@
 					var bulan = today.getMonth() - birthday.getMonth() ;
 					var hari = today.getDate() - birthday.getDate() ;
 			
-					if(umur < 15 && umur > 26){
-						umur = 0;
+					if(umur >= 15 && umur <= 26){
+
+						alert("Umur anda memenuhi syarat");
+						$("#asal_sekolah").prop('disabled', false);
+						$("#kecamatan").prop('disabled', false);
+						$("#kabupaten").prop('disabled', false);
+						$("#provinsi").prop('disabled', false);
+						$("#nomor_sttb").prop('disabled', false);
+						$("#nomor_skhu").prop('disabled', false);
+						$("#jumlah_skhu").prop('disabled', false);
+						$("#agama").prop('disabled', false);
+						$("#alamat_tinggal").prop('disabled', false);
+						$("#nama_orang_tua").prop('disabled', false);
+						$("#alamat_orang_tua").prop('disabled', false);
+						$("#nama_wali").prop('disabled', false);
+						$("#alamat_wali").prop('disabled', false);
+						$("#email").prop('disabled', false);
+						$("#nomor_wa").prop('disabled', false);
+						$("#foto").prop('disabled', false);
+						$("#file_kk").prop('disabled', false);
+						$("#file_ket_ijin").prop('disabled', false);
+						$("#kirim").removeAttr('disabled');
+						
+					}else{
+						// umur = 0;
 						alert("Umur anda tidak memenuhi syarat");
 
 						$("#asal_sekolah").prop('disabled', true);
@@ -76,33 +110,12 @@
 						$("#file_ket_ijin").prop('disabled', true);
 						$("#kirim").attr('disabled','disabled');
 					document.getElementById('validasi_umur').innerHTML = "Umur anda tidak memenuhi syarat";
-						
-					}else{
-						alert("Umur anda memenuhi syarat");
-						$("#asal_sekolah").prop('disabled', false);
-						$("#kecamatan").prop('disabled', false);
-						$("#kabupaten").prop('disabled', false);
-						$("#provinsi").prop('disabled', false);
-						$("#nomor_sttb").prop('disabled', false);
-						$("#nomor_skhu").prop('disabled', false);
-						$("#jumlah_skhu").prop('disabled', false);
-						$("#agama").prop('disabled', false);
-						$("#alamat_tinggal").prop('disabled', false);
-						$("#nama_orang_tua").prop('disabled', false);
-						$("#alamat_orang_tua").prop('disabled', false);
-						$("#nama_wali").prop('disabled', false);
-						$("#alamat_wali").prop('disabled', false);
-						$("#email").prop('disabled', false);
-						$("#nomor_wa").prop('disabled', false);
-						$("#foto").prop('disabled', false);
-						$("#file_kk").prop('disabled', false);
-						$("#file_ket_ijin").prop('disabled', false);
-						$("#kirim").removeAttr('disabled');
+
 					}
 
 					
 
-					document.getElementById('umur').value =' usia '+ umur +' bulan '+ bulan ;
+					document.getElementById('umur').value =' usia '+ umur  ;
 				}
     });
     
@@ -231,21 +244,86 @@
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="foto">Upload foto calon santri</label>
-					<div class="col-sm-10">
-						<input type="file" class="form-control" id="foto" name="foto"  accept="image/png, image/jpeg"  required>
+					<div class="col-sm-5">
+						<input type="file" class="form-control" id="foto" name="foto"  accept="image/png, image/jpeg, image/jpg, image/img" onchange="Validation_foto()"  required>
+						<script>
+		Validation_foto = () => {
+			const fi = document.getElementById('foto');
+			// Check if any file is selected.
+			if (fi.files.length > 0) {
+				for (const i = 0; i <= fi.files.length - 1; i++) {
+	  
+					const fsize = fi.files.item(i).size;
+					const file = Math.round((fsize / 1024));
+					// The size of the file.
+					if (file >= 2048) {
+						alert("FileYang anda pilih terlalu besar File max 2MB");
+						  $('#foto').val('');
+					} 
+				}
+			}
+		}
+	</script>
+
 					</div>
+					<div class="col-sm-5">
+						File max upload 2MB, File yang diupload dalam bentuk .jpg, .jpeg, .png
+						</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="file_kk">Upload Kartu Keluarga</label>
-					<div class="col-sm-10">
-						<input type="file" class="form-control" id="file_kk" name="file_kk" accept="application/pdf, application/vnd.ms-excel" required>
+					<div class="col-sm-5">
+						<input type="file" class="form-control" id="file_kk" name="file_kk" onchange="Validation_file_kk()"  accept="application/pdf, application/vnd.ms-excel"  required>
+						<script>
+		Validation_file_kk = () => {
+			const fi = document.getElementById('file_kk');
+			// Check if any file is selected.
+			if (fi.files.length > 0) {
+				for (const i = 0; i <= fi.files.length - 1; i++) {
+	  
+					const fsize = fi.files.item(i).size;
+					const file = Math.round((fsize / 1024));
+					// The size of the file.
+					if (file >= 2048) {
+						alert("File yang anda pilih terlalu besar File max 2MB");
+						  $('#file_kk').val('');
+					} 
+				}
+			}
+		}
+	</script>
+					
 					</div>
+					<div class="col-sm-5">
+					File max upload 2MB, File yang diupload dalam bentuk .pdf
+						</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="file_ket_ijin">Upload Keterangan Ijin Mondok</label>
-					<div class="col-sm-10">
-						<input type="file" class="form-control" id="file_ket_ijin" name="file_ket_ijin" accept="application/pdf, application/vnd.ms-excel" required>
+					<div class="col-sm-5">
+						<input type="file" class="form-control" id="file_ket_ijin" name="file_ket_ijin" onchange="Validation_file_ket_ijin()"  accept="application/pdf, application/vnd.ms-excel" required>
+						<script>
+		Validation_file_ket_ijin = () => {
+			const fi = document.getElementById('file_ket_ijin');
+			// Check if any file is selected.
+			if (fi.files.length > 0) {
+				for (const i = 0; i <= fi.files.length - 1; i++) {
+	  
+					const fsize = fi.files.item(i).size;
+					const file = Math.round((fsize / 1024));
+					// The size of the file.
+					if (file >= 2048) {
+						alert("File yang anda pilih terlalu besar File max 2MB");
+						  $('#file_ket_ijin').val('');
+					} 
+				}
+			}
+		}
+	</script>
 					</div>
+					<div class="col-sm-5">
+					File max upload 2MB, File yang diupload dalam bentuk .pdf
+						</div>
 				</div>
 
 				<button type="submit" id="kirim" class="btn btn-warning">Kirim</button>&nbsp;
