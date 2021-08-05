@@ -6,8 +6,12 @@
         <?php
         $id_pengguna = $this->session->userdata('id_pengguna');
         ?>
-
-        <table class="table table-bordered table-striped" border="1">
+<div class="card">
+<div class="header">
+<h4 class="text-center">Data Rapot Kelas <?= $kelas_ini[0] ?></h4>
+</div>
+<div class="body">
+<table class="table table-bordered table-striped" border="1">
             <thead>
                 <tr>
                     <th> No </th>
@@ -39,6 +43,9 @@
 
             </tbody>
         </table>
+</div>
+</div>
+
 
     </div>
 

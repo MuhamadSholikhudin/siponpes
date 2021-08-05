@@ -32,7 +32,7 @@ class Rapot extends CI_Controller
     public function kelas($kelas)
     {
         // $id_pengguna = $this->input->post('id_pengguna');
-        // $kelas = $this->input->post('kelas');
+        $data['kelas_ini'] = [$kelas];
 
         $data['rapot'] = $this->db->query("SELECT * FROM santri  WHERE  kelas = $kelas ")->result();
 
@@ -46,11 +46,27 @@ class Rapot extends CI_Controller
     {
         $data['santri'] =  $this->db->query("SELECT * FROM santri WHERE id_santri = $id_santri")->row();
 
-
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
         $this->load->view('admin/rapot/lihat', $data);
         $this->load->view('templates_admin/footer');
+    }
+
+    public function naik_kelas()
+    {
+        $kelas = $this->input->post('kelas');
+        $putusan = $this->input->post('putusan');
+        $id_santri = $this->input->post('id_santri');
+
+        $data = array(       
+            'kelas' => $putusan
+        );
+        $where = array(       
+            'id_santri' => $id_santri
+        );
+
+        $this->Model_santri->update_data($where, $data, 'santri');
+        redirect('admin/rapot/kelas/'. $kelas);
     }
 
     public function tambah($id_pelajaran, $id_kelas, $id_santri)

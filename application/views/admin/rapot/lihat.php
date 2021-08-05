@@ -513,7 +513,7 @@
                 <div class="body table-responsive">
                     Berdasarkan hasil penilaian di atas, kepada santri yang bersangkutan dinyatakan  
                     <form action="<?= base_url('admin/rapot/naik_kelas') ?>" method="POST">
-                        <select id="putusan" name="putus">
+                        <select id="putusan" name="putusan">
                             <option value="<?= $santri->kelas + 1 ?>">Naik Kelas <?= $santri->kelas + 1 ?></option>
                             <option value="<?= $santri->kelas ?>">Mengulang kelas <?= $santri->kelas ?></option>
                         </select>
