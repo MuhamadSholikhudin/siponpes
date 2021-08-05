@@ -165,13 +165,17 @@ class Page extends CI_Controller
             
             if ($cek > 1) {
                 $data['title'] = 'Pendaftaran';
-
+                $this->session->set_flashdata('pesan', '<script>
+                alert("Nomor WA yang anda daftarkan sudah terdaftar di sistem");
+            </script>');
                 $this->load->view('page/theme/header', $data);
                 $this->load->view('page/registration');
                 $this->load->view('page/theme/footer');
             } elseif ($cek2 > 0) {
                 $data['title'] = 'Pendaftaran';
-
+                $this->session->set_flashdata('pesan', '<script>
+                alert("Email yang anda daftarkan sudah terdaftar di sistem");
+            </script>');
                 $this->load->view('page/theme/header', $data);
                 $this->load->view('page/registration');
                 $this->load->view('page/theme/footer');

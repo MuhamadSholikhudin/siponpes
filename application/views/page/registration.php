@@ -8,7 +8,7 @@
 			<h3 class="text-center">Pendaftaran Santri Baru</h3>
 			<!-- paragraph -->
 			<p class="text-center">Isilaha data-data dibawah ini dengan benar.</p>
-
+			<?= $this->session->flashdata('pesan'); ?>
 			<p class="text-center" id="validasi_umur"></p>
 			<form role="form " action="<?= base_url("page/registration") ?>" id="register-form" enctype="multipart/form-data" method="POST">
 
@@ -26,15 +26,15 @@
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="tanggal_lahir">Tanggal Lahir
-<?php
-$tahun_max = date('Y') - 15;
-$tahun_min = date('Y') - 26;
-$bulan = date('m');
-$hari = date('d');
-$tahun_minimal = $tahun_min.'-'.$bulan.'-'.$hari;
-$tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
+						<?php
+						$tahun_max = date('Y') - 15;
+						$tahun_min = date('Y') - 26;
+						$bulan = date('m');
+						$hari = date('d');
+						$tahun_minimal = $tahun_min.'-'.$bulan.'-'.$hari;
+						$tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
 
-?>
+						?>
 
 					</label>
 					<div class="col-sm-10">
