@@ -29,9 +29,9 @@
 <?php
 $tahun_max = date('Y') - 15;
 $tahun_min = date('Y') - 26;
-echo $bulan = date('m');
-echo $hari = date('d');
-echo  $tahun_minimal = $tahun_min.'-'.$bulan.'-'.$hari;
+$bulan = date('m');
+$hari = date('d');
+$tahun_minimal = $tahun_min.'-'.$bulan.'-'.$hari;
 $tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
 
 ?>
@@ -115,15 +115,19 @@ $tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
 
 					
 
-					document.getElementById('umur').value =' usia '+ umur  ;
-				}
+					document.getElementById('umur1').value =' usia '+ umur  ;
+				document.getElementById('umur').value = umur  ;
+				
+
+}
     });
     
     </script>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="umur">Umur</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="umur" name="umur" required placeholder="Umur" disabled>
+						<input type="text" class="form-control" id="umur1"required placeholder="Umur" disabled>
+<input type="hidden" class="form-control" id="umur" name="umur" required placeholder="Umur" >
 					</div>
 				</div>
 
@@ -206,7 +210,7 @@ $tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_orang_tua">Nama Orang Tua</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" required placeholder="Nomer Wa Yang bisa di hubungi">
+						<input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" required >
 					</div>
 				</div>
 				<div class="form-group row">
@@ -218,7 +222,7 @@ $tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_wali">Nama Wali</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nama_wali" name="nama_wali" required placeholder="Nomer Wa Yang bisa di hubungi">
+						<input type="text" class="form-control" id="nama_wali" name="nama_wali" required>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -238,7 +242,7 @@ $tahun_maximal = $tahun_max.'-'.$bulan.'-'.$hari;
 					<label class="col-sm-2 col-form-label" for="nomor_wa">Nomor Wa</label>
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="nomor_wa" name="nomor_wa" required placeholder="contoh : 8234353544" value="<?= set_value('nomor_wa'); ?>">
+						<input type="text" class="form-control" id="nomor_wa" name="nomor_wa" required placeholder="contoh : 628234353544" value="<?= set_value('nomor_wa'); ?>">
 						<?= form_error('nomor_wa', '<small class="text-danger pl-3">', '</small>'); ?>
 					</div>
 				</div>
