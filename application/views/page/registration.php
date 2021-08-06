@@ -203,7 +203,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_tinggal">Alamat tinggal calon santri</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_tinggal" name="alamat_tinggal" value="<?= set_value('alamat_tinggal'); ?>" required> </textarea>
+						<textarea class="form-control" id="alamat_tinggal" name="alamat_tinggal"  required><?= set_value('alamat_tinggal'); ?> </textarea>
 					</div>
 				</div>
 
@@ -216,7 +216,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_orang_tua">Alamat tinggal Orang Tua</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_orang_tua" name="alamat_orang_tua" value="<?= set_value('alamat_orang_tua'); ?>" required> </textarea>
+						<textarea class="form-control" id="alamat_orang_tua" name="alamat_orang_tua" required><?= set_value('alamat_orang_tua'); ?> </textarea>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -228,7 +228,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_wali">Alamat tinggal wali</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_wali" name="alamat_wali" value="<?= set_value('alamat_wali'); ?>" required> </textarea>
+						<textarea class="form-control" id="alamat_wali" name="alamat_wali"  required> <?= set_value('alamat_wali'); ?> </textarea>
 					</div>
 				</div>
 				<div class="form-group row">
