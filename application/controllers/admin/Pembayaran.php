@@ -89,7 +89,7 @@ $cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->
 $curl = curl_init();
 
 $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-$pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . "Pembayaran santri nama santri telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus" . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! ";
+$pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran santri   " . $cari->nama_lengkap . " telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus, " . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! ";
 
 $target = $cari->nomor_wa; //nomer target
 

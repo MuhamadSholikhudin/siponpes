@@ -101,7 +101,11 @@
                             <tr class="tr_td">
                                 <td><?= $no++ ?></td>
                                 <td>
-                                    <?= $ts->username ?>
+                                    <?php
+                                                    $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar =  $ts->id_daftar")->row();
+                                                    ?>
+                                                    <?= $nama_lengkap->nama_lengkap ?>
+
                                     <input type="hidden" width="100" name="id_santri[]" value="<?= $ts->id_santri ?>">
                                     <input class="id_jadwal" type="hidden" width="100" name="id_jadwal[]" value="<?= $jadwal->id_jadwal ?>">
 
