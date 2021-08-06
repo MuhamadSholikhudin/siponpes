@@ -15,13 +15,13 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_lengkap">Nama Lengkap</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required placeholder="Nama Lengkap">
+						<input class="form-control" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= set_value('nama_lengkap'); ?>" required placeholder="Nama Lengkap">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="tempat_lahir">Tempat Lahir</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required placeholder="Tempat Lahir">
+						<input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" required placeholder="Tempat Lahir">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -127,7 +127,7 @@
 					<label class="col-sm-2 col-form-label" for="umur">Umur</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="umur1"required placeholder="Umur" disabled>
-<input type="hidden" class="form-control" id="umur" name="umur" required placeholder="Umur" >
+<input type="hidden" class="form-control" id="umur" name="umur" value="<?= set_value('umur'); ?>" required placeholder="Umur" >
 					</div>
 				</div>
 
@@ -151,43 +151,43 @@
 					<div class="col-sm-11 row">
 						<label class="col-sm-2 col-form-label" for="asal_sekolah">SD/M/SMP/MTS/SMA/MA</label>
 						<div class="col-sm-10">
-							<input class="form-control" id="asal_sekolah" name="asal_sekolah" required>
+							<input class="form-control" id="asal_sekolah" name="asal_sekolah" value="<?= set_value('asal_sekolah'); ?>" required>
 						</div>
 						<br>
 						<br>
 						<label class="col-sm-2 col-form-label" for="kecamatan">Kecamatan</label>
-						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="kecamatan" name="kecamatan" required>
+						<div class="col-sm-10 mb-3"> 
+							<input class="form-control" id="kecamatan" name="kecamatan" value="<?= set_value('kecamatan'); ?>" required>
 						</div>
 						<br>
 						<br>
 						<label class="col-sm-2 col-form-label" for="kabupaten">Kabupaten</label>
 						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="kabupaten" name="kabupaten" required>
+							<input class="form-control" id="kabupaten" name="kabupaten" value="<?= set_value('kabupaten'); ?>" required>
 						</div>
 						<br>
 						<br>
 						<label class="col-sm-2 col-form-label" for="provinsi">Provinsi</label>
 						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="provinsi" name="provinsi" required>
+							<input class="form-control" id="provinsi" name="provinsi" value="<?= set_value('provinsi'); ?>"  required>
 						</div>
 						<br>
 						<br>
 						<label class="col-sm-2 col-form-label" for="nomor_sttb">Nomor STTB</label>
 						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="nomor_sttb" name="nomor_sttb" required>
+							<input class="form-control" id="nomor_sttb" name="nomor_sttb" value="<?= set_value('nomor_sttb'); ?>" required>
 						</div>
 						<br>
 						<br>
 						<label class="col-sm-2 col-form-label" for="nomor_skhu">Nomor SKHU</label>
 						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="nomor_skhu" name="nomor_skhu" required>
+							<input class="form-control" id="nomor_skhu" name="nomor_skhu" value="<?= set_value('nomor_skhu'); ?>" required>
 						</div>
 						<br>
 						<br>
 						<label class="col-sm-2 col-form-label" for="jumlah_skhu">Jumlah SKHU</label>
 						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="jumlah_skhu" name="jumlah_skhu" required>
+							<input class="form-control" id="jumlah_skhu" name="jumlah_skhu" value="<?= set_value('jumlah_skhu'); ?>" required>
 						</div>
 					</div>
 
@@ -197,38 +197,38 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="agama">Agama</label>
 					<div class="col-sm-10">
-						<input class="form-control" id="agama" name="agama" required>
+						<input class="form-control" id="agama" name="agama" value="<?= set_value('agama'); ?>" required>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_tinggal">Alamat tinggal calon santri</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_tinggal" name="alamat_tinggal" required> </textarea>
+						<textarea class="form-control" id="alamat_tinggal" name="alamat_tinggal" value="<?= set_value('alamat_tinggal'); ?>" required> </textarea>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_orang_tua">Nama Orang Tua</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" required >
+						<input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" value="<?= set_value('nama_orang_tua'); ?>" required >
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_orang_tua">Alamat tinggal Orang Tua</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_orang_tua" name="alamat_orang_tua" required> </textarea>
+						<textarea class="form-control" id="alamat_orang_tua" name="alamat_orang_tua" value="<?= set_value('alamat_orang_tua'); ?>" required> </textarea>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_wali">Nama Wali</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nama_wali" name="nama_wali" required>
+						<input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= set_value('nama_wali'); ?>" required>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_wali">Alamat tinggal wali</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_wali" name="alamat_wali" required> </textarea>
+						<textarea class="form-control" id="alamat_wali" name="alamat_wali" value="<?= set_value('alamat_wali'); ?>" required> </textarea>
 					</div>
 				</div>
 				<div class="form-group row">

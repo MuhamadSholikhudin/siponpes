@@ -20,7 +20,15 @@ class Laporan extends CI_Controller
         $this->load->view('admin/laporan/pendaftaran', $data);
         $this->load->view('templates_admin/footer');
     }
-    
+    public function pendaf()
+    {
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar ")->result();
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('laporan/laporan_pendaftaran', $data);
+        $this->load->view('templates_admin/footer');
+    }
     public function pembayaran()
     {
         $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran ")->result();

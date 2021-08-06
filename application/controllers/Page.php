@@ -146,6 +146,23 @@ class Page extends CI_Controller
         // redirect('user');
         // }
 
+        $this->form_validation->set_rules('nama_lengkap', 'Name', 'required|trim');
+        $this->form_validation->set_rules('tempat_lahir', 'Email', 'required|trim');
+        $this->form_validation->set_rules('tanggal_lahir', 'Name', 'required|trim');
+        $this->form_validation->set_rules('umur', 'Email', 'required|trim');
+        $this->form_validation->set_rules('asal_sekolah', 'Name', 'required|trim');
+        $this->form_validation->set_rules('kecamatan', 'Email', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'Name', 'required|trim');
+        $this->form_validation->set_rules('provinsi', 'Email', 'required|trim');
+        $this->form_validation->set_rules('nomor_sttb', 'Name', 'required|trim');
+        $this->form_validation->set_rules('nomor_skhu', 'Email', 'required|trim');
+        $this->form_validation->set_rules('nomor_wa', 'Name', 'required|trim');
+        $this->form_validation->set_rules('jumlah_skhu', 'Email', 'required|trim');
+        $this->form_validation->set_rules('agama', 'Name', 'required|trim');
+        $this->form_validation->set_rules('nama_orang_tua', 'Email', 'required|trim');
+        $this->form_validation->set_rules('alamat_orang_tua', 'Name', 'required|trim');
+        $this->form_validation->set_rules('nama_wali', 'Email', 'required|trim');
+        $this->form_validation->set_rules('alamat_wali', 'Name', 'required|trim');
         $this->form_validation->set_rules('nomor_wa', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim');
         $nomor_wa = $this->input->post('nomor_wa', true);
