@@ -251,23 +251,23 @@
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="foto" name="foto"  accept="image/png, image/jpeg, image/jpg, image/img" onchange="Validation_foto()"  required>
 						<script>
-		Validation_foto = () => {
-			const fi = document.getElementById('foto');
-			// Check if any file is selected.
-			if (fi.files.length > 0) {
-				for (const i = 0; i <= fi.files.length - 1; i++) {
-	  
-					const fsize = fi.files.item(i).size;
-					const file = Math.round((fsize / 1024));
-					// The size of the file.
-					if (file >= 2048) {
-						alert("FileYang anda pilih terlalu besar File max 2MB");
-						  $('#foto').val('');
-					} 
-				}
-			}
-		}
-	</script>
+							Validation_foto = () => {
+								const fi = document.getElementById('foto');
+								// Check if any file is selected.
+								if (fi.files.length > 0) {
+									for (const i = 0; i <= fi.files.length - 1; i++) {
+						
+										const fsize = fi.files.item(i).size;
+										const file = Math.round((fsize / 1024));
+										// The size of the file.
+										if (file >= 2048) {
+											alert("FileYang anda pilih terlalu besar File max 2MB");
+											$('#foto').val('');
+										} 
+									}
+								}
+							}
+						</script>
 
 					</div>
 					<div class="col-sm-5">
@@ -279,23 +279,23 @@
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="file_kk" name="file_kk" onchange="Validation_file_kk()"  accept="application/pdf, application/vnd.ms-excel"  required>
 						<script>
-		Validation_file_kk = () => {
-			const fi = document.getElementById('file_kk');
-			// Check if any file is selected.
-			if (fi.files.length > 0) {
-				for (const i = 0; i <= fi.files.length - 1; i++) {
-	  
-					const fsize = fi.files.item(i).size;
-					const file = Math.round((fsize / 1024));
-					// The size of the file.
-					if (file >= 2048) {
-						alert("File yang anda pilih terlalu besar File max 2MB");
-						  $('#file_kk').val('');
-					} 
-				}
-			}
-		}
-	</script>
+							Validation_file_kk = () => {
+								const fi = document.getElementById('file_kk');
+								// Check if any file is selected.
+								if (fi.files.length > 0) {
+									for (const i = 0; i <= fi.files.length - 1; i++) {
+						
+										const fsize = fi.files.item(i).size;
+										const file = Math.round((fsize / 1024));
+										// The size of the file.
+										if (file >= 2048) {
+											alert("File yang anda pilih terlalu besar File max 2MB");
+											$('#file_kk').val('');
+										} 
+									}
+								}
+							}
+						</script>
 					
 					</div>
 					<div class="col-sm-5">
@@ -307,23 +307,23 @@
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="file_ket_ijin" name="file_ket_ijin" onchange="Validation_file_ket_ijin()"  accept="application/pdf, application/vnd.ms-excel" required>
 						<script>
-		Validation_file_ket_ijin = () => {
-			const fi = document.getElementById('file_ket_ijin');
-			// Check if any file is selected.
-			if (fi.files.length > 0) {
-				for (const i = 0; i <= fi.files.length - 1; i++) {
-	  
-					const fsize = fi.files.item(i).size;
-					const file = Math.round((fsize / 1024));
-					// The size of the file.
-					if (file >= 2048) {
-						alert("File yang anda pilih terlalu besar File max 2MB");
-						  $('#file_ket_ijin').val('');
-					} 
-				}
-			}
-		}
-	</script>
+							Validation_file_ket_ijin = () => {
+								const fi = document.getElementById('file_ket_ijin');
+								// Check if any file is selected.
+								if (fi.files.length > 0) {
+									for (const i = 0; i <= fi.files.length - 1; i++) {
+						
+										const fsize = fi.files.item(i).size;
+										const file = Math.round((fsize / 1024));
+										// The size of the file.
+										if (file >= 2048) {
+											alert("File yang anda pilih terlalu besar File max 2MB");
+											$('#file_ket_ijin').val('');
+										} 
+									}
+								}
+							}
+						</script>
 					</div>
 					<div class="col-sm-5">
 					File max upload 2MB, File yang diupload dalam bentuk .pdf

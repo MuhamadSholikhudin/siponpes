@@ -159,4 +159,22 @@ class Jadwal extends CI_Controller
             redirect('admin/jadwal/');
         }
     }
+
+
+
+    function get_sub_id_pelajaran()
+    {
+        $id_pelajaran = $this->input->post('id_pelajaran', TRUE);
+        $hari_pilih = $this->input->post('hari_pilih', TRUE);
+        $waktu_pilih = $this->input->post('waktu_pilih', TRUE);
+        $data = $this->db->query("SELECT * FROM jadwal WHERE id_pelajaran = $id_pelajaran AND hari = '$hari_pilih' AND waktu = '$waktu_pilih' ")->num_rows();
+        // if($jum > 0){
+        //     $data = "Jadwal pelajaran yang dipilih sudah ada pada hari" . $hari_pilih . " Waktu ". $waktu_pilih;
+        // }elseif($jum < 1){
+        //     $data = "Jadwal pelajaran yang dipilih pada hari" . $hari_pilih . " Waktu ". $waktu_pilih. " dapat ditambahlan ";
+
+        // }
+        
+        echo json_encode($data);
+    }
 }

@@ -53,40 +53,131 @@
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="id_pelajaran" id="id_pelajaran">
                                                             <?php foreach ($pelajaran as $ust) : ?>
-                                                                <option value="<?= $ust->id_pelajaran ?>"><?= $ust->nama_pelajaran ?>/<?= $ust->nama ?></option>
-
+                                                                <option value="<?= $ust->id_pelajaran ?>"><?= $ust->nama_pelajaran ?>/<?= $ust->nama ?>/<?= $ust->jenis ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
-
+                                                    <script>
+                                                            $("#id_pelajaran").on("change",function(){
+                                                                var id_pelajaran = $(this).val();
+                                                                    var hari_pilih = document.getElementById("hari").value;
+                                                                    var waktu_pilih = document.getElementById("waktu").value;
+                                                              
+                                                                
+                                                                $.ajax({
+                                                                        url: "<?php echo base_url('admin/jadwal/get_sub_id_pelajaran'); ?>",
+                                                                        method: "POST",
+                                                                        data: {
+                                                                            id_pelajaran: id_pelajaran,
+                                                                            hari_pilih: hari_pilih,
+                                                                            waktu_pilih: waktu_pilih
+                                                                        },
+                                                                        async: true,
+                                                                        dataType: 'json',
+                                                                        success: function(data) {
+                                                                            if (data == 0) {
+                                                                                $("#button_jadwal1").removeAttr('disabled');
+                                                                            }
+                                                                            else if (data >= 1) {
+                                                                                alert("Data jadwal yang di pilih pada hari "+ hari_pilih +" waktu "+ waktu_pilih + " sudah tersedia di sistem")
+                                                                                $("#button_jadwal1").attr('disabled','disabled');
+                                                                            }                                                                            
+                                                                        }
+                                                                                                                                               
+                                                                    });
+                                                                    return false;
+                                                                });
+                                                           
+                                                    </script>
                                                     <label for="id_kelas">Kelas</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="id_kelas" id="id_kelas">
                                                             <?php foreach ($kelas as $ust) : ?>
                                                                 <option value="<?= $ust->id_kelas ?>"><?= $ust->kelas ?></option>
-
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
-
                                                     <label for="hari">hari</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="hari" id="hari">
                                                             <?php foreach ($hari as $ust) : ?>
                                                                 <option value="<?= $ust ?>"><?= $ust ?></option>
-
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
+                                                    <script>
+                                                            $("#hari").on("change",function(){
+                                                                    var hari_pilih = $(this).val();
+                                                                var id_pelajaran = document.getElementById("id_pelajaran").value;
+                                                                    var waktu_pilih = document.getElementById("waktu").value;
+                                                              
+                                                                
+                                                                $.ajax({
+                                                                        url: "<?php echo base_url('admin/jadwal/get_sub_id_pelajaran'); ?>",
+                                                                        method: "POST",
+                                                                        data: {
+                                                                            id_pelajaran: id_pelajaran,
+                                                                            hari_pilih: hari_pilih,
+                                                                            waktu_pilih: waktu_pilih
+                                                                        },
+                                                                        async: true,
+                                                                        dataType: 'json',
+                                                                        success: function(data) {
+                                                                            if (data == 0) {
+                                                                                $("#button_jadwal1").removeAttr('disabled');
+                                                                            }
+                                                                            else if (data >= 1) {
+                                                                                alert("Data jadwal yang di pilih pada hari "+ hari_pilih +" waktu "+ waktu_pilih + " sudah tersedia di sistem")
+                                                                                $("#button_jadwal1").attr('disabled','disabled');
+                                                                            }                                                                            
+                                                                        }
+                                                                                                                                               
+                                                                    });
+                                                                    return false;
+                                                                });
+                                                           
+                                                    </script>
                                                     <label for="waktu">waktu</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="waktu" id="waktu">
                                                             <?php foreach ($waktu as $ust) : ?>
                                                                 <option value="<?= $ust ?>"><?= $ust ?></option>
-
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
+                                                    <script>
+                                                            $("#waktu").on("change",function(){
+                                                                    var waktu_pilih = $(this).val();
+                                                                var id_pelajaran = document.getElementById("id_pelajaran").value;
+                                                                    var hari_pilih = document.getElementById("hari").value;
+                                                              
+                                                                
+                                                                $.ajax({
+                                                                        url: "<?php echo base_url('admin/jadwal/get_sub_id_pelajaran'); ?>",
+                                                                        method: "POST",
+                                                                        data: {
+                                                                            id_pelajaran: id_pelajaran,
+                                                                            hari_pilih: hari_pilih,
+                                                                            waktu_pilih: waktu_pilih
+                                                                        },
+                                                                        async: true,
+                                                                        dataType: 'json',
+                                                                        success: function(data) {
+                                                                            if (data == 0) {
+                                                                                $("#button_jadwal1").removeAttr('disabled');
+                                                                            }
+                                                                            else if (data >= 1) {
+                                                                                alert("Data jadwal yang di pilih pada hari "+ hari_pilih +" waktu "+ waktu_pilih + " sudah tersedia di sistem")
+                                                                                $("#button_jadwal1").attr('disabled','disabled');
+                                                                            }                                                                            
+                                                                        }
+                                                                                                                                               
+                                                                    });
+                                                                    return false;
+                                                                });
+                                                           
+                                                    </script>
+
                                                     <label for="status">status</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="status" id="status">
@@ -96,7 +187,41 @@
                                                         </select>
                                                     </div>
                                                     <br>
-                                                    <button class="btn btn-primary m-t-15 waves-effect" type="submit">SIMPAN</button>
+                                                    <button class="btn btn-primary m-t-15 waves-effect" id="button_jadwal1" >SIMPAN</button>
+                                                    <div class="modal fade">
+                                                    
+                                                    <button class="btn btn-primary m-t-15 waves-effect d-none" id="button_jadwal" type="submit">SIMPAN</button>
+                                                    </div>
+                                                    <script>
+                                                            $("#button_jadwal1").on("click", function(){
+                                                                var id_pelajaran = document.getElementById("id_pelajaran").value;
+                                                                    var hari_pilih = document.getElementById("hari").value;
+                                                                    var waktu_pilih = document.getElementById("waktu").value;                                                               
+                                                                $.ajax({
+                                                                        url: "<?php echo base_url('admin/jadwal/get_sub_id_pelajaran'); ?>",
+                                                                        method: "POST",
+                                                                        data: {
+                                                                            id_pelajaran: id_pelajaran,
+                                                                            hari_pilih: hari_pilih,
+                                                                            waktu_pilih: waktu_pilih
+                                                                        },
+                                                                        async: true,
+                                                                        dataType: 'json',
+                                                                        success: function(data) {
+                                                                            if (data == 0) {
+                                                                                document.getElementById("button_jadwal").click();
+                                                                            }
+                                                                            else if (data >= 1) {
+                                                                                alert("Data jadwal yang di pilih pada hari "+ hari_pilih +" waktu "+ waktu_pilih + " sudah tersedia di sistem")
+                                                                                $("#button_jadwal").attr('disabled','disabled');
+                                                                            }                                                                            
+                                                                        }
+                                                                                                                                               
+                                                                    });
+                                                                    return false;
+                                                                });
+                                                           
+                                                    </script>
                                                 </form>
 
                                             </div>
@@ -109,7 +234,7 @@
 
                                         <!-- <button class="btn btn-link waves-effect" type="button">SAVE CHANGES</button> -->
 
-                                        <button class="btn btn-link waves-effect" type="button" data-dismiss="modal">CLOSE</button>
+                                        <button class="btn btn-link waves-effect"  type="button" data-dismiss="modal">CLOSE</button>
 
                                     </div>
 

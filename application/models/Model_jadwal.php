@@ -69,4 +69,11 @@ $result = $this->db->where('id_brg', $id_brg)->get('tb_jadwal');
         // $query = $this->db->get_where('tb_transaksi', array('notransaksi' => $notransaksi));
         return $query;
     }
+
+    function get_sub_id($id_pelajaran)
+    {
+        $query = $this->db->query(" SELECT * FROM jadwal WHERE id_pelajaran = $id_pelajaran AND status = 1 LIMIT 1");
+        // $query = $this->db->get_where('tb_transaksi', array('notransaksi' => $notransaksi));
+        return $query;
+    }
 }

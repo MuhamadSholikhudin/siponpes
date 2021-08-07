@@ -14,8 +14,6 @@
 <!-- cari santri -->
 
 <!-- cari kelas -->
-
-
         <?php
         if ($cari_rapot->num_rows() > 0) {
             $ada_rapot = $cari_rapot->row();
@@ -517,9 +515,9 @@
                             <option value="<?= $santri->kelas + 1 ?>">Naik Kelas <?= $santri->kelas + 1 ?></option>
                             <option value="<?= $santri->kelas ?>">Mengulang kelas <?= $santri->kelas ?></option>
                         </select>
-                        <input type="text" id="kelas_ini" value="<?= $santri->kelas ?>" name="kelas" >
-                        <input type="text"  value="<?= $santri->id_santri ?>"  name="id_santri" >
-                        <button type="submit">putus</button>
+                        <input type="hidden" id="kelas_ini" value="<?= $santri->kelas ?>" name="kelas" >
+                        <input type="hidden"  value="<?= $santri->id_santri ?>"  name="id_santri" >
+                        <button type="submit">putuskan</button>
                     </form>
                      <?php $naik_kelas = $santri->kelas + 1;
                      $kelas_naik = $this->db->query("SELECT * FROM kelas WHERE id_kelas = $naik_kelas")->row();
@@ -535,7 +533,6 @@
                                 alert("Santri naik ke kelas " + putusan);
                             }else{
                                 alert("Santri Mengulang kelas " + kelas_ini);
-
                             }
                             $.ajax({
                                 url: "<?php echo base_url('admin/rapot/get_sub_id_kelas'); ?>",
