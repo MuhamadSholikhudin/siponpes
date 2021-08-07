@@ -70,8 +70,7 @@ class Rapot extends CI_Controller
     }
 
     public function tambah($id_pelajaran, $id_kelas, $id_santri)
-    {
-    
+    {    
         $cari_santri = $this->db->query("SELECT * FROM santri WHERE id_santri = $id_santri ")->row();
         $cari_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = $cari_santri->id_daftar ")->row();
         $cari_pelajaran = $this->db->query("SELECT * FROM pelajaran WHERE id_pelajaran =  $id_pelajaran")->row();
