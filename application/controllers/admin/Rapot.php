@@ -52,20 +52,71 @@ class Rapot extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
-    public function naik_kelas()
+    public function putusan()
     {
         $kelas = $this->input->post('kelas');
         $putusan = $this->input->post('putusan');
         $id_santri = $this->input->post('id_santri');
 
-        $data = array(       
-            'kelas' => $putusan
-        );
-        $where = array(       
-            'id_santri' => $id_santri
-        );
+            // Jika santri naik kelas 
+        if($putusan > $kelas ){
+            $data = array(       
+                'kelas' => $putusan
+            );
+            $where = array(       
+                'id_santri' => $id_santri
+            );
+            $this->Model_santri->update_data($where, $data, 'santri');
 
-        $this->Model_santri->update_data($where, $data, 'santri');
+
+            // Jika santri mengulang kelas 
+        }elseif($putusan == $kelas ){
+
+            $update  = $id_santri.' AND id_kelas = '. $kelas;
+
+            $data1 = array(       
+                'status' => 0
+            );
+            $where1 = array(       
+                'id_santri' => $update
+            );
+            $this->Model_santri->update_data($where1, $data1, 'absensi');
+
+            $data2 = array(       
+                'status' => 0
+            );
+            $where2 = array(       
+                'id_santri' => $update
+            );
+            $this->Model_santri->update_data($where2, $data2, 'nilai');
+
+            $data3 = array(       
+                'status' => 0
+            );
+            $where3 = array(       
+                'id_santri' => $update
+            );
+            $this->Model_santri->update_data($where3, $data3, 'perkembangan_pembelajaran');
+           
+            $data4 = array(       
+                'status' => 0
+            );
+            $where4 = array(       
+                'id_santri' => $update
+            );
+            $this->Model_santri->update_data($where4, $data4, 'sikap_dan_prilaku');
+
+
+            $data = array(       
+                'kelas' => $kelas
+            );
+            
+            $where = array(       
+                'id_santri' => $id_santri
+            );
+            $this->Model_santri->update_data($where, $data, 'santri');
+        }
+
         redirect('admin/rapot/kelas/'. $kelas);
     }
 

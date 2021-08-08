@@ -140,6 +140,7 @@ class Pendaftaran extends CI_Controller
             'nama_lengkap' => $this->input->post('nama_lengkap'),
             'tempat_lahir' => $this->input->post('tempat_lahir'),
             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'jekel' => $this->input->post('jekel'),
             'umur' => $this->input->post('umur'),
             'asal_sekolah' => $this->input->post('asal_sekolah'),
             'kecamatan' => $this->input->post('kecamatan'),
@@ -200,8 +201,6 @@ class Pendaftaran extends CI_Controller
             // $this->upload->do_upload('foto');
             // $this->upload->do_upload('file_kk');
             // $this->upload->do_upload('file_ket_ijin');            
-
-
 
         $data = [
             'foto' =>  $new_foto,

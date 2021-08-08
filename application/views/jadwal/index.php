@@ -43,12 +43,18 @@
                                             <div class="body">
 
                                                 <form action="<?= base_url('admin/jadwal/aksi_tambah') ?>" method="POST" enctype="multipart/form-data">
-                                                    <!-- <label for="kode_jadwal">Kode jadwal </label>
+                                                    <label for="kode_jadwal">Kode jadwal </label>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input type="text" name="kode_jadwal" id="kode_jadwal" class="form-control no-resize" required>
                                                         </div>
-                                                    </div> -->
+                                                    </div>
+                                                    <label for="periode_ajaran">Periode Ajaran</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" name="periode_ajaran" id="periode_ajaran" class="form-control no-resize" required>
+                                                        </div>
+                                                    </div>
                                                     <label for="id_pelajaran">Pelajaran</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="id_pelajaran" id="id_pelajaran">
@@ -339,6 +345,28 @@
             </div>
 
             <!-- #END# Basic Examples -->
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2 class"text-center">
+                                Jadwal Pelajaran Perkelas
+                            </h2>
+                           
+                        </div>
+                        <div class="body">
+                            <div class="demo-button">
+                                <a href="<?= base_url('admin/jadwal/kelas/1') ?>" class="btn btn-block btn-lg btn-primary waves-effect">Kelas 1</a>
+                                <a href="<?= base_url('admin/jadwal/kelas/2') ?>" class="btn btn-block btn-lg btn-success waves-effect">Kelas 2</a>
+                                <a href="<?= base_url('admin/jadwal/kelas/3') ?>" class="btn btn-block btn-lg btn-info waves-effect">Kelas 3</a>
+                                <a href="<?= base_url('admin/jadwal/kelas/4') ?>" class="btn btn-block btn-lg btn-warning waves-effect">Kelas 4</a>
+                                <a href="<?= base_url('admin/jadwal/kelas/5') ?>" class="btn btn-block btn-lg btn-danger waves-effect">Kelas 5</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
 
         </div>
 

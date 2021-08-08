@@ -8,9 +8,10 @@
                 <div class="card">
                     <div class="header">
                         <div class="row clearfix">
-                            <form action="<?= base_url('admin/laporan/pendaftaran_pertanggal') ?>" method="POST" enctype="multipart/form-data">
+                            <form action="<?= base_url('admin/laporan/pendaftaran') ?>" method="POST" enctype="multipart/form-data">
                                 <div class="col-sm-3">
                                     <label for=""> Pilih Pertanggal</label>
+                                    <input type="hidden" name="pilihan" value="tanggal">
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="date" name="tanggal_awal" class="form-control">
@@ -28,9 +29,10 @@
 
                             <div class="col-sm-1"></div>
 
-                            <form action="<?= base_url('admin/laporan/pendaftaran_perbulan') ?>" method="POST" enctype="multipart/form-data">
+                            <form action="<?= base_url('admin/laporan/pendaftaran') ?>" method="POST" enctype="multipart/form-data">
                                 <div class="col-sm-3">
                                     <label for="bulan">Pilih Bulan</label>
+                                    <input type="hidden" name="pilihan" value="bulan">
                                     <div class="form-group">
                                         <select class="selectpicker form-line" name="bulan" id="bulan">
                                             <option value="01">Januari</option>
@@ -66,10 +68,10 @@
 
                             <div class="col-sm-1"></div>
 
-                            <form action="<?= base_url('admin/laporan/pendaftaran_pertahun') ?>" method="POST" enctype="multipart/form-data">
+                            <form action="<?= base_url('admin/laporan/pendaftaran') ?>" method="POST" enctype="multipart/form-data">
                                 <div class="col-sm-3">
                                     <label for="bulan">Pilih Tahun</label>
-
+                                    <input type="hidden" name="pilihan" value="tahun">
                                     <div class="form-group">
                                         <select class="selectpicker form-line" name="tahun" id="tahun">
 
@@ -90,7 +92,37 @@
                     </div>
 
                 </div>
+                    <?php
+                    if($cetak[0] == 'tanggal'){ ?>
+                        
+                        <a href="<?= base_url('admin/laporan/cetak_pendaftaran_tanggal/'.$tanggal[0].'/'.$tanggal[1]) ?>" target="_blank" class="btn bg-teal waves-effect"> 
+                        <i class="material-icons">print</i>  
+                        <span>Cetak</span>
+                    </a>
+                    <?php
+                    }elseif($cetak[0] == 'bulan'){
+                        ?>
+                        
+                        <a href="<?= base_url('admin/laporan/cetak_pendaftaran_bulan/'.$bulan[0].'/'.$bulan[1]) ?>" target="_blank" class="btn bg-teal waves-effect"> 
+                        <i class="material-icons">print</i>  
+                        <span>Cetak</span>
+                    </a>
+                    <?php
+                        
+                    }elseif($cetak[0] == 'tahun'){
+                        ?>
+                        
+                        <a href="<?= base_url('admin/laporan/cetak_pendaftaran_tahun/'.$tahun[0]) ?>" target="_blank" class="btn bg-teal waves-effect"> 
+                        <i class="material-icons">print</i>  
+                        <span>Cetak</span>
+                    </a>
+                    <?php
+                        
+                    }elseif($cetak[0] == 'normal'){
+                        
 
+                    }
+                    ?>
 
                 <div class="card">
                     <div class="header">
@@ -102,21 +134,56 @@
                     <div class="body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Jadwal</th>
-                                        <th>NIP</th>
-                                        <th>Nama</th>
-                                        <th>Jabatan</th>
-                                        <th>penempatan</th>
-                                        <th>Absensi</th>
-                                    </tr>
-                                </thead>
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Lengkap</th>
+                                <th>Alamat</th>
+                                <th>Tanggal daftar</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal lahir</th>
+                                <th>Email</th>
+                                <th>Nomor Wa</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
 
-                                <tbody>
-                       
-                                </tbody>
+                        <tbody>
+                            <?php $no = 1; ?>
+                            <?php foreach ($pendaftaran as $peng) : ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $peng->nama_lengkap ?></td>
+                                    <td><?= $peng->alamat_tinggal ?></td>
+                                    <td><?= $peng->tanggal_daftar ?></td>
+                                    <td><?= $peng->tempat_lahir ?></td>
+                                    <td><?= $peng->tanggal_lahir ?></td>
+                                    <td><?= $peng->email ?></td>    
+                                    <td><?= $peng->nomor_wa?></td>    
+                                    <td>
+                                    <?php
+                                        if($peng->status == 0){
+echo 'dikembalikan';
+                                        }elseif($peng->status == 1){
+                                            echo 'mendaftar';
+
+                                        }elseif($peng->status == 2 ){
+                                            echo 'diterima';
+
+                                        }elseif($peng->status == 3){
+                                            echo 'jadi santri';
+
+                                        }else{
+                                            echo 'enak';
+
+                                        }
+                                    ?>
+                                    </td>    
+             
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                             </table>
                         </div>
                     </div>

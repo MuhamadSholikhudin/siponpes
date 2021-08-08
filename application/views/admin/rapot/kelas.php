@@ -1,8 +1,9 @@
 <section class="content">
     <div class="container-fluid">
-        <div class="block-header">
-            <h2>PENILIAN SANTRI</h2>
-        </div>
+    <a href="<?= base_url('admin/rapot/') ?>" class="btn bg-blue-grey waves-effect"> 
+            <i class="material-icons">reply</i>  
+            <span>Kemballi</span>
+        </a>
         <?php
         $id_pengguna = $this->session->userdata('id_pengguna');
         ?>
