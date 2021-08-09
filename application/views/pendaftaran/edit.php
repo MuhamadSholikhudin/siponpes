@@ -4,14 +4,15 @@
 
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a href="<?= base_url('admin/pendaftaran') ?>" class="btn bg-blue-grey waves-effect"> 
+            <i class="material-icons">reply</i>  
+            <span>Kemballi</span>
+        </a>
                 <div class="card">
                     <div class="header">
                         <h2>
                             EDIT PENDAFTARAN
-                        </h2>
-
-                        
-
+                        </h2>                       
                     </div>
                     <div class="body">
                         
@@ -59,8 +60,24 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Jenis Kelamin</label><br>
+                                    <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                                     <div class="col-sm-10">
+                                        <select class="form-control" name="jekel" id="" require>
+                                        <?php  
+                                            $kelamin = ['Laki-laki', 'Perempuan']; 
+                                            foreach($kelamin as $kel):
+                                                if($kel == $daftar->jekel){ ?>
+                                                        <option value="<?=$kel ?>" selected><?=$kel ?></option>
+                                                <?php
+                                                }else{?>
+                                                    <option value="<?=$kel ?>"><?=$kel ?></option>
+                                            <?php
+
+                                                }
+                                            endforeach;
+                                        ?>
+                                        </select>
+<!-- 
                                         <div class="btn-group" data-toggle="buttons">
                                             <label class="btn btn-warning btn-sm">
                                                 <input type="radio" name="jekel" <?php if ($daftar->jekel == 'Laki-laki') {
@@ -76,7 +93,7 @@
                                                                                     } else {
                                                                                     } ?> value="perempuan" id="option2"> Perempuan
                                             </label>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 
@@ -210,14 +227,25 @@
 
                     </div>
                 </div>
-            </div>
+            
 
+                <div class="card">
+                    <div class="header">Data Dokumen File Kartu Keluarga</div>
+                    <div class="body">
+                        <div class="container">
+                            <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_kk) ?> "  width="100%" ></object >
+                        </div>
+                    </div>
+                </div>
 
-
-            <div class="container">
-                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_kk) ?> "  width="600" height="400"></object >
+                <div class="card">
+                    <div class="header">Data Dokumen File Surat Keterangan Ijin</div>
+                    <div class="body">
+                        <div class="container">
+                            <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_ket_ijin) ?>"  width="100%" ></object >
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="container">
-                <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_ket_ijin) ?>"  width="600" height="400"></object >
-            </div>
+            
     </section>

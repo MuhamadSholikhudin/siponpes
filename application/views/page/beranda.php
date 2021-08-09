@@ -79,9 +79,9 @@
                         <div class="carousel-inner">
                             <div class="item active pad">
                                 <!-- heading -->
-                                <h3>-@Himanshu</h3>
+                                <h3>-@Johan</h3>
                                 <!-- paragraph -->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <p>Ayo sedulur sedulur semua mondok di Pondok baitul qudus, karena mondok di pondok pesantren baitul qudus mngasikkan.</p>
                             </div>
                             <div class="item pad">
                                 <!-- heading -->
@@ -108,17 +108,6 @@
                 </div>
             </div>
 
-            <!-- call to action -->
-            <div class="cta">
-                <div class="container">
-                    <div class="cta-content">
-                        <!-- heading -->
-                        <h3>Don't Feel Insecure with <span>PRELOG</span></h3>
-                        <!-- paragraph -->
-                        <p>Tales from those who follow the prelog way wherever it leads</p>
-                    </div>
-                </div>
-            </div>
 
  
 

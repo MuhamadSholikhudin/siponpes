@@ -1,14 +1,21 @@
 <section class="content">
     <div class="container-fluid">
-        <div class="block-header">
+    <a href="<?= base_url('admin/rapot/kelas/'.$santri->kelas) ?>" class="btn bg-blue-grey waves-effect"> 
+            <i class="material-icons">reply</i>  
+            <span>Kemballi</span>
+        </a>
+
+
+
+        <!-- <div class="block-header">
             <h2>Rapot</h2>
-        </div>
+        </div> -->
         <?php
         $id_santri = $santri->id_santri;
         $kelas = $santri->kelas;
    
 
-        $cari_rapot= $this->db->query("SELECT * FROM absensi JOIN jadwal ON absensi.id_jadwal = jadwal.id_jadwal WHERE absensi.id_santri = $id_santri AND jadwal.id_kelas = $kelas");
+        $cari_rapot= $this->db->query("SELECT * FROM absensi JOIN jadwal ON absensi.id_jadwal = jadwal.id_jadwal WHERE absensi.id_santri = $id_santri AND absensi.status = 1  AND jadwal.id_kelas = $kelas");
        ?>
 
 <!-- cari santri -->
@@ -76,7 +83,7 @@
                         <tbody>
 
                             <?php
-                            $tampil_pelajaran = $this->db->query("SELECT * FROM absensi LEFT JOIN jadwal ON absensi.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE absensi.id_santri = $id_santri AND jadwal.id_kelas = $kelas AND pelajaran.jenis = 'Materi' GROUP BY pelajaran.id_pelajaran");
+                            $tampil_pelajaran = $this->db->query("SELECT * FROM absensi LEFT JOIN jadwal ON absensi.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE absensi.id_santri = $id_santri AND absensi.status = 1  AND jadwal.id_kelas = $kelas AND pelajaran.jenis = 'Materi' GROUP BY pelajaran.id_pelajaran");
                             $no = 0;
                             $rata_rata = 0;
                             ?>
@@ -97,7 +104,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                            $cari_nilai = $this->db->query("SELECT COALESCE(SUM(nilai), 0) as jumlah, COUNT(nilai) as banyak FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai.id_santri = $id_santri AND jadwal.id_pelajaran = $tp->id_pelajaran");
+                                            $cari_nilai = $this->db->query("SELECT COALESCE(SUM(nilai), 0) as jumlah, COUNT(nilai) as banyak FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai.id_santri = $id_santri AND nilai.status = 1  AND jadwal.id_pelajaran = $tp->id_pelajaran");
                                             if ($cari_nilai->num_rows() > 0) {
                                                 $t_nilai = $cari_nilai->row();
                                                 $jumlah = $t_nilai->jumlah;
@@ -181,7 +188,7 @@
                         <tbody>
 
                             <?php
-                            $tampil_pelajaran_p = $this->db->query("SELECT * FROM absensi LEFT JOIN jadwal ON absensi.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE absensi.id_santri = $id_santri AND jadwal.id_kelas = $kelas AND pelajaran.jenis = 'Konsep dan Praktikum' GROUP BY pelajaran.id_pelajaran");
+                            $tampil_pelajaran_p = $this->db->query("SELECT * FROM absensi LEFT JOIN jadwal ON absensi.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE absensi.id_santri = $id_santri AND absensi.status = 1  AND jadwal.id_kelas = $kelas AND pelajaran.jenis = 'Konsep dan Praktikum' GROUP BY pelajaran.id_pelajaran");
                             $no = 0;
                             $rata_rata = 0;
                             ?>
@@ -202,7 +209,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                            $cari_nilai = $this->db->query("SELECT COALESCE(SUM(nilai), 0) as jumlah, COUNT(nilai) as banyak FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai.id_santri = $id_santri AND jadwal.id_pelajaran = $tp->id_pelajaran");
+                                            $cari_nilai = $this->db->query("SELECT COALESCE(SUM(nilai), 0) as jumlah, COUNT(nilai) as banyak FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai.id_santri = $id_santri AND jadwal.id_pelajaran = $tp->id_pelajaran AND nilai.status = 1");
                                             if ($cari_nilai->num_rows() > 0) {
                                                 $t_nilai = $cari_nilai->row();
                                                 $jumlah = $t_nilai->jumlah;
@@ -273,7 +280,7 @@
                 </div>
                 <div class="body table-responsive">
                     <?php
-                    $cari_sikap = $this->db->query("SELECT COALESCE(AVG(ketaatan), 0) as ketaatan, COALESCE(AVG(ketakdiman), 0) as ketakdiman, COALESCE(AVG(kedisiplinan), 0) as kedisiplinan, COALESCE(AVG(kerapian), 0) as kerapian, COALESCE(AVG(kesemangatan), 0) as kesemangatan, COALESCE(AVG(partisipasi), 0) as partisipasi, COALESCE(AVG(etika), 0) as etika, COALESCE(AVG(kerjasama), 0) as kerjasama, COALESCE(AVG(kelengkapan_catatan), 0) as kelengkapan_catatan, COUNT(id_sikap_dan_prilaku) as banyak FROM sikap_dan_prilaku WHERE id_santri = $id_santri AND kelas = $kelas");
+                    $cari_sikap = $this->db->query("SELECT COALESCE(AVG(ketaatan), 0) as ketaatan, COALESCE(AVG(ketakdiman), 0) as ketakdiman, COALESCE(AVG(kedisiplinan), 0) as kedisiplinan, COALESCE(AVG(kerapian), 0) as kerapian, COALESCE(AVG(kesemangatan), 0) as kesemangatan, COALESCE(AVG(partisipasi), 0) as partisipasi, COALESCE(AVG(etika), 0) as etika, COALESCE(AVG(kerjasama), 0) as kerjasama, COALESCE(AVG(kelengkapan_catatan), 0) as kelengkapan_catatan, COUNT(id_sikap_dan_prilaku) as banyak FROM sikap_dan_prilaku WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 1");
                     if ($cari_sikap->num_rows() > 0) {
                         $t_sikap = $cari_sikap->row();
                         $banyak = $t_sikap->banyak;
@@ -502,6 +509,55 @@
 
                         </tbody>
                     </table>
+
+
+                    <div class="footer">
+                        <div class="row">
+                                    <div class="col-lg-6">&nbsp;&nbsp; <h5>Absensi</h5></div>
+                                    <div class="col-lg-6">
+                                        <table class="table table-bordered">
+                                                                              
+                                        <tr>
+                                            <th>Masuk</th>
+                                            <th>Ijin</th>
+                                            <th>Masuk</th>
+                                            <th>Alasan</th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php
+                                                    $absen_masuk = $this->db->query("SELECT COUNT(status) as masuk FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Masuk' AND status = 1")->row();
+                                                    echo $absen_masuk->masuk;
+                                                ?>
+                                            </th>
+                                            <th>
+                                                <?php
+                                                    $absen_ijin = $this->db->query("SELECT COUNT(status) as ijin FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Ijin' AND status = 1")->row();
+                                                    echo $absen_ijin->ijin;
+                                                ?>
+                                            </th>
+                                            <th>
+                                                <?php
+                                                    $absen_sakit = $this->db->query("SELECT COUNT(status) as sakit FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Sakit' AND status = 1")->row();
+                                                    echo $absen_sakit->sakit;
+                                                ?>
+                                            </th>
+                                            </th>
+                                            <th>
+                                                <?php
+                                                    $absen_alasan = $this->db->query("SELECT COUNT(status) as alasan FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Alasan' AND status = 1")->row();
+                                                    echo $absen_alasan->alasan;
+                                                ?>
+                                            </th>
+                                            </th>
+                                        </tr>
+                                        </table>
+                                    
+                                    </div>
+                    
+                        </div>
+                    
+                    </div>
                 </div>
 
 
@@ -510,7 +566,7 @@
                 </div>
                 <div class="body table-responsive">
                     Berdasarkan hasil penilaian di atas, kepada santri yang bersangkutan dinyatakan  
-                    <form action="<?= base_url('admin/rapot/naik_kelas') ?>" method="POST">
+                    <form action="<?= base_url('admin/rapot/putusan') ?>" method="POST">
                         <select id="putusan" name="putusan">
                             <option value="<?= $santri->kelas + 1 ?>">Naik Kelas <?= $santri->kelas + 1 ?></option>
                             <option value="<?= $santri->kelas ?>">Mengulang kelas <?= $santri->kelas ?></option>

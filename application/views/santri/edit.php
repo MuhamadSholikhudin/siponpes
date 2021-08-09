@@ -4,6 +4,10 @@
 
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a href="<?= base_url('admin/santri') ?>" class="btn bg-blue-grey waves-effect"> 
+            <i class="material-icons">reply</i>  
+            <span>Kemballi</span>
+        </a>
                 <div class="card">
                     <div class="header">
                         <h2>

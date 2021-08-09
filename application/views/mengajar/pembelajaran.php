@@ -108,6 +108,7 @@
 
                                     <input type="hidden" width="100" name="id_santri[]" value="<?= $ts->id_santri ?>">
                                     <input class="id_jadwal" type="hidden" width="100" name="id_jadwal[]" value="<?= $jadwal->id_jadwal ?>">
+                                    <input class="id_kelas" type="text" width="100" name="id_kelas[]" value="<?= $jadwal->id_kelas ?>">
 
                                 </td>
                                 <td>
@@ -230,6 +231,8 @@
                                     <?= $ts->username ?>
                                     <input type="hidden" width="100" name="id_santri[]" value="<?= $ts->id_santri ?>">
                                     <input class="id_jadwal" type="hidden" width="100" name="id_jadwal[]" value="<?= $jadwal->id_jadwal ?>">
+                                    <input class="id_kelas" type="text" width="100" name="id_kelas[]" value="<?= $jadwal->id_kelas ?>">
+                                
                                 </td>
                                 <td>
                                     <select class="selectpicker form-line" name="absen[]" id="absen[]">

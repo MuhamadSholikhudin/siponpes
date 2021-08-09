@@ -21,7 +21,7 @@
                         <a href="<?= base_url('admin/pendaftaran/tambah') ?>" class="btn btn-default waves-effect m-r-20" type="button"> Tambah pendaftaran</a>
                         <div class="body">
                             <div class="text-center">
-                                <h3>DATA pendaftaran</h3>
+                                <h3>DATA PENDAFTARAN</h3>
                                 <?= $this->session->flashdata('pesan'); ?>
                             </div>
                             <div class="table-responsive">
@@ -56,11 +56,11 @@
                                                             <span>Persyaratan Kurang</span>
                                                         </a>
                                                     <?php    } elseif ($peng->status == 1) { ?>
-                                                        <a href="<?= base_url('admin/pendaftaran/terima/' . $peng->id_daftar) ?>" class="btn btn-info bg-info waves-effect" type="button">
+                                                        <a href="<?= base_url('admin/pendaftaran/terima/' . $peng->id_daftar) ?>" class="btn btn-info bg-info waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran Santri Di terima"> 
                                                             <i class="material-icons">check_box</i>
                                                             <span>Terima</span>
                                                         </a>
-                                                        <a href="<?= base_url('admin/pendaftaran/kembalikan/' . $peng->id_daftar) ?>" class="btn btn-cyan bg-cyan waves-effect" type="button">
+                                                        <a href="<?= base_url('admin/pendaftaran/kembalikan/' . $peng->id_daftar) ?>" class="btn btn-cyan bg-cyan waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran tidak diterima">
                                                             <i class="material-icons">close</i>
                                                             <span>Kembalikan</span>
                                                         </a>

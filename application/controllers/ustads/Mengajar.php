@@ -45,6 +45,7 @@ $data['hari'] = [$hari_ini];
         $tampil_jadwal = $this->db->query("SELECT * FROM jadwal WHERE id_jadwal = $jadwal")->row();
         $nomer_jadwal = $jadwal;
         $nomer_pel = $tampil_jadwal->id_pelajaran;
+        
         $data = array(
             'id_jadwal' => $jadwal,
             'materi_belajar' => $materi_belajar,
@@ -56,7 +57,9 @@ $data['hari'] = [$hari_ini];
         foreach ($id_santri as $key => $val) {
             $absens[] = array(
                 "id_santri" => $id_santri[$key],
-                "status" => $_POST['absen'][$key],
+                "id_kelas" => $_POST['id_kelas'][$key],
+                "status" => 1,
+                "absensi" => $_POST['absen'][$key],
                 "tanggal" => date('Y-m-d'),
                 "id_jadwal" => $jadwal
             );
@@ -67,8 +70,10 @@ $data['hari'] = [$hari_ini];
         foreach ($id_santri as $key => $val) {
             $perkembangans[] = array(
                 "id_santri" => $id_santri[$key],
+                "id_kelas" => $_POST['id_kelas'][$key],
                 "keterangan" => $_POST['perkembangan'][$key],
                 "tanggal" => date('Y-m-d'),
+                "status" => 1,
                 "id_jadwal" => $jadwal
             );
         }
@@ -80,15 +85,15 @@ $data['hari'] = [$hari_ini];
             foreach ($id_santri as $key => $val) {
                 $nilais[] = array(
                     "id_santri" => $id_santri[$key],
+                    "id_kelas" => $_POST['id_kelas'][$key],
                     "nilai" => $_POST['nilai'][$key],
                     "tanggal" => date('Y-m-d'),
+                    "status" => 1,
                     "id_jadwal" => $jadwal
                 );
             }
             $this->db->insert_batch('nilai', $nilais);
-        }    
-
-       
+        }         
 
         redirect('ustads/mengajar/pembelajaran/'. $nomer_jadwal.'/'. $nomer_pel);
         // redirect('ustads/dashboard');
@@ -104,6 +109,7 @@ $data['hari'] = [$hari_ini];
         $tampil_jadwal = $this->db->query("SELECT * FROM jadwal WHERE id_jadwal = $jadwal")->row();
         $nomer_jadwal = $jadwal;
         $nomer_pel = $tampil_jadwal->id_pelajaran;
+        
         $data = array(
             'id_jadwal' => $jadwal,
             'materi_belajar' => $materi_belajar,
@@ -119,7 +125,9 @@ $data['hari'] = [$hari_ini];
             $absens[] = array(
                 "id_absensi" => $_POST['id_absensi'][$key],
                 "id_santri" => $id_santri[$key],
-                "status" => $_POST['absen'][$key],
+                "id_kelas" => $_POST['id_kelas'][$key],
+                "status" => 1,
+                "absensi" => $_POST['absen'][$key],
                 "tanggal" => date('Y-m-d'),
                 "id_jadwal" => $id_jadwal[$key]
             );
@@ -132,8 +140,10 @@ $data['hari'] = [$hari_ini];
             $perkembangans[] = array(
                 "id_perkembangan" => $_POST['id_perkembangan'][$key],
                 "id_santri" => $id_santri[$key],
+                "id_kelas" => $_POST['id_kelas'][$key],
                 "keterangan" => $_POST['perkembangan'][$key],
                 "tanggal" => date('Y-m-d'),
+                "status" => 1,
                 "id_jadwal" => $id_jadwal[$key]
             );
         }
@@ -149,8 +159,10 @@ $data['hari'] = [$hari_ini];
                 $nilais[] = array(
                     "id_nilai" => $_POST['id_nilai'][$key],
                     "id_santri" => $id_santri[$key],
+                    "id_kelas" => $_POST['id_kelas'][$key],
                     "nilai" => $_POST['nilai'][$key],
                     "tanggal" => date('Y-m-d'),
+                    "status" => 1,
                     "id_jadwal" => $jadwal
                 );
             }
@@ -161,8 +173,10 @@ $data['hari'] = [$hari_ini];
             foreach ($id_santri as $key => $val) {
                 $nilais[] = array(
                     "id_santri" => $id_santri[$key],
+                    "id_kelas" => $_POST['id_kelas'][$key],
                     "nilai" => $_POST['nilai'][$key],
                     "tanggal" => date('Y-m-d'),
+                    "status" => 1,
                     "id_jadwal" => $jadwal
                 );
             }

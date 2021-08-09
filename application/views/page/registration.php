@@ -132,16 +132,21 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">Jenis Kelamin</label><br>
+					<label class="col-sm-2 col-form-label">Jenis Kelamin</label>
 					<div class="col-sm-10">
-						<div class="btn-group" data-toggle="buttons">
+						<!-- <div class="btn-group" data-toggle="buttons">
 							<label class="btn btn-warning btn-sm">
 								<input type="radio" name="jekel" value="Laki-laki" id="option1">Laki-laki
 							</label>
 							<label class="btn btn-warning btn-sm">
 								<input type="radio" name="jekel" value="perempuan" id="option2"> Perempuan
 							</label>
-						</div>
+						</div> -->
+
+						<select class="form-control" name="jekel" id="" require>
+							<option value="Laki-laki">Laki-laki</option>
+							<option value="perempuan">Perempuan</option>
+						</select>
 					</div>
 				</div>
 
