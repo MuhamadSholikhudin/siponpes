@@ -10,7 +10,7 @@
 			<small><?= $this->session->flashdata('pesan'); ?></small>
 			<form action="<?= base_url('page/login') ?>" method="POST" role="form" id="login-form">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
+					<label for="exampleInputEmail1">Username</label>
 					<input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 				</div>
 				<div class="form-group">
