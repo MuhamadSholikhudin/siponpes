@@ -80,9 +80,9 @@
                                 <br>
                                 <br>
                                 <?php
-                            $nama_ustad = $this->db->query(" SELECT * FROM pengguna WHERE hakakses = 1")->row();
-                            echo $nama_ustad->nama;
-                            ?>
+                                    $nama_ustad = $this->db->query(" SELECT * FROM pengguna WHERE hakakses = 1")->row();
+                                    echo $nama_ustad->nama;
+                                ?>
                             </div>
 
                         </div>

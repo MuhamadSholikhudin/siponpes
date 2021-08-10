@@ -15,9 +15,10 @@
 
         <div class="row">
             <div class="col-sm-12 mt-4 mb-4 text-center">
-            <div class="text-center mb-3">
-            <h4>LAPORAN DATA PENDAFTARAN 
-            <?php
+                <strong>
+                    <h4>LAPORAN DATA PEMBAYARAN
+                    
+                    <?php
                                         if($hal[0] == 'pertanggal'){
                                             echo 'TANGGAl '. $tanggal[0]. ' SAMPAI '. $tanggal[1];
                                         }elseif($hal[0] == 'bulan'){
@@ -42,13 +43,10 @@
 
                                     ?>  
 
-            </h4>
-            <h4>PONDOK PESANTREN BAITUL QUDUS</h4>
-            <h4>PANJANG BAE KUDUS</h4>
-        </div>
-
-
-  
+                    </h4>
+                    <h4>PONDOK PESAMTREN BAITUL QUDUS</h4>
+                    <h4>PANJANG BAE KUDUS</h4>
+                </strong>
             </div>
 
 
@@ -59,53 +57,35 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Lengkap</th>
-                                <th>Alamat</th>
-                                <th>Tanggal daftar</th>
-                                <th>Tempat Lahir</th>
-                                <th>Tanggal lahir</th>
-                                <th>Email</th>
-                                <th>Nomor Wa</th>
-                                <th>Status</th>
+                                <th>Nama lengkap</th>
+                                <th>Status bayar</th>
+                                <th>Tanggal bayar</th>
+                                <th>Jumlah bayar</th>
+                             
                             </tr>
                         </thead>
-
                         <tbody>
                             <?php $no = 1; ?>
-                            <?php foreach ($pendaftaran as $peng) : ?>
+                            <?php foreach ($pembayaran as $peng) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $peng->nama_lengkap ?></td>
-                                    <td><?= $peng->alamat_tinggal ?></td>
-                                    <td><?= $peng->tanggal_daftar ?></td>
-                                    <td><?= $peng->tempat_lahir ?></td>
-                                    <td><?= $peng->tanggal_lahir ?></td>
-                                    <td><?= $peng->email ?></td>    
-                                    <td><?= $peng->nomor_wa?></td>    
+                                    <!-- <td><a href="<?= base_url('admin/lihat_pengurus/') . $peng->id_pembayaran ?>"><?= $peng->nama ?></a></td> -->
                                     <td>
-                                    <?php
-                                        if($peng->status == 0){
-echo 'dikembalikan';
-                                        }elseif($peng->status == 1){
-                                            echo 'mendaftar';
-
-                                        }elseif($peng->status == 2 ){
-                                            echo 'diterima';
-
-                                        }elseif($peng->status == 3){
-                                            echo 'jadi santri';
-
-                                        }else{
-                                            echo 'enak';
-
-                                        }
-                                    ?>
-                                    </td>    
-             
-
+    
+                                        <?php
+                                        $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $peng->id_daftar")->row();
+                                        ?>
+                                        <?= $nama_lengkap->nama_lengkap ?>
+    
+                                    </td>
+                                    <td><?= $peng->status ?></td>
+                                    <td><?= $peng->tanggal ?></td>
+                                    <td><?= $peng->jumlah ?></td>
+                                
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
+            
                             </table>
                             </div>
             </div>

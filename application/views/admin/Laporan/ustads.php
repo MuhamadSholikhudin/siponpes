@@ -28,7 +28,15 @@
                                         <td><?= $peng->nama ?></td>
                                         <td><?= $peng->username ?></td>
                                         <td><?= $peng->hakakses ?></td>
-                                        <td><?= $peng->status ?></td>
+                                        <td>
+                                        <?php
+                                            if($peng->status == 1){
+                                                    echo 'Aktif';
+                                            }elseif($peng->status == 0){
+                                                    echo 'Tidak Aktif';
+                                            }
+                                        ?>
+                                        </td>
                                       
                                     </tr>
                                 <?php endforeach; ?>

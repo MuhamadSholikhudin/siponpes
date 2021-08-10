@@ -172,9 +172,7 @@
               <li>
                 <a href="<?= base_url('admin/laporan/ustads'); ?>">Ustads</a>
               </li>
-              <li>
-                <a href="<?= base_url('admin/laporan/rapot'); ?>">Rapot</a>
-              </li>
+
             </ul>
           </li>
 
