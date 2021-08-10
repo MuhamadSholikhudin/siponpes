@@ -12,8 +12,9 @@
                 <tr>
                     <th> No </th>
                     <th>Nama Pelajaran</th>
+                    <th>Kelas</th>
                     <th>Lihat</th>
-                    <th>Edit</th>
+                    <!-- <th>Edit</th> -->
                 </tr>
             </thead>
 
@@ -23,6 +24,9 @@
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $pem->nama_pelajaran ?></td>
+                       <td>
+                       <?= $pem->id_kelas ?>
+                       </td>
                         <td>
                             <a href="<?= base_url('ustads/perkembangan/lihat/'.$id_pengguna .'/'. $pem->id_pelajaran) ?>" class="btn btn-info waves-effect" type="button">
 
@@ -31,14 +35,14 @@
 
                             </a>
                         </td>
-                        <td>
+                        <!-- <td>
                             <a href="<?= base_url('ustads/santri/ubah/'.$pem->id_pelajaran) ?>" class="btn btn-warning waves-effect" type="button">
 
                                 <i class="material-icons">edit</i>
                                 <span>Edit</span>
 
                             </a>
-                        </td>
+                        </td> -->
                     </tr>
                 <?php endforeach; ?>
 

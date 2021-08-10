@@ -77,13 +77,13 @@ class Pendaftaran extends CI_Controller
             'tempat_lahir' => $this->input->post('tempat_lahir'),
             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
             'umur' => $this->input->post('umur'),
-            'asal_sekolah' => $this->input->post('asal_sekolah'),
-            'kecamatan' => $this->input->post('kecamatan'),
-            'kabupaten' => $this->input->post('kabupaten'),
-            'provinsi' => $this->input->post('provinsi'),
-            'nomor_sttb' => $this->input->post('nomor_sttb'),
-            'nomor_skhu' => $this->input->post('nomor_skhu'),
-            'jumlah_skhu' => $this->input->post('jumlah_skhu'),
+            // 'asal_sekolah' => $this->input->post('asal_sekolah'),
+            // 'kecamatan' => $this->input->post('kecamatan'),
+            // 'kabupaten' => $this->input->post('kabupaten'),
+            // 'provinsi' => $this->input->post('provinsi'),
+            // 'nomor_sttb' => $this->input->post('nomor_sttb'),
+            // 'nomor_skhu' => $this->input->post('nomor_skhu'),
+            // 'jumlah_skhu' => $this->input->post('jumlah_skhu'),
             'agama' => $this->input->post('agama'),
             'alamat_tinggal' => $this->input->post('alamat_tinggal'),
             'nama_orang_tua' => $this->input->post('nama_orang_tua'),
@@ -100,6 +100,20 @@ class Pendaftaran extends CI_Controller
         ];
         $this->db->insert('daftar', $data);
         redirect('admin/pendaftaran/');
+    }
+
+    public function lihat($id_daftar)
+    {
+
+        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['status'] = [0, 1, 2, 3];
+        $data['hakakses'] = [3];
+        $data['periodetahun'] = [2020, 2021, 2022, 2023,];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('pendaftaran/lihat', $data);
+        $this->load->view('templates_admin/footer');
     }
 
     public function ubah($id_daftar)
@@ -142,13 +156,13 @@ class Pendaftaran extends CI_Controller
             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
             'jekel' => $this->input->post('jekel'),
             'umur' => $this->input->post('umur'),
-            'asal_sekolah' => $this->input->post('asal_sekolah'),
-            'kecamatan' => $this->input->post('kecamatan'),
-            'kabupaten' => $this->input->post('kabupaten'),
-            'provinsi' => $this->input->post('provinsi'),
-            'nomor_sttb' => $this->input->post('nomor_sttb'),
-            'nomor_skhu' => $this->input->post('nomor_skhu'),
-            'jumlah_skhu' => $this->input->post('jumlah_skhu'),
+            // 'asal_sekolah' => $this->input->post('asal_sekolah'),
+            // 'kecamatan' => $this->input->post('kecamatan'),
+            // 'kabupaten' => $this->input->post('kabupaten'),
+            // 'provinsi' => $this->input->post('provinsi'),
+            // 'nomor_sttb' => $this->input->post('nomor_sttb'),
+            // 'nomor_skhu' => $this->input->post('nomor_skhu'),
+            // 'jumlah_skhu' => $this->input->post('jumlah_skhu'),
             'agama' => $this->input->post('agama'),
             'alamat_tinggal' => $this->input->post('alamat_tinggal'),
             'nama_orang_tua' => $this->input->post('nama_orang_tua'),
@@ -306,7 +320,7 @@ if( $cari_santri < 1){
         $curl = curl_init();
 
         $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-        $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus belum memenuhi persyaratan administrasi pendaftaran santri. Silahkan Mendaftar kembali dengan data yang benar ";
+        $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus belum memenuhi persyaratan administrasi pendaftaran santri. Silahkan Mendaftar kembali dengan data yang benar pada link alamat di ini ------> ". base_url('Page/daftar_ulang/'.$cari->id_daftar);
         $target = $cari->nomor_wa; //nomer target
 
         $data = [

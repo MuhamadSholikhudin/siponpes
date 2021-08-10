@@ -57,13 +57,6 @@
                                                         </div>
 
                                                     </div> -->
-
-                                                    <label for="nama_pendaftar">Nama Pendafatar</label>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input class="form-control" id="nama_pendaftar" type="text" name="nama_pendaftar" placeholder="Id pendaftar">
-                                                        </div>
-                                                    </div>
                                                     <label for="id_daftar">Pendaftaran</label>
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="id_daftar" id="id_daftar">
@@ -72,6 +65,13 @@
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
+                                                    <label for="nama_pendaftar">Nama Pendafatar</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input class="form-control" id="nama_pendaftar" type="text" name="nama_pendaftar" placeholder="Id pendaftar">
+                                                        </div>
+                                                    </div>
+                                             
 
                                                     <label for="jumlah">Jumlah</label>
                                                     <div class="form-group">

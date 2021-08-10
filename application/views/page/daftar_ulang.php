@@ -10,18 +10,19 @@
 			<p class="text-center">Isilaha data-data dibawah ini dengan benar.</p>
 			<?= $this->session->flashdata('pesan'); ?>
 			<p class="text-center" id="validasi_umur"></p>
-			<form role="form " action="<?= base_url("page/registration") ?>" id="register-form" enctype="multipart/form-data" method="POST">
+			<form role="form " action="<?= base_url("page/melengkapi_pendaftaran") ?>" id="register-form" enctype="multipart/form-data" method="POST">
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_lengkap">Nama Lengkap</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= set_value('nama_lengkap'); ?>" required placeholder="Nama Lengkap">
+					<input class="form-control" type="hidden" class="form-control" id="id_daftar" name="id_daftar" value="<?= $daftar->id_daftar ?>" required placeholder="Nama Lengkap">
+						<input class="form-control" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $daftar->nama_lengkap ?>" required placeholder="Nama Lengkap">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="tempat_lahir">Tempat Lahir</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" required placeholder="Tempat Lahir">
+						<input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $daftar->tempat_lahir ?>" required placeholder="Tempat Lahir">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -38,7 +39,7 @@
 
 					</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" min="<?= $tahun_minimal ?>" max="<?= $tahun_maximal ?>" required placeholder="DD-MM-YYY">
+						<input type="date" value="<?= $daftar->tanggal_lahir ?>" class="form-control" id="tanggal_lahir" name="tanggal_lahir" min="<?= $tahun_minimal ?>" max="<?= $tahun_maximal ?>" required placeholder="DD-MM-YYY">
 					</div>
 				</div>
 				<script>
@@ -127,7 +128,7 @@
 					<label class="col-sm-2 col-form-label" for="umur">Umur</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="umur1"required placeholder="Umur" disabled>
-<input type="hidden" class="form-control" id="umur" name="umur" value="<?= set_value('umur'); ?>" required placeholder="Umur" >
+<input type="hidden" class="form-control" id="umur" name="umur" value="<?= $daftar->umur ?>" required placeholder="Umur" >
 					</div>
 				</div>
 
@@ -144,8 +145,19 @@
 						</div> -->
 
 						<select class="form-control" name="jekel" id="" require>
-							<option value="Laki-laki">Laki-laki</option>
-							<option value="perempuan">Perempuan</option>
+						<?php  
+						$kelamin = ['Laki-laki', 'Perempuan']; 
+						foreach($kelamin as $kel):
+							if($kel == $daftar->jekel){ ?>
+									<option value="<?=$kel ?>" selected><?=$kel ?></option>
+							<?php
+							}else{?>
+								<option value="<?=$kel ?>"><?=$kel ?></option>
+						<?php
+
+							}
+						endforeach;
+					?>
 						</select>
 					</div>
 				</div>
@@ -202,57 +214,57 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="agama">Agama</label>
 					<div class="col-sm-10">
-						<input class="form-control" id="agama" name="agama" value="<?= set_value('agama'); ?>" required>
+						<input class="form-control" id="agama" name="agama" value="<?= $daftar->agama ?>" required>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_tinggal">Alamat tinggal calon santri</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_tinggal" name="alamat_tinggal"  required><?= set_value('alamat_tinggal'); ?> </textarea>
+						<textarea class="form-control" id="alamat_tinggal" name="alamat_tinggal"  required><?= $daftar->alamat_tinggal ?></textarea>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_orang_tua">Nama Orang Tua</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" value="<?= set_value('nama_orang_tua'); ?>" required >
+						<input type="text" class="form-control" id="nama_orang_tua" name="nama_orang_tua" value="<?= $daftar->nama_orang_tua ?>" required >
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_orang_tua">Alamat tinggal Orang Tua</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_orang_tua" name="alamat_orang_tua" required><?= set_value('alamat_orang_tua'); ?> </textarea>
+						<textarea class="form-control" id="alamat_orang_tua" name="alamat_orang_tua" required><?= $daftar->alamat_orang_tua ?> </textarea>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nama_wali">Nama Wali</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= set_value('nama_wali'); ?>" required>
+						<input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= $daftar->nama_wali ?>" required>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="alamat_wali">Alamat tinggal wali</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="alamat_wali" name="alamat_wali"  required> <?= set_value('alamat_wali'); ?> </textarea>
+						<textarea class="form-control" id="alamat_wali" name="alamat_wali"  required><?= $daftar->alamat_wali ?> </textarea>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="email">Alamat Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="email" name="email" required placeholder="Alamat email" value="<?= set_value('email'); ?>">
-						<?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+						<input type="email" class="form-control" id="email" name="email" required placeholder="Alamat email" value="<?= $daftar->email ?>">
+						
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nomor_wa">Nomor Wa</label>
 					<div class="col-sm-10">
 
-						<input type="text" class="form-control" id="nomor_wa" name="nomor_wa" required placeholder="contoh : 628234353544" value="<?= set_value('nomor_wa'); ?>">
-						<?= form_error('nomor_wa', '<small class="text-danger pl-3">', '</small>'); ?>
+						<input type="text" class="form-control" id="nomor_wa" name="nomor_wa" required placeholder="contoh : 628234353544" value="<?= $daftar->nomor_wa ?>">
+						
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" for="foto">Upload foto calon santri</label>
+					<label class="col-sm-2 col-form-label" for="foto">Upload Ulang foto calon santri</label>
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="foto" name="foto"  accept="image/png, image/jpeg, image/jpg, image/img" onchange="Validation_foto()"  required>
 						<script>
@@ -280,7 +292,7 @@
 						</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" for="file_kk">Upload Kartu Keluarga</label>
+					<label class="col-sm-2 col-form-label" for="file_kk">Upload Ulang Kartu Keluarga</label>
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="file_kk" name="file_kk" onchange="Validation_file_kk()"  accept="application/pdf, application/vnd.ms-excel"  required>
 						<script>
@@ -308,7 +320,7 @@
 						</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" for="file_ket_ijin">Upload Keterangan Ijin Mondok</label>
+					<label class="col-sm-2 col-form-label" for="file_ket_ijin">Upload Ulang Keterangan Ijin Mondok</label>
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="file_ket_ijin" name="file_ket_ijin" onchange="Validation_file_ket_ijin()"  accept="application/pdf, application/vnd.ms-excel" required>
 						<script>

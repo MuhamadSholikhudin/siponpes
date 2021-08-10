@@ -55,7 +55,7 @@ class Absensi extends CI_Controller
     public function edit_aksi()
     {
         $id_absensi = $this->input->post('id_absensi');
-        $status = $this->input->post('status');
+        $absensi = $this->input->post('absensi');
         $id_pengguna = $this->input->post('id_pengguna');
         $id_pelajaran = $this->input->post('id_pelajaran');
 

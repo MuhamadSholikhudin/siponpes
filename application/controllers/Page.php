@@ -10,9 +10,9 @@ class Page extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('email')) {
-            redirect('user');
-        }
+        // if ($this->session->userdata('email')) {
+        //     redirect('user');
+        // }
 
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -20,7 +20,7 @@ class Page extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Sistem Ponpes Baitul Qudus';
             $this->load->view('page/theme/header', $data);
-            $this->load->view('page/index');
+            $this->load->view('page/beranda');
             $this->load->view('page/theme/footer');
         } else {
             // validasinya success
@@ -150,12 +150,12 @@ class Page extends CI_Controller
         $this->form_validation->set_rules('tempat_lahir', 'Email', 'required|trim');
         $this->form_validation->set_rules('tanggal_lahir', 'Name', 'required|trim');
         $this->form_validation->set_rules('umur', 'Email', 'required|trim');
-        $this->form_validation->set_rules('asal_sekolah', 'Name', 'required|trim');
-        $this->form_validation->set_rules('kecamatan', 'Email', 'required|trim');
-        $this->form_validation->set_rules('kabupaten', 'Name', 'required|trim');
-        $this->form_validation->set_rules('provinsi', 'Email', 'required|trim');
-        $this->form_validation->set_rules('nomor_sttb', 'Name', 'required|trim');
-        $this->form_validation->set_rules('nomor_skhu', 'Email', 'required|trim');
+        // $this->form_validation->set_rules('asal_sekolah', 'Name', 'required|trim');
+        // $this->form_validation->set_rules('kecamatan', 'Email', 'required|trim');
+        // $this->form_validation->set_rules('kabupaten', 'Name', 'required|trim');
+        // $this->form_validation->set_rules('provinsi', 'Email', 'required|trim');
+        // $this->form_validation->set_rules('nomor_sttb', 'Name', 'required|trim');
+        // $this->form_validation->set_rules('nomor_skhu', 'Email', 'required|trim');
         $this->form_validation->set_rules('nomor_wa', 'Name', 'required|trim');
         $this->form_validation->set_rules('jumlah_skhu', 'Email', 'required|trim');
         $this->form_validation->set_rules('agama', 'Name', 'required|trim');
@@ -215,13 +215,13 @@ class Page extends CI_Controller
                     'tempat_lahir' => $this->input->post('tempat_lahir'),
                     'tanggal_lahir' => $this->input->post('tanggal_lahir'),
                     'umur' => $this->input->post('umur'),
-                    'asal_sekolah' => $this->input->post('asal_sekolah'),
-                    'kecamatan' => $this->input->post('kecamatan'),
-                    'kabupaten' => $this->input->post('kabupaten'),
-                    'provinsi' => $this->input->post('provinsi'),
-                    'nomor_sttb' => $this->input->post('nomor_sttb'),
-                    'nomor_skhu' => $this->input->post('nomor_skhu'),
-                    'jumlah_skhu' => $this->input->post('jumlah_skhu'),
+                    // 'asal_sekolah' => $this->input->post('asal_sekolah'),
+                    // 'kecamatan' => $this->input->post('kecamatan'),
+                    // 'kabupaten' => $this->input->post('kabupaten'),
+                    // 'provinsi' => $this->input->post('provinsi'),
+                    // 'nomor_sttb' => $this->input->post('nomor_sttb'),
+                    // 'nomor_skhu' => $this->input->post('nomor_skhu'),
+                    // 'jumlah_skhu' => $this->input->post('jumlah_skhu'),
                     'agama' => $this->input->post('agama'),
                     'alamat_tinggal' => $this->input->post('alamat_tinggal'),
                     'nama_orang_tua' => $this->input->post('nama_orang_tua'),
@@ -238,6 +238,39 @@ class Page extends CI_Controller
                 ];
                 $this->db->insert('daftar', $data);
 
+                $curl = curl_init();
+
+                $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
+                $pesan = "Assalamualakum Wr. Wb, Selamat " . $nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus berhasil di kirim untuk lebih lanjutnya di terima atau tidaknya menunggu informasi dari Pondok Pesantren Baitul Kudus ";
+                $target = $nomor_wa; //nomer target
+        
+        
+                $datat = [
+                    'phone' => $target,
+                    'type' => 'text',
+                    'delay' => 0,
+                    'delay_req' => 0,
+                    'text' => $pesan
+                ];
+        
+                curl_setopt(
+                    $curl,
+                    CURLOPT_HTTPHEADER,
+                    array(
+                        "Authorization: $token",
+                    )
+                );
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
+                curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
+        
+                print $result;
+        
 
                 $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -245,6 +278,7 @@ class Page extends CI_Controller
             </div>');
                 redirect('page');
             }
+
 
 
             // siapkan token
@@ -263,6 +297,130 @@ class Page extends CI_Controller
             // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please activate your account</div>');
             // redirect('daftar');
         }
+    }
+
+    
+    public function daftar_ulang($id_daftar)
+    {
+        $cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+
+        if($cari->status < 1){
+
+            $data['title'] = 'Pendaftaran Ulang';
+            $this->session->set_flashdata('pesan', '<script>alert("Silahkan Melengkapi data Anda dengan benar"); </script>');
+         
+         
+            $data['daftar'] = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+            
+            $this->load->view('page/theme/header', $data);
+            $this->load->view('page/daftar_ulang', $data);
+            $this->load->view('page/theme/footer');
+        }elseif($cari->status > 0){
+            $this->session->set_flashdata('pesan', '<script> alert("data pendafataran anda sudah terkirim di pondok pesantren tunggu informasi selanjutnya");</script>');
+            redirect('page');
+        }
+    }
+
+
+    public function melengkapi_pendaftaran()
+    {
+        $id_daftar = $this->input->post('id_daftar');
+        // $nama = $this->input->post('nama');
+        $nomor_wa = $this->input->post('nomor_wa', true);
+        $email = $this->input->post('email', true);
+
+        $cek_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+
+        $foto = $_FILES['foto']['name'];
+        $file_kk = $_FILES['file_kk']['name'];
+        $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
+
+        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->foto);
+        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_kk);
+        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
+
+
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './uploads/pendaftaran/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto')) {
+                $new_foto = $this->upload->data('file_name');
+            }
+            if ($this->upload->do_upload('file_kk')) {
+                $new_file_kk = $this->upload->data('file_name');
+            }
+            if ($this->upload->do_upload('file_ket_ijin')) {
+                $new_file_ket_ijin = $this->upload->data('file_name');
+            }
+
+            // $this->upload->do_upload('foto');
+            // $this->upload->do_upload('file_kk');
+            // $this->upload->do_upload('file_ket_ijin');            
+
+  
+        $data = [
+            'nama_lengkap' => $this->input->post('nama_lengkap'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'jekel' => $this->input->post('jekel'),
+            'umur' => $this->input->post('umur'),
+            'agama' => $this->input->post('agama'),
+            'alamat_tinggal' => $this->input->post('alamat_tinggal'),
+            'nama_orang_tua' => $this->input->post('nama_orang_tua'),
+            'alamat_orang_tua' => $this->input->post('alamat_orang_tua'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'alamat_wali' => $this->input->post('alamat_wali'),
+            'nomor_wa' => $nomor_wa,
+            'email' => $email,            
+            'foto' =>  $new_foto,
+            'file_kk' => $new_file_kk,
+            'file_ket_ijin' => $new_file_ket_ijin,
+        ];
+        $where = [
+            'id_daftar' => $id_daftar
+        ];
+        $this->Model_daftar->update_data($where, $data, 'daftar');
+
+
+        $curl = curl_init();
+
+        $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
+        $pesan = "Assalamualakum Wr. Wb, Selamat " . $nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus berhasil di kirim untuk lebih lanjutnya di terima atau tidaknya menunggu informasi dari Pondok Pesantren Baitul Kudus ";
+        $target = $nomor_wa; //nomer target
+
+
+        $datat = [
+            'phone' => $target,
+            'type' => 'text',
+            'delay' => 0,
+            'delay_req' => 0,
+            'text' => $pesan
+        ];
+
+        curl_setopt(
+            $curl,
+            CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: $token",
+            )
+        );
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
+        curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        print $result;
+
+        $this->session->set_flashdata('pesan', '<script> alert("Data pendafataran sudah terkirim ke sistem");</script>');
+        
+        redirect('page');
     }
 
 

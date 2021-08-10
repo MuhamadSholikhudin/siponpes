@@ -34,6 +34,7 @@
                                             <th>Nomor Wa</th>
                                             <th>tanggal</th>
                                             <th>Status</th>
+                                            <th>Lihat</th>
                                             <th>Ubah</th>
                                             <th>Hapus</th>
                                         </tr>
@@ -48,6 +49,7 @@
                                                 <td><?= $peng->nama_lengkap ?></td>
                                                 <td><?= $peng->nomor_wa ?></td>
                                                 <td><?= $peng->tanggal_daftar ?></td>
+                                              
                                                 <td>
                                                     <?php
                                                     if ($peng->status == 0) { ?>
@@ -56,14 +58,14 @@
                                                             <span>Persyaratan Kurang</span>
                                                         </a>
                                                     <?php    } elseif ($peng->status == 1) { ?>
-                                                        <a href="<?= base_url('admin/pendaftaran/terima/' . $peng->id_daftar) ?>" class="btn btn-info bg-info waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran Santri Di terima"> 
-                                                            <i class="material-icons">check_box</i>
-                                                            <span>Terima</span>
+                                                        <a href="<?= base_url('admin/pendaftaran/') ?>" class="btn btn-info bg-info waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran Santri Di terima"> 
+                                                            <i class="material-icons">sync_problem</i>
+                                                            <span>Data Belum di cek</span>
                                                         </a>
-                                                        <a href="<?= base_url('admin/pendaftaran/kembalikan/' . $peng->id_daftar) ?>" class="btn btn-cyan bg-cyan waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran tidak diterima">
+                                                        <!-- <a href="<?= base_url('admin/pendaftaran/kembalikan/' . $peng->id_daftar) ?>" class="btn btn-cyan bg-cyan waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran tidak diterima">
                                                             <i class="material-icons">close</i>
                                                             <span>Kembalikan</span>
-                                                        </a>
+                                                        </a> -->
                                                     <?php    } elseif ($peng->status == 2) { ?>
                                                         <a href="<?= base_url('admin/pendaftaran/') ?>" class="btn btn-light-green bg-light-green waves-effect" type="button">
                                                             <i class="material-icons">done</i>
@@ -75,6 +77,13 @@
                                                             <span>Sudah Terdaftar</span>
                                                         </a>
                                                     <?php }   ?>
+                                                </td>
+                                                <td>
+                                                <a href="<?= base_url('admin/pendaftaran/lihat/'. $peng->id_daftar) ?>" class="btn btn-blue bg-blue waves-effect" type="button">
+                                                            <i class="material-icons">remove_red_eye</i>
+                                                            <span>Lihat</span>
+                                                        </a>
+                                                
                                                 </td>
                                                 <td><a href="<?= base_url('admin/pendaftaran/ubah/' . $peng->id_daftar) ?>" class="btn btn-warning waves-effect" type="button">
                                                         <i class="material-icons">edit</i>

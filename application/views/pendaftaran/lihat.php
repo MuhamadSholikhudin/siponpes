@@ -11,12 +11,12 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            EDIT PENDAFTARAN
+                            LIHAT PENDAFTARAN
                         </h2>                       
                     </div>
                     <div class="body">
                         
-                        <form role="form" action="<?= base_url("admin/pendaftaran/edit_aksi") ?>" id="register-form" enctype="multipart/form-data" method="POST">
+                        <!-- <form role="form" action="<?= base_url("admin/pendaftaran/edit_aksi") ?>" id="register-form" enctype="multipart/form-data" method="POST"> -->
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="tanggal_daftar">Foto</label>
                                     <div class="col-sm-10">
@@ -217,12 +217,32 @@
                                     </div>
                                 </div> -->
 
-                            Jika Ingin Ubah Data Tekan Tombol Ubah--> &nbsp;<button type="submit" class="btn btn-warning">Ubah</button>&nbsp;
-                        </form>         
+                             <?php
+                                if($daftar->status == 1){
+                                    ?>
+                                        <a href="<?= base_url('admin/pendaftaran/terima/' . $daftar->id_daftar) ?>" class="btn btn-info bg-info waves-effect" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran Santri Di terima"> 
+                                            <i class="material-icons">check_box</i>
+                                            <span>Terima</span>
+                                        </a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="<?= base_url('admin/pendaftaran/kembalikan/' . $daftar->id_daftar) ?>" class="btn btn-cyan bg-cyan waves-effect aligh-right" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Data Pendaftaran tidak diterima">
+                                            <i class="material-icons">close</i>
+                                            <span>Kembalikan</span>
+                                        </a>
+                                <?php
+                                }else{
+
+                                }
+                             ?>
+
+
+                             
+                             
+                        <!-- </form>         -->
                         <br>
                         <br>
                         <br>
-                        <a href="<?= base_url('admin/pendaftaran/edit_file/'. $daftar->id_daftar) ?>" class="btn btn-primary mt-3">EDIT FILE PENDAFTARAN</a>
+                        <!-- <a href="<?= base_url('admin/pendaftaran/edit_file/'. $daftar->id_daftar) ?>" class="btn btn-primary mt-3">EDIT FILE PENDAFTARAN</a> -->
                                 
 
                     </div>

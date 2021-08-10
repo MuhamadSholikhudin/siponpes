@@ -39,7 +39,7 @@
                             <?= $cari_daftar->nama_lengkap ?>
                         </td>
                         <?php
-                        $cari_sikap = $this->db->query("SELECT * FROM sikap_dan_prilaku WHERE id_santri = $pem->id_santri AND kelas = $id_kelas[0] AND id_pelajaran = $id_pelajaran[0] ");
+                        $cari_sikap = $this->db->query("SELECT * FROM sikap_dan_prilaku WHERE id_santri = $pem->id_santri AND id_kelas = $id_kelas[0] AND id_pelajaran = $id_pelajaran[0] ");
                         if ($cari_sikap->num_rows() > 0) {
                             $ada_sikap = $cari_sikap->row();
                             $id_sikap_dan_prilaku = $ada_sikap->id_sikap_dan_prilaku;

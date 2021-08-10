@@ -34,7 +34,7 @@ class Sikap extends CI_Controller
         $id_pengguna = $this->input->post('id_pengguna');
         $kelas = $this->input->post('kelas');
 
-        $data['sikap'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna AND jadwal.id_kelas = $kelas ")->result();
+        $data['sikap'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna AND jadwal.id_kelas = $kelas LIMIT 1 ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -120,7 +120,7 @@ class Sikap extends CI_Controller
             'kelengkapan_catatan' => $kelengkapan_catatan,
 
             'id_pelajaran' => $id_pelajaran,
-            'kelas' => $kelas,
+            'id_kelas' => $kelas,
             'id_santri' => $id_santri
         );
 
@@ -158,7 +158,7 @@ class Sikap extends CI_Controller
             'kelengkapan_catatan' => $kelengkapan_catatan,
 
             'id_pelajaran' => $id_pelajaran,
-            'kelas' => $kelas,
+            'id_kelas' => $kelas,
             'id_santri' => $id_santri
         );
         $where = [

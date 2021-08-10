@@ -33,7 +33,7 @@
                                             <input type="number" id="ketaatan" name="ketaatan" value="<?= $sikap->ketaatan ?>" class="form-control" required>
                                             <input type="hidden" id="id_sikap_dan_prilaku" name="id_sikap_dan_prilaku" value="<?= $sikap->id_sikap_dan_prilaku ?>" class="form-control" required>
                                             <input type="hidden" id="id_pelajaran" name="id_pelajaran" value="<?= $sikap->id_pelajaran ?>" class="form-control" required>
-                                            <input type="hidden" id="kelas" name="kelas" value="<?= $sikap->kelas ?>" class="form-control" required>
+                                            <input type="hidden" id="kelas" name="kelas" value="<?= $sikap->id_kelas ?>" class="form-control" required>
                                             <input type="hidden" id="id_santri" name="id_santri" value="<?= $sikap->id_santri ?>" class="form-control" required>
                                         </div>
                                     </div>

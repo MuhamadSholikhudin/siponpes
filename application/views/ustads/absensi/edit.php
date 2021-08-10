@@ -44,7 +44,7 @@
 
                             <label for="status">Absensi </label>
                             <div class="form-group">
-                                <select class="selectpicker form-line" name="status" id="status">
+                                <select class="selectpicker form-line" name="absensi" id="status">
                                     <?php foreach ($absen as $hak) : ?>
                                         <?php if ($hak == $absensi->status) : ?>
                                             <option value="<?= $hak; ?>" selected>

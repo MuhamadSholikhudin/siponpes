@@ -13,7 +13,7 @@
                     <th> No </th>
                     <th>Nama Pelajaran</th>
                     <th>Lihat</th>
-                    <th>Edit</th>
+                    <!-- <th>Edit</th> -->
                 </tr>
             </thead>
 
@@ -29,14 +29,14 @@
                                 <span>Lihat</span>
                             </a>
                         </td>
-                        <td>
+                        <!-- <td>
                             <a href="<?= base_url('ustads/santri/ubah/'.$pem->id_pelajaran) ?>" class="btn btn-warning waves-effect" type="button">
 
                                 <i class="material-icons">edit</i>
                                 <span>Edit</span>
 
                             </a>
-                        </td>
+                        </td> -->
                     </tr>
                 <?php endforeach; ?>
 

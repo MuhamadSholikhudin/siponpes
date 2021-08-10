@@ -74,7 +74,7 @@
                 $tampil_pembelajaran = $this->db->query(" SELECT * FROM pembelajaran WHERE tanggal = '$tanggal_ini ' AND id_jadwal = $jadwal->id_jadwal")->row();
                 ?>
 
-                Materi Pembelajaran : <input type="text" name="materi_belajar" value="<?= $tampil_pembelajaran->materi_belajar ?>" id="pembelajaran"> <br>
+                Materi Pembelajaran : <input type="text" name="materi_belajar" value="<?= $tampil_pembelajaran->materi_belajar ?>" id="pembelajaran" required> <br>
                 <input type="hidden" name="id_pembelajaran" value="<?= $tampil_pembelajaran->id_pembelajaran ?>" id="id_pembelajaran"> <br>
                 <input class="jadwal" type="hidden" width="100" name="jadwal" value="<?= $jadwal->id_jadwal ?>"> <br>
                 <input class="id_pelajaran" type="hidden" width="100" name="id_pelajaran" value="<?= $jadwal->id_pelajaran ?>"> <br>
@@ -108,7 +108,7 @@
 
                                     <input type="hidden" width="100" name="id_santri[]" value="<?= $ts->id_santri ?>">
                                     <input class="id_jadwal" type="hidden" width="100" name="id_jadwal[]" value="<?= $jadwal->id_jadwal ?>">
-                                    <input class="id_kelas" type="text" width="100" name="id_kelas[]" value="<?= $jadwal->id_kelas ?>">
+                                    <input class="id_kelas" type="hidden" width="100" name="id_kelas[]" value="<?= $jadwal->id_kelas ?>">
 
                                 </td>
                                 <td>
@@ -206,7 +206,7 @@
                 Waktu : <?= $jadwal->waktu ?> <br>
                 Jenis Materi : <?= $pelajaran->jenis ?> <br>
                 id Kelas : <?= $jadwal->id_kelas ?> <br>
-                Materi Pembelajaran : <input type="text" name="materi_belajar" id="pembelajaran"> <br>
+                Materi Pembelajaran : <input type="text" name="materi_belajar" id="pembelajaran" required> <br>
 
                 <input class="jadwal " type="hidden" width="100" name="jadwal" value="<?= $jadwal->id_jadwal ?>"> <br>
                 <input class="id_pelajaran " type="hidden" width="100" name="id_pelajaran" value="<?= $jadwal->id_pelajaran ?>"> <br>
@@ -228,10 +228,14 @@
                             <tr class="tr_td">
                                 <td><?= $no++ ?></td>
                                 <td>
-                                    <?= $ts->username ?>
+                                <?php
+                                     $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar =  $ts->id_daftar")->row();
+                                                    ?>
+                                                    <?= $nama_lengkap->nama_lengkap ?>
+                                    
                                     <input type="hidden" width="100" name="id_santri[]" value="<?= $ts->id_santri ?>">
                                     <input class="id_jadwal" type="hidden" width="100" name="id_jadwal[]" value="<?= $jadwal->id_jadwal ?>">
-                                    <input class="id_kelas" type="text" width="100" name="id_kelas[]" value="<?= $jadwal->id_kelas ?>">
+                                    <input class="id_kelas" type="hidden" width="100" name="id_kelas[]" value="<?= $jadwal->id_kelas ?>">
                                 
                                 </td>
                                 <td>
