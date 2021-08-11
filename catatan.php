@@ -43,3 +43,21 @@ $kesemangatan = $ada_sikap->kesemangatan;
 $partisipasi = $ada_sikap->partisipasi;
 $etika = $ada_sikap->etika);
 $kerjasama = $ada_sikap->kerjasama;
+
+
+
+
+
+
+elseif( $bulan[0] == "01){ echo "Januari"; } 
+                                            elseif( $bulan[0] == "02){ echo "Februari"; } 
+                                            elseif( $bulan[0] == "03){ echo "Maret"; } 
+                                            elseif( $bulan[0] == "04){ echo "April"; } 
+                                            elseif( $bulan[0] == "05){ echo "Mei"; } 
+                                            elseif( $bulan[0] == "06){ echo "Juni"; } 
+                                            elseif( $bulan[0] == "07){ echo "Juli"; } 
+                                            elseif( $bulan[0] == "08){ echo "Agustus"; } 
+                                            elseif( $bulan[0] == "09){ echo "September"; } 
+                                            elseif( $bulan[0] == "10){ echo "Oktober"; } 
+                                            elseif( $bulan[0] == "11){ echo "November"; } 
+                                            elseif( $bulan[0] == "12){ echo "Desember"; } 

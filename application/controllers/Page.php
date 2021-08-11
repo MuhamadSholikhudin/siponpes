@@ -28,6 +28,38 @@ class Page extends CI_Controller
         }
     }
 
+
+
+    public function beranda()
+    {
+        // echo 'Beranda';
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/beranda');
+        $this->load->view('page/theme/footer');
+    }
+    
+    public function tentang()
+    {
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/tentang');
+        $this->load->view('page/theme/footer');
+    }
+    
+    public function kontak()
+    {
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/kontak');
+        $this->load->view('page/theme/footer');
+    }
+
+
+
     public function login()
     {
         $this->form_validation->set_rules('username', 'username', 'required', ['required' => 'Username wajib di Isi !']);
@@ -424,35 +456,38 @@ class Page extends CI_Controller
     }
 
 
-    public function beranda()
-    {
-        // echo 'Beranda';
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+    public function upload_pembayaran($id_daftar){
+        $cek_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar' ");
+        
 
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/beranda');
-        $this->load->view('page/theme/footer');
+        if($cek_bayar->num_rows() > 0){
+            // $cek_status_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar'  ");
+                if($cek_bayar->status == 'LUNAS'){
+                            
+                    $this->load->view('page/theme/header', $data);
+                    $this->load->view('page/pembayara_lunas', $data);
+                    $this->load->view('page/theme/footer');
+                }elseif($cek_bayar->status == 'BELUM LUNAS'){
+                    
+                    $this->load->view('page/theme/header', $data);
+                    $this->load->view('page/daftar_ulang', $data);
+                    $this->load->view('page/theme/footer');
+                }elseif($cek_bayar->status == 'TIDAK SESUAI'){
+                    
+                    $this->load->view('page/theme/header', $data);
+                    $this->load->view('page/pembayaran', $data);
+                    $this->load->view('page/theme/footer');
+                }elseif($cek_bayar->status == 'KIRIM'){
+
+                    $this->load->view('page/theme/header', $data);
+                    $this->load->view('page/daftar_ulang', $data);
+                    $this->load->view('page/theme/footer');
+                }
+
+
+        }
+
     }
-    
-    public function tentang()
-    {
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/tentang');
-        $this->load->view('page/theme/footer');
-    }
-    
-    public function kontak()
-    {
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/kontak');
-        $this->load->view('page/theme/footer');
-    }
-
-
 
     public function logout()
     {
