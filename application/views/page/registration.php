@@ -66,13 +66,13 @@
 					if(umur >= 15 && umur <= 26){
 
 						alert("Umur anda memenuhi syarat");
-						$("#asal_sekolah").prop('disabled', false);
-						$("#kecamatan").prop('disabled', false);
-						$("#kabupaten").prop('disabled', false);
-						$("#provinsi").prop('disabled', false);
-						$("#nomor_sttb").prop('disabled', false);
-						$("#nomor_skhu").prop('disabled', false);
-						$("#jumlah_skhu").prop('disabled', false);
+						// $("#asal_sekolah").prop('disabled', false);
+						// $("#kecamatan").prop('disabled', false);
+						// $("#kabupaten").prop('disabled', false);
+						// $("#provinsi").prop('disabled', false);
+						// $("#nomor_sttb").prop('disabled', false);
+						// $("#nomor_skhu").prop('disabled', false);
+						// $("#jumlah_skhu").prop('disabled', false);
 						$("#agama").prop('disabled', false);
 						$("#alamat_tinggal").prop('disabled', false);
 						$("#nama_orang_tua").prop('disabled', false);
@@ -90,13 +90,13 @@
 						// umur = 0;
 						alert("Umur anda tidak memenuhi syarat");
 
-						$("#asal_sekolah").prop('disabled', true);
-						$("#kecamatan").prop('disabled', true);
-						$("#kabupaten").prop('disabled', true);
-						$("#provinsi").prop('disabled', true);
-						$("#nomor_sttb").prop('disabled', true);
-						$("#nomor_skhu").prop('disabled', true);
-						$("#jumlah_skhu").prop('disabled', true);
+						// $("#asal_sekolah").prop('disabled', true);
+						// $("#kecamatan").prop('disabled', true);
+						// $("#kabupaten").prop('disabled', true);
+						// $("#provinsi").prop('disabled', true);
+						// $("#nomor_sttb").prop('disabled', true);
+						// $("#nomor_skhu").prop('disabled', true);
+						// $("#jumlah_skhu").prop('disabled', true);
 						$("#agama").prop('disabled', true);
 						$("#alamat_tinggal").prop('disabled', true);
 						$("#nama_orang_tua").prop('disabled', true);
@@ -149,55 +149,6 @@
 						</select>
 					</div>
 				</div>
-
-				<!-- <div class="form-group row">
-					<label class="col-sm-1 col-form-label" for="asal">Asal Sekolah</label>
-					<br>
-					<div class="col-sm-11 row">
-						<label class="col-sm-2 col-form-label" for="asal_sekolah">SD/M/SMP/MTS/SMA/MA</label>
-						<div class="col-sm-10">
-							<input class="form-control" id="asal_sekolah" name="asal_sekolah" value="<?= set_value('asal_sekolah'); ?>" required>
-						</div>
-						<br>
-						<br>
-						<label class="col-sm-2 col-form-label" for="kecamatan">Kecamatan</label>
-						<div class="col-sm-10 mb-3"> 
-							<input class="form-control" id="kecamatan" name="kecamatan" value="<?= set_value('kecamatan'); ?>" required>
-						</div>
-						<br>
-						<br>
-						<label class="col-sm-2 col-form-label" for="kabupaten">Kabupaten</label>
-						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="kabupaten" name="kabupaten" value="<?= set_value('kabupaten'); ?>" required>
-						</div>
-						<br>
-						<br>
-						<label class="col-sm-2 col-form-label" for="provinsi">Provinsi</label>
-						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="provinsi" name="provinsi" value="<?= set_value('provinsi'); ?>"  required>
-						</div>
-						<br>
-						<br>
-						<label class="col-sm-2 col-form-label" for="nomor_sttb">Nomor STTB</label>
-						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="nomor_sttb" name="nomor_sttb" value="<?= set_value('nomor_sttb'); ?>" required>
-						</div>
-						<br>
-						<br>
-						<label class="col-sm-2 col-form-label" for="nomor_skhu">Nomor SKHU</label>
-						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="nomor_skhu" name="nomor_skhu" value="<?= set_value('nomor_skhu'); ?>" required>
-						</div>
-						<br>
-						<br>
-						<label class="col-sm-2 col-form-label" for="jumlah_skhu">Jumlah SKHU</label>
-						<div class="col-sm-10 mb-3">
-							<input class="form-control" id="jumlah_skhu" name="jumlah_skhu" value="<?= set_value('jumlah_skhu'); ?>" required>
-						</div>
-					</div>
-
-				</div>
- -->
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="agama">Agama</label>

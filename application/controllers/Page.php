@@ -145,7 +145,8 @@ class Page extends CI_Controller
         // if ($this->session->userdata('email')) {
         // redirect('user');
         // }
-
+        $nomor_wa = $this->input->post('nomor_wa', true);
+        $email = $this->input->post('email', true);
         $this->form_validation->set_rules('nama_lengkap', 'Name', 'required|trim');
         $this->form_validation->set_rules('tempat_lahir', 'Email', 'required|trim');
         $this->form_validation->set_rules('tanggal_lahir', 'Name', 'required|trim');
@@ -156,8 +157,8 @@ class Page extends CI_Controller
         // $this->form_validation->set_rules('provinsi', 'Email', 'required|trim');
         // $this->form_validation->set_rules('nomor_sttb', 'Name', 'required|trim');
         // $this->form_validation->set_rules('nomor_skhu', 'Email', 'required|trim');
-        $this->form_validation->set_rules('nomor_wa', 'Name', 'required|trim');
-        $this->form_validation->set_rules('jumlah_skhu', 'Email', 'required|trim');
+        // $this->form_validation->set_rules('jumlah_skhu', 'Email', 'required|trim');
+
         $this->form_validation->set_rules('agama', 'Name', 'required|trim');
         $this->form_validation->set_rules('nama_orang_tua', 'Email', 'required|trim');
         $this->form_validation->set_rules('alamat_orang_tua', 'Name', 'required|trim');
@@ -165,12 +166,11 @@ class Page extends CI_Controller
         $this->form_validation->set_rules('alamat_wali', 'Name', 'required|trim');
         $this->form_validation->set_rules('nomor_wa', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim');
-        $nomor_wa = $this->input->post('nomor_wa', true);
-        $email = $this->input->post('email', true);
+
 
         if ($this->form_validation->run() == false) {
 
-            $data['title'] = 'Pendaftaran';
+            $data['title'] = 'Pendaftaran 345';
 
             $this->load->view('page/theme/header', $data);
             $this->load->view('page/registration');
@@ -181,7 +181,7 @@ class Page extends CI_Controller
             $cek2 = $this->db->query("SELECT * FROM daftar WHERE email = '$email' AND status > 0 ")->num_rows();
             
             if ($cek2 > 0) {
-                $data['title'] = 'Pendaftaran';
+                $data['title'] = 'Pendaftaran123';
                 $this->session->set_flashdata('pesan', '<script>
                 alert("Email yang anda daftarkan sudah terdaftar di sistem");
             </script>');
