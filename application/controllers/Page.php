@@ -464,30 +464,34 @@ class Page extends CI_Controller
             // $cek_status_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar'  ");
                 if($cek_bayar->status == 'LUNAS'){
                             
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/pembayara_lunas', $data);
-                    $this->load->view('page/theme/footer');
+$this->session->set_flashdata('pesan', '<script> alert("Data pembayaran yang anda kirim telah di proses dan anda telah menjadi santri baitul qudus");</script>');
+        redirect('page');
+
+
+                //    $this->load->view('page/theme/header', $data);
+                //    $this->load->view('page/pembayaran_lunas', $data);
+                 //   $this->load->view('page/theme/footer');
                 }elseif($cek_bayar->status == 'BELUM LUNAS'){
                     
                     $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/daftar_ulang', $data);
+                    $this->load->view('page/pembayaran_belum_lunas', $data);
                     $this->load->view('page/theme/footer');
                 }elseif($cek_bayar->status == 'TIDAK SESUAI'){
                     
                     $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/pembayaran', $data);
+                    $this->load->view('page/pembayaran_salah', $data);
                     $this->load->view('page/theme/footer');
                 }elseif($cek_bayar->status == 'KIRIM'){
-
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/daftar_ulang', $data);
-                    $this->load->view('page/theme/footer');
+$this->session->set_flashdata('pesan', '<script> alert("Data pembayaran yang anda upload sudah terkirim tunggu informasi selanjutnya");</script>');
+        redirect('page');
+             //       $this->load->view('page/theme/header', $data);
+             //       $this->load->view('page/pembayaran_proses', $data);
+             //       $this->load->view('page/theme/footer');
                 }
-
-
         }
-
     }
+
+
 
     public function logout()
     {
