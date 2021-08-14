@@ -490,7 +490,32 @@ $this->session->set_flashdata('pesan', '<script> alert("Data pembayaran yang and
                 }
         }
     }
+    public function pembayaran_upload(){
+$id_daftar = $this->input->post('id_daftar');
+$cek_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar' ")->row();
+$bukti_pembayaran = $_FILES['bukti_pembayaran']['name'];
 
+        unlink(FCPATH . 'uploads/pembayaran/' . $cek_daftar->bukti_pembayaran);
+
+
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './uploads/pembayaran/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('bukti_pembayaran')) {
+                $new_bukti_pembayaran = $this->upload->data('file_name');
+            }
+
+$data = [
+            
+            'status' => 'KIRIM,            
+            'foto' =>  $new_bukti_pembayaran
+         
+        ];
+
+}
 
 
     public function logout()
