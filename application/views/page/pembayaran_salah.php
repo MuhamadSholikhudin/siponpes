@@ -10,7 +10,7 @@
 			<p class="text-center">Isilaha data-data dibawah ini dengan benar.</p>
 			<?= $this->session->flashdata('pesan'); ?>
 			<p class="text-center" id="validasi_umur"></p>
-			<form role="form " action="<?= base_url("page/upload_pembayaran_salah") ?>" id="register-form" enctype="multipart/form-data" method="POST">
+			<form role="form " action="<?= base_url("page/pembayaran_upload") ?>" id="register-form" enctype="multipart/form-data" method="POST">
 
 				<label for="id_daftar">Pendaftaran</label>
                                       
