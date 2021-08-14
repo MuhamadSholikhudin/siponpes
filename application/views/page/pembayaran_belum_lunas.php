@@ -10,7 +10,7 @@
 			<p class="text-center">Isilaha data-data dibawah ini dengan benar.</p>
 			<?= $this->session->flashdata('pesan'); ?>
 			<p class="text-center" id="validasi_umur"></p>
-			<form role="form " action="<?= base_url("page/upload_pembayaran") ?>" id="register-form" enctype="multipart/form-data" method="POST">
+			<form role="form " action="<?= base_url("page/pembayaran_upload") ?>" id="register-form" enctype="multipart/form-data" method="POST">
 
 				<label for="id_daftar">Pendaftaran</label>
                                       
@@ -32,7 +32,7 @@
                                                     		<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="file_ket_ijin">Upload bukti pembayaran</label>
 					<div class="col-sm-5">
-						<input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" onchange="Validation_bukti_pembayaran()"  accept="application/pdf, application/vnd.ms-excel" required>
+						<input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" onchange="Validation_bukti_pembayaran()"  accept="image/png, image/jpeg, image/jpg, image/img" required>
 						<script>
 							Validation_bukti_pembayaran = () => {
 								const fi = document.getElementById('bukti_pembayaran');
