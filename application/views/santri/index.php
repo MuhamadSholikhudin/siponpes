@@ -203,7 +203,7 @@
                                                 <!-- <td><a href="<?= base_url('admin/lihat_pengurus/') . $peng->id_santri ?>"><?= $peng->nama ?></a></td> -->
                                                 <td>
                                                     <?php
-                                                    $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $peng->id_daftar")->row();
+                                                    $nama_lengkap = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $peng->id_daftar")->row();
                                                     ?>
                                                     <?= $nama_lengkap->nama_lengkap ?>
                                                 </td>

@@ -268,7 +268,7 @@ class Page extends CI_Controller
                     'tanggal_daftar' => date('Y-m-d'),
                     'status' => 1
                 ];
-                $this->db->insert('daftar', $data);
+                $this->db->insert('pendaftaran', $data);
 
                 $curl = curl_init();
 
@@ -334,7 +334,7 @@ class Page extends CI_Controller
     
     public function daftar_ulang($id_daftar)
     {
-        $cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+        $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
 
         if($cari->status < 1){
 
@@ -342,7 +342,7 @@ class Page extends CI_Controller
             $this->session->set_flashdata('pesan', '<script>alert("Silahkan Melengkapi data Anda dengan benar"); </script>');
          
          
-            $data['daftar'] = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+            $data['daftar'] = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
             
             $this->load->view('page/theme/header', $data);
             $this->load->view('page/daftar_ulang', $data);
@@ -361,7 +361,7 @@ class Page extends CI_Controller
         $nomor_wa = $this->input->post('nomor_wa', true);
         $email = $this->input->post('email', true);
 
-        $cek_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $cek_daftar = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
 
         $foto = $_FILES['foto']['name'];
         $file_kk = $_FILES['file_kk']['name'];
@@ -414,7 +414,7 @@ class Page extends CI_Controller
         $where = [
             'id_daftar' => $id_daftar
         ];
-        $this->Model_daftar->update_data($where, $data, 'daftar');
+        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
 
 
         $curl = curl_init();

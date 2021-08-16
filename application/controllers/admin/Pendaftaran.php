@@ -20,7 +20,7 @@ class Pendaftaran extends CI_Controller
 
     public function index()
     {
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar ")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -30,7 +30,7 @@ class Pendaftaran extends CI_Controller
     
     public function tambah()
     {
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar ")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -98,14 +98,14 @@ class Pendaftaran extends CI_Controller
             'tanggal_daftar' => date('Y-m-d'),
             'status' => 1
         ];
-        $this->db->insert('daftar', $data);
+        $this->db->insert('pendaftaran', $data);
         redirect('admin/pendaftaran/');
     }
 
     public function lihat($id_daftar)
     {
 
-        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
         $data['status'] = [0, 1, 2, 3];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
@@ -119,7 +119,7 @@ class Pendaftaran extends CI_Controller
     public function ubah($id_daftar)
     {
 
-        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
         $data['status'] = [0, 1, 2, 3];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
@@ -133,7 +133,7 @@ class Pendaftaran extends CI_Controller
     public function edit_file($id_daftar)
     {
 
-        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
         $data['status'] = [0, 1, 2, 3];
         $data['hakakses'] = [3];
         $data['periodetahun'] = [2020, 2021, 2022, 2023,];
@@ -178,14 +178,14 @@ class Pendaftaran extends CI_Controller
             'id_daftar' => $id_daftar
         ];
 
-        $this->Model_daftar->update_data($where, $data, 'daftar');
+        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
         redirect('admin/pendaftaran/');
     }
 
     public function edit_file_aksi()
     {
         $id_daftar = $this->input->post('id_daftar');
-        $cek_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $cek_daftar = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
 
         $foto = $_FILES['foto']['name'];
         $file_kk = $_FILES['file_kk']['name'];
@@ -225,7 +225,7 @@ class Pendaftaran extends CI_Controller
             'id_daftar' => $id_daftar
         ];
 
-        $this->Model_daftar->update_data($where, $data, 'daftar');
+        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
         redirect('admin/pendaftaran/ubah/'.$id_daftar);
     }
 
@@ -263,7 +263,7 @@ if( $cari_santri < 1){
 
     public function terima($id_daftar)
     {
-        $cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+        $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
 
         // function send($target, $pesan){
         $curl = curl_init();
@@ -314,7 +314,7 @@ if( $cari_santri < 1){
 
     public function kembalikan($id_daftar)
     {
-        $cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+        $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
 
         // function send($target, $pesan){
         $curl = curl_init();

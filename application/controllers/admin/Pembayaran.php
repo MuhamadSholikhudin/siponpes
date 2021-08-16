@@ -21,7 +21,7 @@ class Pembayaran extends CI_Controller
     public function index()
     {
         $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran ")->result();
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE status = 2")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE status = 2")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -45,7 +45,7 @@ class Pembayaran extends CI_Controller
         $wheret = [
             'id_daftar' => $id_daftar,
         ];
-        $this->Model_daftar->update_datat($wheret, $datat, 'daftar');
+        $this->Model_daftar->update_datat($wheret, $datat, 'pendaftaran');
 
 
         $data = array(
@@ -84,7 +84,7 @@ class Pembayaran extends CI_Controller
 
 // WA 
 
-$cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+$cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
 
 $curl = curl_init();
 

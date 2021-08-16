@@ -28,7 +28,7 @@
                     <tr>
                         <td><?= $no++ ?></td>
                         <?php
-                            $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $pem->id_daftar")->row();
+                            $nama_lengkap = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $pem->id_daftar")->row();
                             ?>
                         <td><?= $nama_lengkap->nama_lengkap ?></td>
                         <td><?= $pem->kelas ?></td>

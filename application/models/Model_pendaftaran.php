@@ -1,19 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Model_daftar extends CI_Model
+class Model_pendaftaran extends CI_Model
 {
     public function tampil_data()
     {
-        return $this->db->get('daftar');
+        return $this->db->get('pendaftaran');
     }
 
-    public function tambah_daftar($data, $table)
+    public function tambah_pendaftaran($data, $table)
     {
         $this->db->insert($table, $data);
     }
 
-    public function edit_daftar($where, $table)
+    public function edit_pendaftaran($where, $table)
     {
         return $this->db->get_where($table, $where);
     }

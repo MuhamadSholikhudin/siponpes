@@ -21,7 +21,7 @@ class Santri extends CI_Controller
     public function index()
     {
         $data['santri'] = $this->db->query("SELECT * FROM santri ")->result();
-        $data['daftar'] = $this->db->query("SELECT * FROM daftar ")->result();
+        $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran ")->result();
         $data['kelas'] = [1, 2, 3, 4];
 
         $this->load->view('templates_admin/header');
@@ -56,7 +56,7 @@ class Santri extends CI_Controller
     {
 
         $data['santri'] = $this->db->query("SELECT * FROM santri WHERE id_santri = '$id_santri' ")->row();
-        $data['daftar'] = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
         $data['status'] = [0, 1];
         $data['kelas'] = [1, 2, 3, 4];
         $data['hakakses'] = [3];

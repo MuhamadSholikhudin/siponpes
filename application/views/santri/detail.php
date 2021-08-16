@@ -2,6 +2,11 @@
         <div class="container-fluid">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a href="<?= base_url('admin/santri') ?>" class="btn bg-blue-grey waves-effect"> 
+            <i class="material-icons">reply</i>  
+            <span>Kemballi</span>
+        </a>
+
                 <div class="card">
                     <div class="header">
                         <h2>
@@ -15,7 +20,7 @@
                                 <div class="col-sm-10">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <?php
-                                                    $cari_daftar = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $santri->id_daftar")->row();
+                                                    $cari_daftar = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $santri->id_daftar")->row();
 
                                 ?>
                                     <a href="<?= base_url('admin/santri/detail/'. $santri->id_santri.'/'.$santri->id_daftar) ?>" data-sub-html="Demo Description">
@@ -25,7 +30,7 @@
                                 </div>
                             </div>
                             <?php
-                            $nama_lengkap = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $santri->id_daftar")->row();
+                            $nama_lengkap = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $santri->id_daftar")->row();
                             ?>
                             <label for="nama">Nama</label>
                             <div class="form-group">
@@ -181,7 +186,7 @@
                                     </div>
                                 </div>
                             </div>
-
+<!-- 
                             <div class="form-group row">
                                 <label class="col-sm-1 col-form-label" for="asal">Asal Sekolah</label>
                                 <br>
@@ -228,7 +233,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
 
 
                             <div class="form-group row">
