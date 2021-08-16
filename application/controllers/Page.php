@@ -510,7 +510,7 @@ $bukti_pembayaran = $_FILES['bukti_pembayaran']['name'];
 
 $data = [
             
-            'status' => 'KIRIM,            
+            'status' => 'KIRIM',            
             'foto' =>  $new_bukti_pembayaran
          
         ];
