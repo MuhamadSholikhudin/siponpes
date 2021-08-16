@@ -28,38 +28,6 @@ class Page extends CI_Controller
         }
     }
 
-
-
-    public function beranda()
-    {
-        // echo 'Beranda';
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/beranda');
-        $this->load->view('page/theme/footer');
-    }
-    
-    public function tentang()
-    {
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/tentang');
-        $this->load->view('page/theme/footer');
-    }
-    
-    public function kontak()
-    {
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/kontak');
-        $this->load->view('page/theme/footer');
-    }
-
-
-
     public function login()
     {
         $this->form_validation->set_rules('username', 'username', 'required', ['required' => 'Username wajib di Isi !']);
@@ -177,6 +145,7 @@ class Page extends CI_Controller
         // if ($this->session->userdata('email')) {
         // redirect('user');
         // }
+        $nama_lengkap = $this->input->post('nama_lengkap');
         $nomor_wa = $this->input->post('nomor_wa', true);
         $email = $this->input->post('email', true);
         $this->form_validation->set_rules('nama_lengkap', 'Name', 'required|trim');
@@ -420,7 +389,7 @@ class Page extends CI_Controller
         $curl = curl_init();
 
         $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-        $pesan = "Assalamualakum Wr. Wb, Selamat " . $nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus berhasil di kirim untuk lebih lanjutnya di terima atau tidaknya menunggu informasi dari Pondok Pesantren Baitul Kudus ";
+        $pesan = "Assalamualakum Wr. Wb, Selamat " . $cek_daftar->nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus berhasil di kirim untuk lebih lanjutnya di terima atau tidaknya menunggu informasi dari Pondok Pesantren Baitul Kudus ";
         $target = $nomor_wa; //nomer target
 
 
@@ -456,44 +425,39 @@ class Page extends CI_Controller
     }
 
 
-    public function upload_pembayaran($id_daftar){
-        $cek_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar' ");
-        
+    public function beranda()
+    {
+        // echo 'Beranda';
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
 
-        if($cek_bayar->num_rows() > 0){
-            // $cek_status_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar'  ");
-                if($cek_bayar->status == 'LUNAS'){
-                            
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/pembayara_lunas', $data);
-                    $this->load->view('page/theme/footer');
-                }elseif($cek_bayar->status == 'BELUM LUNAS'){
-                    
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/daftar_ulang', $data);
-                    $this->load->view('page/theme/footer');
-                }elseif($cek_bayar->status == 'TIDAK SESUAI'){
-                    
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/pembayaran', $data);
-                    $this->load->view('page/theme/footer');
-                }elseif($cek_bayar->status == 'KIRIM'){
-
-                    $this->load->view('page/theme/header', $data);
-                    $this->load->view('page/daftar_ulang', $data);
-                    $this->load->view('page/theme/footer');
-                }
-
-
-        }
-
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/beranda');
+        $this->load->view('page/theme/footer');
     }
+    
+    public function tentang()
+    {
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/tentang');
+        $this->load->view('page/theme/footer');
+    }
+    
+    public function kontak()
+    {
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/kontak');
+        $this->load->view('page/theme/footer');
+    }
+
+
 
     public function logout()
     {
         $this->session->sess_destroy();
-      
-
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
         redirect('page/login');
     }
