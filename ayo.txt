@@ -1,6 +1,6 @@
 <?php
 
-echo 'ayo';
+LINK :
 username : MuhamadSholikhudin
 password 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
 ?>
