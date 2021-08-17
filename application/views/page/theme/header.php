@@ -55,7 +55,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img class="img-responsive" src="img/logo.png" alt="Logo" /></a>
+                        <a class="navbar-brand" href="#">
+                            <img class="img-responsive" width="50" src="<?= base_url('assets/img/pondok.jpeg') ?>" alt="Logo" />
+                        </a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->

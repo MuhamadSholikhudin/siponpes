@@ -65,7 +65,7 @@ $result = $this->db->where('id_brg', $id_brg)->get('tb_pembayaran');
 
     function get_sub_id($id_daftar)
     {
-        $query = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar LIMIT 1");
+        $query = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar LIMIT 1");
         // $query = $this->db->get_where('tb_transaksi', array('notransaksi' => $notransaksi));
         return $query;
     }

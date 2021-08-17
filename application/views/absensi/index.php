@@ -121,19 +121,11 @@
                                             <th>Hari</th>
                                             <th>Nama Santri</th>
                                             <th>Jumlah</th>
-
-                                          
-
                                         </tr>
-
                                     </thead>
-
                                     <tbody>
-
                                         <?php $no = 1; ?>
-
                                         <?php foreach ($absensi as $peng) : ?>
-
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <?php
@@ -143,7 +135,7 @@ $cari_jadwal= $this->db->query("SELECT * FROM jadwal JOIN pelajaran ON jadwal.id
                                                 <td><?= $cari_jadwal->hari ?></td>
                                                 <td><?= $cari_jadwal->waktu ?></td>
                                                 <?php
-$cari_nama= $this->db->query("SELECT * FROM santri JOIN daftar ON daftar.id_daftar = santri.id_daftar WHERE santri.id_santri = $peng->id_santri")->row();
+$cari_nama= $this->db->query("SELECT * FROM santri JOIN pendaftaran ON pendaftaran.id_daftar = santri.id_daftar WHERE santri.id_santri = $peng->id_santri")->row();
 
                                                 ?>
                                                 <td><?= $cari_nama->nama_lengkap ?></td>

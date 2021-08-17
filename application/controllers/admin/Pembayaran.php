@@ -21,7 +21,7 @@ class Pembayaran extends CI_Controller
     public function index()
     {
         $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran ")->result();
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE status = 2")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE status = 2")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -45,7 +45,7 @@ class Pembayaran extends CI_Controller
         $wheret = [
             'id_daftar' => $id_daftar,
         ];
-        $this->Model_daftar->update_datat($wheret, $datat, 'daftar');
+        $this->Model_daftar->update_datat($wheret, $datat, 'pendaftaran');
 
 
         $data = array(
@@ -56,69 +56,62 @@ class Pembayaran extends CI_Controller
             'tanggal' => $tanggal
         );
 
-        if($id_daftar){
+            if($id_daftar){
 
-            $teks = $this->input->post('nama_pendaftar');
-            $pecah = explode(" ", $teks);
-            $kalimat1 = $pecah[0] . $id_daftar;
-            $kalimat2 = $pecah[0] . $id_daftar. date('Y');
+                $teks = $this->input->post('nama_pendaftar');
+                $pecah = explode(" ", $teks);
+                $kalimat1 = $pecah[0] . $id_daftar;
+                $kalimat2 = $pecah[0] . $id_daftar. date('Y');
 
-            // $nama = $this->input->post('nama');
-            $username = $kalimat1;
-            $password = $kalimat2;
-            // $status = $this->input->post('status');
+                // $nama = $this->input->post('nama');
+                $username = $kalimat1;
+                $password = $kalimat2;
+                // $status = $this->input->post('status');
 
-            $datas = array(
-                'username' => $username,
-                'password' => $password,
-                'status' => 1,
-                'hakakses' => 3,
-                'kelas' => 1,
-                'periodetahun' => date('Y'),
-                'id_daftar' => $id_daftar
-            );
+                $datas = array(
+                    'username' => $username,
+                    'password' => $password,
+                    'status' => 1,
+                    'hakakses' => 3,
+                    'kelas' => 1,
+                    'periodetahun' => date('Y'),
+                    'id_daftar' => $id_daftar
+                );
 
-            $this->Model_santri->tambah_santris($datas, 'santri');
-        }
+                $this->Model_santri->tambah_santris($datas, 'santri');
+            }
         
+            // WA 
+            $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
+            $curl = curl_init();
+            $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
+            $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran santri   " . $cari->nama_lengkap . " telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus, " . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! ";
+            $target = $cari->nomor_wa; //nomer target
+            $datat = [
+                'phone' => $target,
+                'type' => 'text',
+                'delay' => 0,
+                'delay_req' => 0,
+                'text' => $pesan
+            ];
 
-// WA 
+            curl_setopt(
+                $curl,
+                CURLOPT_HTTPHEADER,
+                array(
+                    "Authorization: $token",
+                )
+            );
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
+            curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            $result = curl_exec($curl);
+            curl_close($curl);
 
-$cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
-
-$curl = curl_init();
-
-$token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-$pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran santri   " . $cari->nama_lengkap . " telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus, " . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! ";
-
-$target = $cari->nomor_wa; //nomer target
-
-
-$datat = [
-    'phone' => $target,
-    'type' => 'text',
-    'delay' => 0,
-    'delay_req' => 0,
-    'text' => $pesan
-];
-
-curl_setopt(
-    $curl,
-    CURLOPT_HTTPHEADER,
-    array(
-        "Authorization: $token",
-    )
-);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
-curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
-curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-$result = curl_exec($curl);
-curl_close($curl);
-
-print $result;
+            print $result;
 
         $this->Model_pembayaran->tambah_pembayaran($data, 'pembayaran');
         redirect('admin/pembayaran/');
@@ -135,6 +128,20 @@ print $result;
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
         $this->load->view('pembayaran/edit', $data);
+        $this->load->view('templates_admin/footer');
+    }
+
+    public function lihat($id_pembayaran)
+    {
+
+        $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran WHERE id_pembayaran = '$id_pembayaran' ")->row();
+        $data['status'] = ['Lunas', 'Belum Lunas'];
+        $data['hakakses'] = [3];
+        $data['periodetahun'] = [2020, 2021, 2022, 2023,];
+
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('pembayaran/lihat', $data);
         $this->load->view('templates_admin/footer');
     }
 
@@ -162,6 +169,93 @@ print $result;
         $this->Model_pembayaran->update_data($where, $data, 'pembayaran');
         redirect('admin/pembayaran/');
     }
+
+
+
+    public function cek_aksi()
+    {
+        $id_pembayaran = $this->input->post('id_pembayaran');
+        $id_daftar = $this->input->post('id_daftar');
+        $jumlah = $this->input->post('jumlah');
+        $status = $this->input->post('status');
+        // $tanggal = $this->input->post('tanggal');
+        $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
+
+if($status == 'LUNAS'){
+            if ($id_daftar) {
+
+                $teks = $cari->nama_lengkap;
+                $pecah = explode(" ", $teks);
+                $kalimat1 = $pecah[0] . $id_daftar . date('H');
+                $kalimat2 = $pecah[0] . $id_daftar . date('Y');
+
+                // $nama = $this->input->post('nama');
+                $username = $kalimat1;
+                $password = $kalimat2;
+                // $status = $this->input->post('status');
+
+                $datas = array(
+                    'username' => $username,
+                    'password' => $password,
+                    'status' => 1,
+                    'hakakses' => 3,
+                    'kelas' => 1,
+                    'periodetahun' => date('Y'),
+                    'id_daftar' => $id_daftar
+                );
+
+                $this->Model_santri->tambah_santris($datas, 'santri');
+            }
+            $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran atas nama santri   " . $cari->nama_lengkap . " telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus, " . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! pada link berikut " . base_url('page/login');
+        } elseif ($status == 'TIDAK SESUAI') {
+            $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran atas nama santri   " . $cari->nama_lengkap . " tidak sesuain data transfer" . $cari->nama_lengkap . " harap upload bukti pembayran anda lagi di link berikut " . base_url('page/upload_pembayaran/' . $cari->id_daftar);
+        
+        }
+
+ 
+
+        // WA 
+        $curl = curl_init();
+        $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
+        $target = $cari->nomor_wa; //nomer target
+        $datat = [
+            'phone' => $target,
+            'type' => 'text',
+            'delay' => 0,
+            'delay_req' => 0,
+            'text' => $pesan
+        ];
+        curl_setopt(
+            $curl,
+            CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: $token",
+            )
+        );
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
+        curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($curl);
+        curl_close($curl);
+        print $result;
+
+        $data = array(
+            // 'nama' => $nama,
+            'jumlah' => $jumlah,
+            'status' => $status,
+            'tanggal' => date('Y-m-d')
+        );
+        $where = [
+            'id_pembayaran' => $id_pembayaran
+        ];
+
+        $this->Model_pembayaran->update_data($where, $data, 'pembayaran');
+        redirect('admin/pembayaran/');
+    }
+
 
     public function hapus($id_pembayaran)
     {

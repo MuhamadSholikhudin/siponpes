@@ -2,9 +2,10 @@
         <div class="main-content bottom-0 beranda">
             <div class="container">
                 <!-- banner -->
+                <?= $this->session->flashdata('pesan'); ?>
                 <div class="banner pad">
                     <!-- heading -->
-                    <h2>Pondok Pesantren <br><span>Baitul  &amp; Qudus.</span></h2>
+                    <h2>Pondok Pesantren <br><span>Baitul &amp; Qudus.</span></h2>
                     <!-- paragraph -->
                     <p>Pondok dengan sistem pendidikan yang unggul!!!</p>
                 </div>
@@ -16,7 +17,7 @@
             <div class="benefits pad">
                 <div class="container">
                     <div class="default-heading">
-                    <br>
+                        <br>
                         <!-- heading -->
                         <h2>Manfaat</h2>
                     </div>
@@ -109,6 +110,6 @@
             </div>
 
 
- 
+
 
         </div>

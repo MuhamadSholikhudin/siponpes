@@ -28,6 +28,34 @@ class Page extends CI_Controller
         }
     }
 
+    public function beranda()
+    {
+        // echo 'Beranda';
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/beranda');
+        $this->load->view('page/theme/footer');
+    }
+
+    public function tentang()
+    {
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/tentang');
+        $this->load->view('page/theme/footer');
+    }
+
+    public function kontak()
+    {
+        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+
+        $this->load->view('page/theme/header', $data);
+        $this->load->view('page/kontak');
+        $this->load->view('page/theme/footer');
+    }
+
     public function login()
     {
         $this->form_validation->set_rules('username', 'username', 'required', ['required' => 'Username wajib di Isi !']);
@@ -237,7 +265,7 @@ class Page extends CI_Controller
                     'tanggal_daftar' => date('Y-m-d'),
                     'status' => 1
                 ];
-                $this->db->insert('daftar', $data);
+                $this->db->insert('pendaftaran', $data);
 
                 $curl = curl_init();
 
@@ -303,7 +331,7 @@ class Page extends CI_Controller
     
     public function daftar_ulang($id_daftar)
     {
-        $cari = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+        $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
 
         if($cari->status < 1){
 
@@ -311,7 +339,7 @@ class Page extends CI_Controller
             $this->session->set_flashdata('pesan', '<script>alert("Silahkan Melengkapi data Anda dengan benar"); </script>');
          
          
-            $data['daftar'] = $this->db->query(" SELECT * FROM daftar WHERE id_daftar = $id_daftar")->row();
+            $data['daftar'] = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
             
             $this->load->view('page/theme/header', $data);
             $this->load->view('page/daftar_ulang', $data);
@@ -330,7 +358,7 @@ class Page extends CI_Controller
         $nomor_wa = $this->input->post('nomor_wa', true);
         $email = $this->input->post('email', true);
 
-        $cek_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = '$id_daftar' ")->row();
+        $cek_daftar = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = '$id_daftar' ")->row();
 
         $foto = $_FILES['foto']['name'];
         $file_kk = $_FILES['file_kk']['name'];
@@ -383,7 +411,7 @@ class Page extends CI_Controller
         $where = [
             'id_daftar' => $id_daftar
         ];
-        $this->Model_daftar->update_data($where, $data, 'daftar');
+        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
 
 
         $curl = curl_init();
@@ -425,33 +453,124 @@ class Page extends CI_Controller
     }
 
 
-    public function beranda()
+    public function upload_pembayaran($id_daftar)
     {
-        // echo 'Beranda';
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+        $cek_bay = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar' ");
 
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/beranda');
-        $this->load->view('page/theme/footer');
+
+        if ($cek_bay->num_rows() > 0) {
+            $cek_bayar = $cek_bay->row();
+            // $cek_status_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar'  ");
+            if ($cek_bayar->status == 'LUNAS') {
+
+                $this->session->set_flashdata('pesan', '<script> alert("Data pembayaran yang anda kirim telah di proses dan anda telah menjadi santri baitul qudus");</script>');
+                redirect('page');
+
+
+                //    $this->load->view('page/theme/header', $data);
+                //    $this->load->view('page/pembayaran_lunas', $data);
+                //   $this->load->view('page/theme/footer');
+            } elseif ($cek_bayar->status == 'BELUM LUNAS') {
+                
+                $data['title'] = 'Pembayaran ';
+
+                $this->load->view('page/theme/header', $data);
+                $this->load->view('page/pembayaran_belum_lunas', $data);
+                $this->load->view('page/theme/footer');
+
+            } elseif ($cek_bayar->status == 'TIDAK SESUAI') {
+                
+                $data['title'] = 'Pembayaran ';
+
+                $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar ")->row();
+
+                $this->load->view('page/theme/header', $data);
+                $this->load->view('page/pembayaran_salah', $data);
+                $this->load->view('page/theme/footer');
+            } elseif ($cek_bayar->status == 'KIRIM') {
+                $this->session->set_flashdata('pesan', '<script> alert("Data pembayaran yang anda upload sudah terkirim tunggu informasi selanjutnya");</script>');
+                redirect('page');
+
+            }
+        }elseif($cek_bay->num_rows() < 1){
+            $data['title'] = 'Pembayaran ';
+            $data['daftar'] = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar ")->row();
+
+            $this->load->view('page/theme/header', $data);
+            $this->load->view('page/pembayaran_belum_lunas', $data);
+            $this->load->view('page/theme/footer');
+        }
     }
-    
-    public function tentang()
+
+
+
+    public function pembayaran_upload()
     {
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+        $id_daftar = $this->input->post('id_daftar');
 
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/tentang');
-        $this->load->view('page/theme/footer');
-    }
-    
-    public function kontak()
-    {
-        $data['title'] = 'Sistem Ponpes Baitul Qudus';
+        $cek = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar' ")->num_rows();
 
-        $this->load->view('page/theme/header', $data);
-        $this->load->view('page/kontak');
-        $this->load->view('page/theme/footer');
+        if ($cek < 1) {
+            $jumlah = $this->input->post('jumlah');
+            $tanggal = $this->input->post('tanggal');
+            $bukti_pembayaran = $_FILES['bukti_pembayaran']['name'];
+
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './uploads/pembayaran/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('bukti_pembayaran')) {
+                $new_bukti_pembayaran = $this->upload->data('file_name');
+            }
+            $data = array(
+
+                'id_daftar' => $id_daftar,
+                'jumlah' => $jumlah,
+                'status' => 'KIRIM',
+                'tanggal' => date('Y-m-d'),
+                'bukti_pembayaran' => $new_bukti_pembayaran
+            );
+
+            $this->Model_pembayaran->tambah_pembayaran($data, 'pembayaran');
+            redirect('page/upload_pembayaran/'. $id_daftar);
+
+        } elseif ($cek > 0) {
+            $cek_bayar = $this->db->query("SELECT * FROM pembayaran WHERE id_daftar = '$id_daftar' ")->row();
+            $jumlah = $this->input->post('jumlah');
+            $tanggal = $this->input->post('tanggal');            
+            
+            unlink(FCPATH . 'uploads/pembayaran/' . $cek_bayar->bukti_pembayaran);
+            
+            $bukti_pembayaran = $_FILES['bukti_pembayaran']['name'];
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './uploads/pembayaran/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('bukti_pembayaran')) {
+                $new_bukti_pembayaran = $this->upload->data('file_name');
+            }
+
+            $data = [
+                'id_daftar' => $id_daftar,
+                'jumlah' => $jumlah,
+                'tanggal' => date('Y-m-d'),
+                'status' => 'KIRIM',
+                'bukti_pembayaran' =>  $new_bukti_pembayaran
+            ];
+
+            $where = [
+                'id_pembayaran' => $cek_bayar->id_pembayaran
+            ];
+
+            $this->Model_pembayaran->update_data($where, $data, 'pembayaran');
+            redirect('page/upload_pembayaran/' . $id_daftar);
+        }
     }
+
 
 
 

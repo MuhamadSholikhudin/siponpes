@@ -16,7 +16,7 @@ class Laporan extends CI_Controller
     {
         $this->form_validation->set_rules('pilihan', 'pilihan', 'required|trim');
         if ($this->form_validation->run() == false) {
-            $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar ")->result();
+            $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran ")->result();
             $data['cetak'] = ['normal'];
 
             $this->load->view('templates_admin/header');
@@ -31,7 +31,7 @@ class Laporan extends CI_Controller
                 $tanggal_akhir = $this->input->post('tanggal_akhir');
                 $data['cetak'] = ['tanggal'];
                 $data['tanggal'] = [$tanggal_awal,  $tanggal_akhir];
-                $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE tanggal_daftar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'")->result();
+                $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE tanggal_daftar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'")->result();
                 $this->load->view('templates_admin/header');
                 $this->load->view('templates_admin/sidebar');
                 $this->load->view('laporan/laporan_pendaftaran', $data);
@@ -42,7 +42,7 @@ class Laporan extends CI_Controller
                 $data['cetak'] = ['bulan'];
                 $data['bulan'] = [$bulan,  $tahun];
                 
-            $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE MONTH(tanggal_daftar) = '$bulan' AND YEAR(tanggal_daftar) = '$tahun' ")->result();
+            $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE MONTH(tanggal_daftar) = '$bulan' AND YEAR(tanggal_daftar) = '$tahun' ")->result();
                 $this->load->view('templates_admin/header');
                 $this->load->view('templates_admin/sidebar');
                 $this->load->view('laporan/laporan_pendaftaran', $data);
@@ -52,7 +52,7 @@ class Laporan extends CI_Controller
                 $data['cetak'] = ['tahun'];
                 $data['tahun'] = [ $tahun];
                 
-            $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE  YEAR(tanggal_daftar) = '$tahun' ")->result();
+            $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE  YEAR(tanggal_daftar) = '$tahun' ")->result();
                 $this->load->view('templates_admin/header');
                 $this->load->view('templates_admin/sidebar');
                 $this->load->view('laporan/laporan_pendaftaran', $data);
@@ -66,21 +66,21 @@ class Laporan extends CI_Controller
 
     public function cetak_pendaftaran_tanggal($tanggal_awal, $tanggal_akhir)
     {
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE tanggal_daftar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE tanggal_daftar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'")->result();
         $data['hal'] = ['pertanggal'];
         $data['tanggal'] = [$tanggal_awal, $tanggal_akhir];
         $this->load->view('laporan/cetak_laporan_pendaftaran', $data);
     }
     public function cetak_pendaftaran_bulan($bulan, $tahun)
     {
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE MONTH(tanggal_daftar) = '$bulan' AND YEAR(tanggal_daftar) = '$tahun' ")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE MONTH(tanggal_daftar) = '$bulan' AND YEAR(tanggal_daftar) = '$tahun' ")->result();
         $data['hal'] = ['bulan'];
         $data['bulan'] = [$bulan, $tahun];
         $this->load->view('laporan/cetak_laporan_pendaftaran', $data);
     }
     public function cetak_pendaftaran_tahun($tahun)
     {
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM daftar WHERE  YEAR(tanggal_daftar) = '$tahun' ")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE  YEAR(tanggal_daftar) = '$tahun' ")->result();
         $data['hal'] = ['tahun'];
         $data['tahun'] = [$tahun];
         $this->load->view('laporan/cetak_laporan_pendaftaran', $data);
