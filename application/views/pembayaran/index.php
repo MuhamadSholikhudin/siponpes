@@ -151,6 +151,7 @@
                                             <th>Jumlah</th>
                                             <th>Status</th>
                                             <th>tanggal</th>
+                                            <th>Lihat</th>
                                             <th>Ubah</th>
                                             <th>Hapus</th>
                                         </tr>
@@ -172,6 +173,11 @@
                                                 <td><?= $peng->jumlah ?></td>
                                                 <td><?= $peng->status ?></td>
                                                 <td><?= $peng->tanggal ?></td>
+                                                <td><a href="<?= base_url('admin/pembayaran/lihat/' . $peng->id_pembayaran) ?>" class="btn btn-info waves-effect" type="button">
+                                                        <i class="material-icons">remove_red_eye</i>
+                                                        <span>Lihat</span>
+                                                    </a>
+                                                </td>
                                                 <td><a href="<?= base_url('admin/pembayaran/ubah/' . $peng->id_pembayaran) ?>" class="btn btn-warning waves-effect" type="button">
                                                         <i class="material-icons">edit</i>
                                                         <span>Edit</span>

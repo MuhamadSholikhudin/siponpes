@@ -238,14 +238,14 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <!-- <div class="card">
                     <div class="header">Data Dokumen File Surat Keterangan Ijin</div>
                     <div class="body">
                         <div class="container">
                             <object  type="application/pdf" data="<?= base_url('uploads/pendaftaran/'. $daftar->file_ket_ijin) ?>"   width="800" height="1200" ></object >
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             
     </section>

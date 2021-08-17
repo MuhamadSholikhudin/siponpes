@@ -45,7 +45,7 @@ class Pembayaran extends CI_Controller
         $wheret = [
             'id_daftar' => $id_daftar,
         ];
-        $this->Model_daftar->update_datat($wheret, $datat, 'pendaftaran');
+        $this->Model_pendaftaran->update_datat($wheret, $datat, 'pendaftaran');
 
 
         $data = array(
@@ -149,7 +149,7 @@ class Pembayaran extends CI_Controller
     {
         $id_pembayaran = $this->input->post('id_pembayaran');
          // $nama = $this->input->post('nama');
-        $id_pendaftar = $this->input->post('id_pendaftar');
+        $id_daftar = $this->input->post('id_daftar');
         $jumlah = $this->input->post('jumlah');
         $status = $this->input->post('status');
         $tanggal = $this->input->post('tanggal');
@@ -181,7 +181,7 @@ class Pembayaran extends CI_Controller
         // $tanggal = $this->input->post('tanggal');
         $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
 
-if($status == 'LUNAS'){
+        if($status == 'LUNAS'){
             if ($id_daftar) {
 
                 $teks = $cari->nama_lengkap;

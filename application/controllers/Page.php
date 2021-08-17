@@ -207,7 +207,7 @@ class Page extends CI_Controller
         } else {
 
             // $cek = $this->db->query("SELECT * FROM daftar WHERE nomor_wa = '$nomor_wa' AND status > 0 ")->num_rows();
-            $cek2 = $this->db->query("SELECT * FROM daftar WHERE email = '$email' AND status > 0 ")->num_rows();
+            $cek2 = $this->db->query("SELECT * FROM pendaftaran WHERE email = '$email' AND status > 0 ")->num_rows();
             
             if ($cek2 > 0) {
                 $data['title'] = 'Pendaftaran123';
@@ -221,7 +221,7 @@ class Page extends CI_Controller
                 
                 $foto = $_FILES['foto']['name'];
                 $file_kk = $_FILES['file_kk']['name'];
-                $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
+                // $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
 
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
                 $config['max_size']      = '2048';
@@ -234,9 +234,9 @@ class Page extends CI_Controller
                 if ($this->upload->do_upload('file_kk')) {
                     $new_file_kk = $this->upload->data('file_name');
                 }
-                if ($this->upload->do_upload('file_ket_ijin')) {
-                    $new_file_ket_ijin = $this->upload->data('file_name');
-                }
+                // if ($this->upload->do_upload('file_ket_ijin')) {
+                //     $new_file_ket_ijin = $this->upload->data('file_name');
+                // }
 
 
                 $data = [
@@ -261,7 +261,9 @@ class Page extends CI_Controller
                     'email' => $email,
                     'foto' =>  $new_foto,
                     'file_kk' => $new_file_kk,
-                    'file_ket_ijin' => $new_file_ket_ijin,
+                    'file_ket_ijin' => 'Kosong',
+                    // 'file_ket_ijin' => $new_file_ket_ijin,
+                    'file_ket_ijin' => 'Kosong',
                     'tanggal_daftar' => date('Y-m-d'),
                     'status' => 1
                 ];
@@ -301,10 +303,8 @@ class Page extends CI_Controller
                 print $result;
         
 
-                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                Data Pendaftaran Yang Anda ajukan berhasil di kirim
-            </div>');
+                $this->session->set_flashdata('pesan', '<script> alert("Data Pendaftaran Yang Anda ajukan berhasil di kirim");
+            </script>');
                 redirect('page');
             }
 
@@ -362,11 +362,11 @@ class Page extends CI_Controller
 
         $foto = $_FILES['foto']['name'];
         $file_kk = $_FILES['file_kk']['name'];
-        $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
+        // $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
 
         unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->foto);
         unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_kk);
-        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
+        // unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
 
 
             $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
@@ -381,9 +381,9 @@ class Page extends CI_Controller
             if ($this->upload->do_upload('file_kk')) {
                 $new_file_kk = $this->upload->data('file_name');
             }
-            if ($this->upload->do_upload('file_ket_ijin')) {
-                $new_file_ket_ijin = $this->upload->data('file_name');
-            }
+            // if ($this->upload->do_upload('file_ket_ijin')) {
+            //     $new_file_ket_ijin = $this->upload->data('file_name');
+            // }
 
             // $this->upload->do_upload('foto');
             // $this->upload->do_upload('file_kk');
@@ -406,7 +406,8 @@ class Page extends CI_Controller
             'email' => $email,            
             'foto' =>  $new_foto,
             'file_kk' => $new_file_kk,
-            'file_ket_ijin' => $new_file_ket_ijin,
+            'file_ket_ijin' => 'kosong'
+            // 'file_ket_ijin' => $new_file_ket_ijin,
         ];
         $where = [
             'id_daftar' => $id_daftar

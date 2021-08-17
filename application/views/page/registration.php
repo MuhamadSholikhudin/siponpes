@@ -258,7 +258,7 @@
 					File max upload 2MB, File yang diupload dalam bentuk .pdf
 						</div>
 				</div>
-				<div class="form-group row">
+				<!-- <div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="file_ket_ijin">Upload Keterangan Ijin Mondok</label>
 					<div class="col-sm-5">
 						<input type="file" class="form-control" id="file_ket_ijin" name="file_ket_ijin" onchange="Validation_file_ket_ijin()"  accept="application/pdf, application/vnd.ms-excel" required>
@@ -284,7 +284,7 @@
 					<div class="col-sm-5">
 					File max upload 2MB, File yang diupload dalam bentuk .pdf
 						</div>
-				</div>
+				</div> -->
 
 				<button type="submit" id="kirim" class="btn btn-warning">Kirim</button>&nbsp;
 				<button type="reset" class="btn btn-default">Reset</button>

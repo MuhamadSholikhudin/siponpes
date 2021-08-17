@@ -20,7 +20,7 @@ class Pendaftaran extends CI_Controller
 
     public function index()
     {
-        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran ")->result();
+        $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran ORDER BY id_daftar DESC")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -65,12 +65,12 @@ class Pendaftaran extends CI_Controller
             $this->load->library('upload', $config2);
             $this->upload->do_upload('file_kk');
         }
-        if ($file_ket_ijin) {
-            $config3['upload_path'] = './uploads/pendaftaran/keterangan_ijin';
-            $config3['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
-            $this->load->library('upload', $config3);
-            $this->upload->do_upload('file_ket_ijin');
-        }
+        // if ($file_ket_ijin) {
+        //     $config3['upload_path'] = './uploads/pendaftaran/keterangan_ijin';
+        //     $config3['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+        //     $this->load->library('upload', $config3);
+        //     $this->upload->do_upload('file_ket_ijin');
+        // }
 
         $data = [
             'nama_lengkap' => $this->input->post('nama_lengkap'),
@@ -94,7 +94,7 @@ class Pendaftaran extends CI_Controller
             'email' => $email,
             'foto' => $foto,
             'file_kk' => $file_kk,
-            'file_ket_ijin' => $file_ket_ijin,
+            // 'file_ket_ijin' => $file_ket_ijin,
             'tanggal_daftar' => date('Y-m-d'),
             'status' => 1
         ];
@@ -178,7 +178,7 @@ class Pendaftaran extends CI_Controller
             'id_daftar' => $id_daftar
         ];
 
-        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
+        $this->Model_pendaftaran->update_data($where, $data, 'pendaftaran');
         redirect('admin/pendaftaran/');
     }
 
@@ -189,11 +189,11 @@ class Pendaftaran extends CI_Controller
 
         $foto = $_FILES['foto']['name'];
         $file_kk = $_FILES['file_kk']['name'];
-        $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
+        // $file_ket_ijin = $_FILES['file_ket_ijin']['name'];
 
         unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->foto);
         unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_kk);
-        unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
+        // unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
 
 
             $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
@@ -208,9 +208,9 @@ class Pendaftaran extends CI_Controller
             if ($this->upload->do_upload('file_kk')) {
                 $new_file_kk = $this->upload->data('file_name');
             }
-            if ($this->upload->do_upload('file_ket_ijin')) {
-                $new_file_ket_ijin = $this->upload->data('file_name');
-            }
+            // if ($this->upload->do_upload('file_ket_ijin')) {
+            //     $new_file_ket_ijin = $this->upload->data('file_name');
+            // }
 
             // $this->upload->do_upload('foto');
             // $this->upload->do_upload('file_kk');
@@ -218,14 +218,14 @@ class Pendaftaran extends CI_Controller
 
         $data = [
             'foto' =>  $new_foto,
-            'file_kk' => $new_file_kk,
-            'file_ket_ijin' => $new_file_ket_ijin,
+            'file_kk' => $new_file_kk
+            // 'file_ket_ijin' => $new_file_ket_ijin,
         ];
         $where = [
             'id_daftar' => $id_daftar
         ];
 
-        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
+        $this->Model_pendaftaran->update_data($where, $data, 'pendaftaran');
         redirect('admin/pendaftaran/ubah/'.$id_daftar);
     }
 
@@ -236,21 +236,21 @@ class Pendaftaran extends CI_Controller
         $cari_pembayaran = $this->db->query(" SELECT id_daftar FROM pembayaran WHERE id_daftar = $id_daftar")->num_rows();
         if($cari_pembayaran < 1){
             $cari_santri = $this->db->query(" SELECT id_daftar FROM santri WHERE id_daftar = $id_daftar")->num_rows();
-if( $cari_santri < 1){
-    $this->Model_daftar->hapus_data($where, 'daftar');
-    $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    Data Daftar Berhasil di hapus
-                   
-                    </div>');
-    redirect('admin/pendaftaran/');
-}else{
-    $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                Data Pendaftaran Masih di pakai pada Data santri
-                            </div>');
-    redirect('admin/pendaftaran/');
-}
+            if( $cari_santri < 1){
+                $this->Model_pendaftaran->hapus_data($where, 'daftar');
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                Data Daftar Berhasil di hapus
+                               
+                                </div>');
+                redirect('admin/pendaftaran/');
+            }else{
+                $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            Data Pendaftaran Masih di pakai pada Data santri
+                                        </div>');
+                redirect('admin/pendaftaran/');
+            }
         }else{
             $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -269,7 +269,7 @@ if( $cari_santri < 1){
         $curl = curl_init();
 
         $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-        $pesan = "Assalamualakum Wr. Wb, Selamat ". $cari->nama_lengkap. " Persyaratan yang anda kirim melalu website pondok baitul kudus telah memenuhi persyaratan administrasi pendaftaran santri. Setelah lolos tahap administarsi pendaftaran selanjutnya adalah proses pembayaran dengan cara datang langsung ke pondok baitul kudus";
+        $pesan = "Assalamualakum Wr. Wb, Selamat ". $cari->nama_lengkap. " Persyaratan yang anda kirim melalu website pondok baitul kudus telah memenuhi persyaratan administrasi pendaftaran santri. Setelah lolos tahap administarsi pendaftaran selanjutnya adalah proses pembayaran dengan cara datang langsung ke pondok baitul kudus atau transfer ke no rekening bp :80698678578 atas nama : Sakroni, setelah melakukan transfer upload bukti transfer ke alamat berikut --->  " . base_url('page/upload_pembayaran/'. $cari->id_daftar);
         $target = $cari->nomor_wa; //nomer target
 
         $data = [
@@ -278,7 +278,7 @@ if( $cari_santri < 1){
         $where = [
             'id_daftar' => $id_daftar,
         ];
-        $this->Model_daftar->update_data($where, $data, 'daftar');
+        $this->Model_pendaftaran->update_data($where, $data, 'pendaftaran');
 
 
         $datat = [
@@ -329,7 +329,7 @@ if( $cari_santri < 1){
         $where = [
             'id_daftar' => $id_daftar,
         ];
-        $this->Model_daftar->update_data($where, $data, 'daftar');
+        $this->Model_pendaftaran->update_data($where, $data, 'pendaftaran');
 
 
         $datat = [
