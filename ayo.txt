@@ -1,6 +1,14 @@
 <?php
 
 LINK :
+hosting domainesia
+    email : abdulmuchlis12@gmail.com
+    pass  : paksunarbulung
+    domain : Dessy201753041.xyz
 username : MuhamadSholikhudin
 password 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
+database :  nama : dessyxyz_201753041
+            username: dessyxyz_201753041
+            password : dessyxyz_201753041
+
 ?>

@@ -16,7 +16,7 @@
                                         <div class="card">
                                             <div class="header">
                                                 <h2>
-                                                    TAMBAH pelajaran
+                                                    TAMBAH PELAJARAN
                                                 </h2>
                                             </div>
                                             <div class="body">
@@ -73,7 +73,7 @@
                         <div class="body">
 
                             <div class="text-center">
-                                <h3>DATA pelajaran</h3>
+                                <h3>DATA PELAJARAN</h3>
                                 <?= $this->session->flashdata('pesan'); ?>
                             </div>
 
@@ -102,10 +102,10 @@
                                                 <td><?= $peng->jenis ?></td>
                                                 <td>
                                                     <?php
-                                                        $pengajar = $this->db->query("SELECT * FROM pengguna WHERE id_pengguna = $peng->id_pengguna")->row();
-                                                        ?>
-                                                        <?= $pengajar->nama ?>
-                                            </td>
+                                                    $pengajar = $this->db->query("SELECT * FROM pengguna WHERE id_pengguna = $peng->id_pengguna")->row();
+                                                    ?>
+                                                    <?= $pengajar->nama ?>
+                                                </td>
                                                 <td><a href="<?= base_url('admin/pelajaran/ubah/' . $peng->id_pelajaran) ?>" class="btn btn-warning waves-effect" type="button">
                                                         <i class="material-icons">edit</i>
                                                         <span>Edit</span>

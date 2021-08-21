@@ -61,7 +61,7 @@
                                                     <div class="form-group">
                                                         <select class="selectpicker form-line" name="id_daftar" id="id_daftar">
                                                             <?php foreach ($pendaftaran as $df) : ?>
-                                                                <option value="<?= $df->id_daftar ?>"><?= $df->nama_lengkap . ' / ' . $df->kabupaten  ?></option>
+                                                                <option value="<?= $df->id_daftar ?>"><?= $df->nama_lengkap . ' / ' . $df->alamat_tinggal  ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>

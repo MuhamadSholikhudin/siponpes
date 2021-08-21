@@ -83,35 +83,35 @@ class Pembayaran extends CI_Controller
         
             // WA 
             $cari = $this->db->query(" SELECT * FROM pendaftaran WHERE id_daftar = $id_daftar")->row();
-            $curl = curl_init();
-            $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-            $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran santri   " . $cari->nama_lengkap . " telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus, " . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! ";
-            $target = $cari->nomor_wa; //nomer target
-            $datat = [
-                'phone' => $target,
-                'type' => 'text',
-                'delay' => 0,
-                'delay_req' => 0,
-                'text' => $pesan
-            ];
+            // $curl = curl_init();
+            // $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
+            // $pesan = "Assalamualakum Wr. Wb, Selamat " . $cari->nama_lengkap . " Pembayaran santri   " . $cari->nama_lengkap . " telah berhasil sekarang " . $cari->nama_lengkap . " telah menjadi santri baitul qudus. untuk mengakses website baitul qudus, " . $cari->nama_lengkap . " bisa di akses dengan username : " . $username . " dan password : " . $password . " !!! ";
+            // $target = $cari->nomor_wa; //nomer target
+            // $datat = [
+            //     'phone' => $target,
+            //     'type' => 'text',
+            //     'delay' => 0,
+            //     'delay_req' => 0,
+            //     'text' => $pesan
+            // ];
 
-            curl_setopt(
-                $curl,
-                CURLOPT_HTTPHEADER,
-                array(
-                    "Authorization: $token",
-                )
-            );
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
-            curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-            $result = curl_exec($curl);
-            curl_close($curl);
+            // curl_setopt(
+            //     $curl,
+            //     CURLOPT_HTTPHEADER,
+            //     array(
+            //         "Authorization: $token",
+            //     )
+            // );
+            // curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+            // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datat));
+            // curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            // $result = curl_exec($curl);
+            // curl_close($curl);
 
-            print $result;
+            // print $result;
 
         $this->Model_pembayaran->tambah_pembayaran($data, 'pembayaran');
         redirect('admin/pembayaran/');
