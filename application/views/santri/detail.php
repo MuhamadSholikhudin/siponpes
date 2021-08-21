@@ -44,7 +44,7 @@
                                 <input class="form-control" id="username" type="text" name="username" value="<?= $santri->username ?>" disabled>
                             </div>
                         </div>
-                        <label for="password">Username</label>
+                        <label for="password">Password</label>
                         <div class="form-group">
                             <div class="form-line">
                                 <input class="form-control" id="password" type="text" name="password" value="<?= $santri->password ?>" disabled>

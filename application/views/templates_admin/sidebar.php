@@ -88,7 +88,7 @@
             $id_santri = $this->session->userdata('id_santri');
 
             $cari_santri = $this->db->query("SELECT * FROM santri WHERE id_santri = $id_santri")->row();
-            $cari_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = $cari_santri->id_daftar")->row();
+            $cari_daftar = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = $cari_santri->id_daftar")->row();
          echo $cari_daftar->nama_lengkap;
           }
           ?>
