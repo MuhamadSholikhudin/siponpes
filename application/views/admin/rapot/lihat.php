@@ -526,26 +526,26 @@
                                         <tr>
                                             <th>
                                                 <?php
-                                                    $absen_masuk = $this->db->query("SELECT COUNT(status) as masuk FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Masuk' AND status = 1")->row();
+                                                    $absen_masuk = $this->db->query("SELECT COUNT(status) as masuk FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND absensi = 'MASUK' AND status = 1")->row();
                                                     echo $absen_masuk->masuk;
                                                 ?>
                                             </th>
                                             <th>
                                                 <?php
-                                                    $absen_ijin = $this->db->query("SELECT COUNT(status) as ijin FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Ijin' AND status = 1")->row();
+                                                    $absen_ijin = $this->db->query("SELECT COUNT(status) as ijin FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND absensi = 'IJIN' AND status = 1")->row();
                                                     echo $absen_ijin->ijin;
                                                 ?>
                                             </th>
                                             <th>
                                                 <?php
-                                                    $absen_sakit = $this->db->query("SELECT COUNT(status) as sakit FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Sakit' AND status = 1")->row();
+                                                    $absen_sakit = $this->db->query("SELECT COUNT(status) as sakit FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND absensi = 'SAKIT' AND status = 1")->row();
                                                     echo $absen_sakit->sakit;
                                                 ?>
                                             </th>
                                             </th>
                                             <th>
                                                 <?php
-                                                    $absen_alasan = $this->db->query("SELECT COUNT(status) as alasan FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND status = 'Alasan' AND status = 1")->row();
+                                                    $absen_alasan = $this->db->query("SELECT COUNT(status) as alasan FROM absensi WHERE id_santri = $id_santri AND id_kelas = $kelas AND absensi = 'ALASAN' AND status = 1")->row();
                                                     echo $absen_alasan->alasan;
                                                 ?>
                                             </th>

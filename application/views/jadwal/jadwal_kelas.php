@@ -58,9 +58,10 @@ $nama_kel =  $this->db->query("SELECT * FROM kelas WHERE id_kelas =  $kelas[0] "
                                 <?php
                                 $tampil_jadwal =  $this->db->query("SELECT * FROM jadwal LEFT JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE jadwal.id_kelas = $kelas[0] AND  jadwal.hari = '$hr' AND jadwal.waktu = '$wk' AND jadwal.status = 1 ");
                                 if ($tampil_jadwal->num_rows() > 0) {
+                                    $tjadwal = $tampil_jadwal->row();
                                     $tp = $tampil_jadwal->row();
                                     $tampil_pelajaran =  $this->db->query("SELECT * FROM pelajaran WHERE id_pelajaran = $tp->id_pelajaran ")->row();
-                                    echo  $tampil_pelajaran->nama_pelajaran;
+                                    echo  $tjadwal->id_jadwal." " .$tampil_pelajaran->nama_pelajaran;
                                     echo  "<br>";
                                     $tampil_pengguna =  $this->db->query("SELECT * FROM pengguna WHERE id_pengguna =  $tampil_pelajaran->id_pengguna")->row();
                                     echo "(" .$tampil_pengguna->nama. ")";
