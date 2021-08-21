@@ -49,7 +49,7 @@
                             <td>
 
                                 <?php
-                                $nama_santri = $this->db->query("SELECT * FROM santri JOIN daftar ON santri.id_daftar = daftar.id_daftar WHERE santri.id_santri = $id_santri[0]")->row();
+                                $nama_santri = $this->db->query("SELECT * FROM santri JOIN pendaftaran ON santri.id_daftar = pendaftaran.id_daftar WHERE santri.id_santri = $id_santri[0]")->row();
                                 echo $nama_santri->nama_lengkap;
                                 ?>
 
