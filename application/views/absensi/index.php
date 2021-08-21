@@ -120,7 +120,7 @@
                                             <th>Waktu</th>
                                             <th>Hari</th>
                                             <th>Nama Santri</th>
-                                            <th>Jumlah</th>
+                                            <th>Absensi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -139,7 +139,7 @@ $cari_nama= $this->db->query("SELECT * FROM santri JOIN pendaftaran ON pendaftar
 
                                                 ?>
                                                 <td><?= $cari_nama->nama_lengkap ?></td>
-                                                <td><?= $peng->status ?></td>
+                                                <td><?= $peng->absensi ?></td>
                                                 
 
                                                

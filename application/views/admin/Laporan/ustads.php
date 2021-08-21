@@ -27,7 +27,7 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $peng->nama ?></td>
                                         <td><?= $peng->username ?></td>
-                                        <td><?= $peng->hakakses ?></td>
+                                        <td>Ustads</td>
                                         <td>
                                         <?php
                                             if($peng->status == 1){

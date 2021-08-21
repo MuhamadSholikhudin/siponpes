@@ -261,9 +261,9 @@ class Page extends CI_Controller
                     'email' => $email,
                     'foto' =>  $new_foto,
                     'file_kk' => $new_file_kk,
-                    'file_ket_ijin' => 'Kosong',
+                    // 'file_ket_ijin' => 'Kosong',
                     // 'file_ket_ijin' => $new_file_ket_ijin,
-                    'file_ket_ijin' => 'Kosong',
+                    // 'file_ket_ijin' => 'Kosong',
                     'tanggal_daftar' => date('Y-m-d'),
                     'status' => 1
                 ];

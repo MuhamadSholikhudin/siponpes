@@ -205,7 +205,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                            $cari_nilai = $this->db->query("SELECT COALESCE(SUM(nilai), 0) as jumlah, COUNT(nilai) as banyak FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai.id_santri = $id_santri WHERE nilai.id_santri = $id_santri AND jadwal.id_pelajaran = $tp->id_pelajaran");
+                                            $cari_nilai = $this->db->query("SELECT COALESCE(SUM(nilai), 0) as jumlah, COUNT(nilai) as banyak FROM nilai JOIN jadwal ON nilai.id_jadwal = jadwal.id_jadwal WHERE nilai.id_santri = $id_santri  AND jadwal.id_pelajaran = $tp->id_pelajaran");
                                             if ($cari_nilai->num_rows() > 0) {
                                                 $t_nilai = $cari_nilai->row();
                                                 $jumlah = $t_nilai->jumlah;
