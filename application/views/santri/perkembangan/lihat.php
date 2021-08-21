@@ -42,7 +42,7 @@
                             <?php
                             $cari_absensi = $this->db->query("SELECT * FROM absensi WHERE id_santri = $pem->id_santri AND id_jadwal = $pem->id_jadwal AND tanggal = '$pem->tanggal'")->row();
                             ?>
-                            <?= $cari_absensi->status ?>
+                            <?= $cari_absensi->absensi ?>
                         </td>
                         <td>
                             <?php
