@@ -28,7 +28,7 @@
                         <td><?= $no++ ?></td>
                         <td>
                             <?php
-                            $cari_santri = $this->db->query("SELECT * FROM santri JOIN daftar ON santri.id_daftar = daftar.id_daftar WHERE santri.id_santri = $pem->id_santri ")->row();
+                            $cari_santri = $this->db->query("SELECT * FROM santri JOIN pendaftaran ON santri.id_daftar = pendaftaran.id_daftar WHERE santri.id_santri = $pem->id_santri ")->row();
                             ?>
                             <?= $cari_santri->nama_lengkap ?>
                         </td>

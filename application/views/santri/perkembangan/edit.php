@@ -14,7 +14,7 @@
                             <div class="form-group">
                                 <div class="form-line">
                                     <?php
-                                    $cari_santri = $this->db->query("SELECT * FROM santri JOIN daftar ON santri.id_daftar = daftar.id_daftar WHERE santri.id_santri = $absensi->id_santri ")->row();
+                                    $cari_santri = $this->db->query("SELECT * FROM santri JOIN pendaftaran ON santri.id_daftar = pendaftaran.id_daftar WHERE santri.id_santri = $absensi->id_santri ")->row();
                                     ?>
                                     <input class="form-control" id="nama_lengkap" type="text" value="<?= $cari_santri->nama_lengkap ?>" disabled>
                                     <input class="form-control" id="id_absensi" name="id_absensi" type="hidden" value="<?= $absensi->id_absensi ?>">
