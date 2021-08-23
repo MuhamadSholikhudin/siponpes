@@ -14,7 +14,7 @@
     <div class="container">
 
         <!-- Alamat menuju Halaman tambah -->
-        <a href="<?= base_url('crud/tambah') ?>" class="btn btn-primary mt-3">Tambah</a>
+        <a href="<?= base_url('dosen/tambah') ?>" class="btn btn-primary mt-3">Tambah</a>
 
         <h4>Data Crud Nama_tabel</h4>
         
@@ -22,7 +22,11 @@
             <thead>
                 <tr>
                     <th>No</th>
+
+
                     <th>Nim</th>
+
+
                     <th>Nama</th>
                     <th>Aksi</th>
                 </tr>
@@ -32,21 +36,25 @@
                 <?php $no = 1; ?>
 
                 <!-- foreach digunakan menampilkan data dari controller yang di tampung -->
-                <?php foreach ($mahasiswa as $mhs) : ?>
+                <?php foreach ($dosen as $dsn) : ?>
                     <tr>
                         <td>
-                            <a href="<?= base_url('crud/ubah/') . $mhs->nim ?>">
+                            <a href="<?= base_url('crud/ubah/') . $dsn->nid ?>">
                                 <?= $no++ ?>
                             </a>
                         </td>
-                        <td><?= $mhs->nim ?></td>
-                        <td><?= $mhs->nama ?></td>
+
+
+                        <td><?= $dsn->nid ?></td>
+
+                        
+                        <td><?= $dsn->nama_dosen ?></td>
                         <td>
-                            <a href="<?= base_url('crud/ubah/') . $mhs->nim ?>">
+                            <a href="<?= base_url('dosen/ubah/') . $dsn->nid ?>">
                                 Ubah
                             </a>
                             |
-                            <a href="<?= base_url('crud/hapus/') . $mhs->nim ?>">
+                            <a href="<?= base_url('dosen/hapus/') . $dsn->nid ?>">
                                 Hapus
                             </a>
                          
