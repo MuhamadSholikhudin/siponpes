@@ -244,6 +244,7 @@ class Page extends CI_Controller
                     'tempat_lahir' => $this->input->post('tempat_lahir'),
                     'tanggal_lahir' => $this->input->post('tanggal_lahir'),
                     'umur' => $this->input->post('umur'),
+                    'jekel' => $this->input->post('jekel'),
                     // 'asal_sekolah' => $this->input->post('asal_sekolah'),
                     // 'kecamatan' => $this->input->post('kecamatan'),
                     // 'kabupaten' => $this->input->post('kabupaten'),

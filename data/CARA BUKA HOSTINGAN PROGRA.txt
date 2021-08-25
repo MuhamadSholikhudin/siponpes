@@ -1,0 +1,13 @@
+cara edit program di web hosting
+
+1. login web hosting
+
+2. pilih service klik hostingan kita
+
+3. buka menu file manager
+
+4. klik folder public_html
+
+5. pilih menu controlller untuk alamat
+	menu view untuk mengubah tampilan
+
