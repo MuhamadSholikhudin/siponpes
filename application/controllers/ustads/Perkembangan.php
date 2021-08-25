@@ -21,7 +21,7 @@ class Perkembangan extends CI_Controller
 
     public function index($id_pengguna)
     {
-        $data['perkembangan'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna LIMIT 1 ")->result();
+        $data['perkembangan'] = $this->db->query("SELECT * FROM jadwal LEFT JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna GROUP BY pelajaran.id_pelajaran ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -32,7 +32,7 @@ class Perkembangan extends CI_Controller
     public function lihat($id_pengguna, $id_pelajaran)
     {
         $id_pel = $id_pelajaran;
-        $data['perkembangan'] = $this->db->query("SELECT * FROM perkembangan_pembelajaran LEFT JOIN jadwal ON perkembangan_pembelajaran.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE jadwal.id_pelajaran = '$id_pel' AND pelajaran.id_pengguna = $id_pengguna ")->result();
+        $data['perkembangan'] = $this->db->query("SELECT * FROM perkembangan_pembelajaran JOIN jadwal ON perkembangan_pembelajaran.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE jadwal.id_pelajaran = '$id_pel' AND pelajaran.id_pengguna = $id_pengguna ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');

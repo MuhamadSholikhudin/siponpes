@@ -21,7 +21,7 @@ class Absensi extends CI_Controller
 
     public function index($id_pengguna)
     {
-        $data['absensi'] = $this->db->query("SELECT * FROM pelajaran WHERE id_pengguna = $id_pengguna ")->result();
+        $data['absensi'] = $this->db->query("SELECT * FROM jadwal LEFT JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna GROUP BY pelajaran.id_pelajaran")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');

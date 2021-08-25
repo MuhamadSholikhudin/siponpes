@@ -16,6 +16,7 @@ class Pendaftaran extends CI_Controller
                     </div>');
             redirect('page/login');
         }
+        $this->load->model('Model_pendaftaran');
     }
 
     public function index()
@@ -231,13 +232,13 @@ class Pendaftaran extends CI_Controller
 
     public function hapus($id_daftar)
     {
-        $where = ['id_pendaftaran' => $id_pendaftaran];
+        $where = ['id_daftar' => $id_daftar];
 
         $cari_pembayaran = $this->db->query(" SELECT id_daftar FROM pembayaran WHERE id_daftar = $id_daftar")->num_rows();
         if($cari_pembayaran < 1){
             $cari_santri = $this->db->query(" SELECT id_daftar FROM santri WHERE id_daftar = $id_daftar")->num_rows();
             if( $cari_santri < 1){
-                $this->Model_pendaftaran->hapus_data($where, 'daftar');
+                $this->Model_pendaftaran->hapus_data($where, 'pendaftaran');
                 $this->session->set_flashdata('pesan', '<div class="alert bg-pink alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 Data Daftar Berhasil di hapus
@@ -269,7 +270,7 @@ class Pendaftaran extends CI_Controller
         $curl = curl_init();
 
         $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-        $pesan = "Assalamualakum Wr. Wb, Selamat ". $cari->nama_lengkap. " Persyaratan yang anda kirim melalu website pondok baitul kudus telah memenuhi persyaratan administrasi pendaftaran santri. Setelah lolos tahap administarsi pendaftaran selanjutnya adalah proses pembayaran dengan cara datang langsung ke pondok baitul kudus atau transfer ke no rekening bp :80698678578 atas nama : Sakroni, setelah melakukan transfer upload bukti transfer ke alamat berikut --->  " . base_url('page/upload_pembayaran/'. $cari->id_daftar);
+        $pesan = "Assalamualakum Wr. Wb, Selamat ". $cari->nama_lengkap. " Persyaratan yang anda kirim melalu website pondok baitul kudus telah memenuhi persyaratan administrasi pendaftaran santri. Setelah lolos tahap administarsi pendaftaran selanjutnya adalah proses pembayaran dengan cara datang langsung ke pondok baitul kudus atau transfer ke no rekening bca :80698678578 atas nama : Pondok Pesantren baitul qudus dengan jumlah nominal Rp 500.000, setelah melakukan transfer silahkan upload bukti transfer ke alamat berikut --->  " . base_url('page/upload_pembayaran/'. $cari->id_daftar);
         $target = $cari->nomor_wa; //nomer target
 
         $data = [

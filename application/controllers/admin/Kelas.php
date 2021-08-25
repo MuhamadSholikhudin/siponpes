@@ -32,10 +32,11 @@ class kelas extends CI_Controller
     {
 
         $kelas = $this->input->post('kelas');
+        $nama_kelas = $this->input->post('nama_kelas');
         
 
         $data = array(
-            // 'nama' => $nama,
+            'nama_kelas' => $nama_kelas,
             'kelas' => $kelas
         );
 
@@ -61,10 +62,11 @@ class kelas extends CI_Controller
     {
         $id_kelas = $this->input->post('id_kelas');
         $kelas = $this->input->post('kelas');
+        $nama_kelas = $this->input->post('nama_kelas');
 
 
         $data = array(
-            // 'nama' => $nama,
+            'nama_kelas' => $nama_kelas,
             'kelas' => $kelas
         );
 

@@ -32,7 +32,7 @@ class Page extends CI_Controller
     {
         // echo 'Beranda';
         $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
+        
         $this->load->view('page/theme/header', $data);
         $this->load->view('page/beranda');
         $this->load->view('page/theme/footer');
@@ -41,9 +41,9 @@ class Page extends CI_Controller
     public function tentang()
     {
         $data['title'] = 'Sistem Ponpes Baitul Qudus';
-
+        $data['ketua'] = $this->db->query("SELECT * FROM pengguna WHERE hakakses = 1")->row();
         $this->load->view('page/theme/header', $data);
-        $this->load->view('page/tentang');
+        $this->load->view('page/tentang', $data);
         $this->load->view('page/theme/footer');
     }
 
@@ -366,6 +366,7 @@ class Page extends CI_Controller
 
         unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->foto);
         unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_kk);
+        
         // unlink(FCPATH . 'uploads/pendaftaran/' . $cek_daftar->file_ket_ijin);
 
 
@@ -406,19 +407,19 @@ class Page extends CI_Controller
             'email' => $email,            
             'foto' =>  $new_foto,
             'file_kk' => $new_file_kk,
-            'file_ket_ijin' => 'kosong'
+            'status' => 1
             // 'file_ket_ijin' => $new_file_ket_ijin,
         ];
         $where = [
             'id_daftar' => $id_daftar
         ];
-        $this->Model_daftar->update_data($where, $data, 'pendaftaran');
+        $this->Model_pendaftaran->update_data($where, $data, 'pendaftaran');
 
 
         $curl = curl_init();
 
         $token = "G2v7XHYzzhCbETcV96WA"; // nomer token kita
-        $pesan = "Assalamualakum Wr. Wb, Selamat " . $cek_daftar->nama_lengkap . " Persyaratan yang anda kirim melalu website pondok baitul kudus berhasil di kirim untuk lebih lanjutnya di terima atau tidaknya menunggu informasi dari Pondok Pesantren Baitul Kudus ";
+        $pesan = "Assalamualakum Wr. Wb, Selamat " . $cek_daftar->nama_lengkap . " Persyaratan yang anda kirim melalui website pondok baitul kudus berhasil di kirim untuk lebih lanjutnya di terima atau tidaknya menunggu informasi dari Pondok Pesantren Baitul Kudus ";
         $target = $nomor_wa; //nomer target
 
 

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class pembelajaran extends CI_Controller
 {
@@ -21,7 +21,7 @@ class pembelajaran extends CI_Controller
 
     public function index($id_pengguna)
     {
-        $data['pembelajaran'] = $this->db->query("SELECT * FROM pelajaran WHERE id_pengguna = $id_pengguna ")->result();
+        $data['pembelajaran'] = $this->db->query("SELECT * FROM jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -29,10 +29,10 @@ class pembelajaran extends CI_Controller
         $this->load->view('templates_admin/footer');
     }
 
-    public function lihat($id_pengguna, $id_pelajaran)
+    public function lihat($id_jadwal, $id_pelajaran)
     {
         $id_pel = $id_pelajaran;
-        $data['pembelajaran'] = $this->db->query("SELECT * FROM pembelajaran LEFT JOIN jadwal ON pembelajaran.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE jadwal.id_pelajaran = '$id_pel' AND pelajaran.id_pengguna = $id_pengguna ")->result();
+        $data['pembelajaran'] = $this->db->query("SELECT * FROM pembelajaran LEFT JOIN jadwal ON pembelajaran.id_jadwal = jadwal.id_jadwal JOIN pelajaran ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE jadwal.id_pelajaran = '$id_pel' AND jadwal.id_jadwal = $id_jadwal ")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');

@@ -51,6 +51,7 @@ class Jadwal extends CI_Controller
     {
 
         $id_pelajaran = $this->input->post('id_pelajaran');
+        $kode_jadwal = $this->input->post('kode_jadwal');
         $id_kelas = $this->input->post('id_kelas');
         $periode_ajaran = $this->input->post('periode_ajaran');
         $hari = $this->input->post('hari');
@@ -59,6 +60,7 @@ class Jadwal extends CI_Controller
 
         $data = array(
             'id_pelajaran' => $id_pelajaran,
+            'kode_jadwal' => $kode_jadwal,
             'id_kelas' => $id_kelas,
             'periode_ajaran' => $periode_ajaran,
             'hari' => $hari,
@@ -185,7 +187,7 @@ class Jadwal extends CI_Controller
         $hari_pilih = $this->input->post('hari_pilih', TRUE);
         $waktu_pilih = $this->input->post('waktu_pilih', TRUE);
         $cari_ustads = $this->db->query("SELECT * FROM  pelajaran WHERE id_pelajaran = $id_pelajaran  ")->row();
-        $data = $this->db->query("SELECT * FROM jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE pelajaran.id_pengguna = $cari_ustads->id_pengguna AND jadwal.hari = '$hari_pilih' AND jadwal.waktu = '$waktu_pilih' ")->num_rows();
+        $data = $this->db->query("SELECT * FROM jadwal JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE pelajaran.id_pengguna = $cari_ustads->id_pengguna AND jadwal.hari = '$hari_pilih' AND jadwal.waktu = '$waktu_pilih' AND jadwal.status = 1")->num_rows();
         // $data = $this->db->query("SELECT * FROM jadwal WHERE id_pelajaran = $id_pelajaran AND hari = '$hari_pilih' AND waktu = '$waktu_pilih' ")->num_rows();
         // if($jum > 0){
         //     $data = "Jadwal pelajaran yang dipilih sudah ada pada hari" . $hari_pilih . " Waktu ". $waktu_pilih;

@@ -13,6 +13,7 @@ class Mengajar extends CI_Controller
 
     public function index()
     {
+        $this->load->helper('tgl_indo');
         $hari_ini = hari(date('Y-m-d'));
         // $data['jadwal'] = $this->db->query("SELECT * FROM jadwal LEFT JOIN pelajaran ON jadwal.id_pelajaran = pelajaran.id_pelajaran WHERE pelajaran.id_pengguna = 2 AND jadwal.hari = '$hari_ini'")->result();
 $data['hari'] = [$hari_ini];
@@ -28,7 +29,7 @@ $data['hari'] = [$hari_ini];
         $data['hari'] = [$hari_ini];
         $data['jadwal'] = $this->db->query("SELECT * FROM jadwal WHERE id_jadwal = $id_jadwal")->row();
         $data['pelajaran'] = $this->db->query("SELECT * FROM pelajaran WHERE id_pelajaran = $id_pelajaran")->row();
-        $data['absen'] = ['Masuk', 'Ijin', 'Sakit', 'Alasan'];
+        $data['absen'] = ['MASUK', 'IJIN', 'SAKIT', 'ALASAN'];
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');

@@ -20,7 +20,7 @@ class Pembayaran extends CI_Controller
 
     public function index()
     {
-        $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran ")->result();
+        $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran ORDER BY id_pembayaran DESC")->result();
         $data['pendaftaran'] = $this->db->query("SELECT * FROM pendaftaran WHERE status = 2")->result();
 
         $this->load->view('templates_admin/header');

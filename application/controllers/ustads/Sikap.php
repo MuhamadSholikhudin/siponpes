@@ -34,7 +34,7 @@ class Sikap extends CI_Controller
         $id_pengguna = $this->input->post('id_pengguna');
         $kelas = $this->input->post('kelas');
 
-        $data['sikap'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna AND jadwal.id_kelas = $kelas LIMIT 1 ")->result();
+        $data['sikap'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran WHERE pelajaran.id_pengguna = $id_pengguna AND jadwal.id_kelas = $kelas  GROUP BY jadwal.id_pelajaran")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
@@ -66,7 +66,7 @@ class Sikap extends CI_Controller
     {
     
         $cari_santri = $this->db->query("SELECT * FROM santri WHERE id_santri = $id_santri ")->row();
-        $cari_daftar = $this->db->query("SELECT * FROM daftar WHERE id_daftar = $cari_santri->id_daftar ")->row();
+        $cari_daftar = $this->db->query("SELECT * FROM pendaftaran WHERE id_daftar = $cari_santri->id_daftar ")->row();
         $cari_pelajaran = $this->db->query("SELECT * FROM pelajaran WHERE id_pelajaran =  $id_pelajaran")->row();
         
         $data['id_pelajaran'] = [$id_pelajaran];
@@ -121,7 +121,8 @@ class Sikap extends CI_Controller
 
             'id_pelajaran' => $id_pelajaran,
             'id_kelas' => $kelas,
-            'id_santri' => $id_santri
+            'id_santri' => $id_santri,
+            'status' => 1
         );
 
         $this->Model_sikap_dan_prilaku->tambah_sikap_dan_prilaku($data, 'sikap_dan_prilaku');
@@ -159,7 +160,8 @@ class Sikap extends CI_Controller
 
             'id_pelajaran' => $id_pelajaran,
             'id_kelas' => $kelas,
-            'id_santri' => $id_santri
+            'id_santri' => $id_santri,
+            'status' => 1
         );
         $where = [
             'id_sikap_dan_prilaku' => $id_sikap_dan_prilaku

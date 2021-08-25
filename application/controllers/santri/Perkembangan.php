@@ -21,7 +21,7 @@ class Perkembangan extends CI_Controller
 
     public function index($id_santri)
     {
-        $data['perkembangan'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran JOIN absensi ON jadwal.id_jadwal = absensi.id_jadwal WHERE absensi.id_santri = $id_santri")->result();
+        $data['perkembangan'] = $this->db->query("SELECT * FROM pelajaran LEFT JOIN jadwal ON pelajaran.id_pelajaran = jadwal.id_pelajaran JOIN perkembangan_pembelajaran ON jadwal.id_jadwal = perkembangan_pembelajaran.id_jadwal WHERE perkembangan_pembelajaran.id_santri = $id_santri ORDER BY perkembangan_pembelajaran.tanggal DESC")->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar');
